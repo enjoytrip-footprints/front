@@ -8,6 +8,8 @@ import Login from "./views/Login.vue";
 import Register from "./views/Register.vue";
 import Profile from "./views/Profile.vue";
 import BoardView from "@/views/BoardView.vue";
+import TourSearch from "@/views/TourSearch.vue";
+import TourPlan from "@/views/TourPlan.vue";
 
 Vue.use(Router);
 
@@ -29,6 +31,24 @@ export default new Router({
       components: {
         header: AppHeader,
         default: Landing,
+        footer: AppFooter,
+      },
+    },
+    {
+      path: "/toursearch",
+      name: "TourSearch",
+      components: {
+        header: AppHeader,
+        default: TourSearch,
+        footer: AppFooter,
+      },
+    },
+    {
+      path: "/tourplan",
+      name: "TourPlan",
+      components: {
+        header: AppHeader,
+        default: TourPlan,
         footer: AppFooter,
       },
     },
