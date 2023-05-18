@@ -19,7 +19,7 @@
             <div class="row">
               <div class="col-lg-6">
                 <h1 class="display-3 text-white">
-                  여행혀여행ewffeawefawef
+                  관광지를 검색해보세요.
                   <span>여행혀여wefawefw행</span>
                 </h1>
                 <p class="lead text-white">여행혀여행</p>
