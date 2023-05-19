@@ -1,6 +1,6 @@
 <template>
     <section class="section section-shaped section-lg my-0">
-        <div class="shape shape-style-1 bg-gradient-default">
+        <div class="shape shape-style-1 bg-gradient-red">
             <span></span>
             <span></span>
             <span></span>
@@ -17,7 +17,7 @@
                           header-classes="bg-white pb-5"
                           body-classes="px-lg-5 py-lg-5"
                           class="border-0">
-                        <template>
+                        <!-- <template>
                             <div class="text-muted text-center mb-3">
                                 <small>Sign in with</small>
                             </div>
@@ -32,16 +32,16 @@
                                     Google
                                 </base-button>
                             </div>
-                        </template>
+                        </template> -->
                         <template>
                             <div class="text-center text-muted mb-4">
-                                <small>Or sign in with credentials</small>
+                                <small>어서오세요</small>
                             </div>
                             <form role="form">
                                 <base-input alternative
                                             class="mb-3"
-                                            placeholder="Email"
-                                            addon-left-icon="ni ni-email-83">
+                                            placeholder="Id"
+                                            addon-left-icon="ni ni-hat-3">
                                 </base-input>
                                 <base-input alternative
                                             type="password"
@@ -52,7 +52,7 @@
                                     Remember me
                                 </base-checkbox>
                                 <div class="text-center">
-                                    <base-button type="primary" class="my-4">Sign In</base-button>
+                                    <base-button style="background-color: Tomato; border-color: Tomato;" type="primary" class="my-4">로그인</base-button>
                                 </div>
                             </form>
                         </template>
@@ -64,7 +64,7 @@
                             </a>
                         </div>
                         <div class="col-6 text-right">
-                            <a href="#" class="text-light">
+                            <a href="#/register" class="text-light">
                                 <small>Create new account</small>
                             </a>
                         </div>
