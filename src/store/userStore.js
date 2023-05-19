@@ -2,7 +2,7 @@ import jwtDecode from "jwt-decode";
 import router from "@/router";
 // import { login, findById, tokenRegeneration, logout } from "@/user";
 import http from "@/util/http-common";
-
+import axios from "axios";
 const userStore = {
   namespaced: true,
   state: {
@@ -175,9 +175,15 @@ const userStore = {
           console.log(error);
         });
     },
-    userSignup(context, param) {
-      http
-        .post(`user`, JSON.stringify(param))
+    
+    async userSignup(context, param) {
+      const headers = {
+        'Content-type': 'application/json',
+        'Accept': '*/*'
+      }
+      axios.defaults.headers.post = null
+      await http
+        .post(`member`, JSON.stringify(param), {headers})
         .then(() => {
           alert("회원가입이 완료되었습니다!!");
           router.push({ name: "login" });

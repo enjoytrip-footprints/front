@@ -45,6 +45,7 @@
                                           :class="pwdCheckValid"
                                           id="signup-form-pwd-confirm"
                                           placeholder="Password 확인"
+                                          addon-left-icon="ni ni-lock-circle-open"
                                           v-model="pwdCheck"
                                           @keyup.enter="userJoin">
                               </base-input>
@@ -151,6 +152,7 @@ export default {
         alert("비밀번호가 일치하지 않습니다!!");
         return;
       } else {
+        alert("등록할거 ");
         this.userSignup(this.user);
       }
     },
