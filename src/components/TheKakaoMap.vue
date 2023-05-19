@@ -20,7 +20,7 @@ export default {
   },
   watch: {
     chargers() {
-      console.log("충전소", this.chargers);
+      console.log("관광지", this.chargers);
       this.positions = [];
       this.chargers.forEach((charger) => {
         let obj = {};
@@ -35,9 +35,12 @@ export default {
   created() {},
   mounted() {
     // api 스크립트 소스 불러오기 및 지도 출력
+    // console.log("window kakao : " + window.kakao);
+    // console.log("window kakao maps : " + window.kakao.maps);
     if (window.kakao && window.kakao.maps) {
       this.loadMap();
     } else {
+      console.log("loadscript");
       this.loadScript();
     }
   },
@@ -45,10 +48,10 @@ export default {
     // api 불러오기
     loadScript() {
       const script = document.createElement("script");
-
+      console.log("kakao key : " + process.env.VUE_APP_KAKAO_MAP_API_KEY);
       script.src =
-        // "//dapi.kakao.com/v2/maps/sdk.js?appkey=" + process.env.VUE_APP_KAKAO_MAP_API_KEY + "&autoload=false";
-        "//dapi.kakao.com/v2/maps/sdk.js?appkey=" + "7e5282ac1d8a24e34152ed2d9da0b6d2" + "&autoload=false";
+        "//dapi.kakao.com/v2/maps/sdk.js?appkey=" + process.env.VUE_APP_KAKAO_MAP_API_KEY + "&autoload=false";
+      // "//dapi.kakao.com/v2/maps/sdk.js?appkey=" + "7e5282ac1d8a24e34152ed2d9da0b6d2" + "&autoload=false";
       /* global kakao */
       script.onload = () => window.kakao.maps.load(this.loadMap);
 
