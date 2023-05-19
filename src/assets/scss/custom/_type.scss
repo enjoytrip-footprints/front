@@ -1,4 +1,7 @@
 // General styles
+* {
+	font-family: "KCCMurukmuruk";
+}
 
 p {
 	font-size: $paragraph-font-size;
@@ -15,6 +18,13 @@ p {
 	+ .btn-wrapper {
 		margin-top: 3rem;
 	}
+}
+
+@font-face {
+	font-family: 'KCCMurukmuruk';
+	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.0/KCCMurukmuruk.woff2') format('woff2');
+	font-weight: normal;
+	font-style: normal;
 }
 
 .description {
