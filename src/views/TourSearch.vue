@@ -96,7 +96,7 @@ export default {
         ({ data }) => {
           // console.log(data);
           // console.log(data.response);
-          // console.log(data.response.body);
+          console.log(data.response.body);
           // console.log(data.response.body.items);
           // console.log(data.response.body.items.item);
           this.chargerList = data.response.body.items.item;
