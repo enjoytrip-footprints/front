@@ -21,6 +21,7 @@ import router from "./router";
 import Argon from "./plugins/argon-kit";
 import store from "./store";
 import "./registerServiceWorker";
+import "@/api/lib/vueBootstrap.js";
 
 Vue.config.productionTip = false;
 Vue.use(Argon);
