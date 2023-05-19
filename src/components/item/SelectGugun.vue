@@ -31,6 +31,7 @@ export default {
   },
   watch: {
     sidoCode() {
+      console.log("sido change : " + this.sidoCode);
       this.CLEAR_GUGUN_LIST();
       this.gugunCode = null;
       if (this.sidoCode) this.getGugun(this.sidoCode);

@@ -33,15 +33,15 @@
 
           <select-sido @select-sido="selectSido"></select-sido>
           <select-gugun :sidoCode="sidoCode" @select-gugun="selectGugun"></select-gugun>
-
-          <the-kakao-map></the-kakao-map>
         </div>
+        <the-kakao-map :chargers="chargerList" />
       </div>
     </section>
   </div>
 </template>
 
 <script>
+import { electricChargerStationList } from "@/api/electric.js";
 import SelectSido from "@/components/item/SelectSido.vue";
 import SelectGugun from "@/components/item/SelectGugun.vue";
 import TheKakaoMap from "@/components/TheKakaoMap.vue";
@@ -66,7 +66,7 @@ export default {
     selectGugun(gugunCode) {
       console.log("구군바꼈으니 충전소 찾으러 가자!!!", gugunCode);
       const SERVICE_KEY = process.env.VUE_APP_APT_DEAL_API_KEY;
-
+      console.log("서비스키 : " + SERVICE_KEY);
       const params = {
         pageNo: 1,
         numOfRows: 30,
