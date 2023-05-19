@@ -7,11 +7,11 @@ p {
 	font-size: $paragraph-font-size;
 	font-weight: $paragraph-font-weight;
 	line-height: $paragraph-line-height;
+	font-weight: $lead-font-weight;
 } 
 
 .lead {
 	font-size: $lead-font-size;
-  	font-weight: $lead-font-weight;
 	line-height: $paragraph-line-height;
 	margin-top: 1.5rem;
 
