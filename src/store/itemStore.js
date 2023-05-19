@@ -4,16 +4,17 @@ import http from "@/util/http-common";
 const itemStore = {
   namespaced: true,
   state: {
-    sidos: [{ value: null, text: "선택하세요" }],
-    guguns: [{ value: null, text: "선택하세요" }],
+    sidos: [{ value: null, text: "시/도 선택" }],
+    guguns: [{ value: null, text: "구/군 선택" }],
+    tours: [],
   },
   getters: {},
   mutations: {
     CLEAR_SIDO_LIST(state) {
-      state.sidos = [{ value: null, text: "선택하세요" }];
+      state.sidos = [{ value: null, text: "시/도 선택" }];
     },
     CLEAR_GUGUN_LIST(state) {
-      state.guguns = [{ value: null, text: "선택하세요" }];
+      state.guguns = [{ value: null, text: "구/군 선택" }];
     },
     SET_SIDO_LIST(state, sidos) {
       sidos.forEach((sido) => {

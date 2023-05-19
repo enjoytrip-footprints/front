@@ -3,7 +3,7 @@
     <div class="position-relative">
       <!-- shape Hero -->
       <section class="section-shaped my-0">
-        <div class="shape shape-style-1 shape-default shape-skew">
+        <div class="shape shape-style-1 shape-default shape-skew bg-gradient-purple">
           <span></span>
           <span></span>
           <span></span>
@@ -18,10 +18,12 @@
           <div class="col px-0">
             <div class="row">
               <div class="col-lg-6">
-                <h1 class="display-3 text-white">여행지 찾기</h1>
+                <h1 class="display-3 text-white">여행지 검색</h1>
               </div>
             </div>
           </div>
+          <p />
+          시, 도 / 군, 구 에 맞춰 관광지를 찾아보세요.
         </div>
       </section>
       <!-- 1st Hero Variation -->
@@ -30,11 +32,16 @@
       <div class="container">
         <div class="row justify-content-center">
           <!-- Map 추가하는 부분 -->
-
-          <select-sido @select-sido="selectSido"></select-sido>
-          <select-gugun :sidoCode="sidoCode" @select-gugun="selectGugun"></select-gugun>
+          <b-row class="mt-3">
+            <select-sido @select-sido="selectSido"></select-sido>
+            <select-gugun :sidoCode="sidoCode" @select-gugun="selectGugun"></select-gugun>
+          </b-row>
         </div>
-        <the-kakao-map :chargers="chargerList" />
+        <b-row class="mt-3">
+          <b-col cols="12">
+            <the-kakao-map :chargers="chargerList"></the-kakao-map>
+          </b-col>
+        </b-row>
       </div>
     </section>
   </div>
@@ -64,14 +71,22 @@ export default {
       this.sidoCode = sidoCode;
     },
     selectGugun(gugunCode) {
-      console.log("구군바꼈으니 충전소 찾으러 가자!!!", gugunCode);
+      console.log("구군바꼈으니 관광지 찾으러 가자!!!", gugunCode);
       const SERVICE_KEY = process.env.VUE_APP_APT_DEAL_API_KEY;
-      console.log("서비스키 : " + SERVICE_KEY);
+      // console.log("서비스키 : " + SERVICE_KEY);
+
       const params = {
-        pageNo: 1,
-        numOfRows: 30,
-        zscode: gugunCode,
         serviceKey: decodeURIComponent(SERVICE_KEY),
+        pageNo: "1",
+        numOfRows: "20",
+        MobileOS: "ETC",
+        MobileApp: "AppTest",
+        _type: "json",
+        listYN: "Y",
+        arrange: "A",
+        contentTypeId: "12",
+        areaCode: this.sidoCode,
+        sigunguCode: gugunCode,
       };
       // if (gugunCode) params.zscode = gugunCode;
       // else params.zcode = this.sidoCode;
@@ -79,7 +94,12 @@ export default {
       electricChargerStationList(
         params,
         ({ data }) => {
-          this.chargerList = data.items[0].item;
+          // console.log(data);
+          // console.log(data.response);
+          // console.log(data.response.body);
+          // console.log(data.response.body.items);
+          // console.log(data.response.body.items.item);
+          this.chargerList = data.response.body.items.item;
         },
         (error) => {
           console.log(error);

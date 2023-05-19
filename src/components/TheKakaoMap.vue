@@ -24,8 +24,9 @@ export default {
       this.positions = [];
       this.chargers.forEach((charger) => {
         let obj = {};
-        obj.title = charger.statNm;
-        obj.latlng = new kakao.maps.LatLng(charger.lat, charger.lng);
+        // obj.title = charger.statNm;
+        obj.title = charger.title;
+        obj.latlng = new kakao.maps.LatLng(charger.mapy, charger.mapx);
 
         this.positions.push(obj);
       });
@@ -66,14 +67,14 @@ export default {
       };
 
       this.map = new window.kakao.maps.Map(container, options);
-      //   this.loadMaker();
+      // this.loadMaker();
     },
     // 지정한 위치에 마커 불러오기
     loadMaker() {
       // 현재 표시되어있는 marker들이 있다면 marker에 등록된 map을 없애준다.
-      console.log("1111");
+      // console.log("1111");
       this.deleteMarker();
-      console.log("2222");
+      // console.log("2222");
       // 마커 이미지를 생성합니다
       //   const imgSrc = require("@/assets/map/markerStar.png");
       // 마커 이미지의 이미지 크기 입니다
