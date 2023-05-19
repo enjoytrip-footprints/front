@@ -1,6 +1,6 @@
 import jwtDecode from "jwt-decode";
 import router from "@/router";
-// import { login, findById, tokenRegeneration, logout } from "@/user";
+import { login, findById, tokenRegeneration, logout } from "@/api/user";
 import http from "@/util/http-common";
 import axios from "axios";
 const userStore = {

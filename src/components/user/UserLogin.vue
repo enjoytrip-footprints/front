@@ -24,7 +24,7 @@
                             <form role="form">
                                 <base-input 
                                 id="userid"
-                                v-model="user.userid"
+                                v-model="user.id"
                                 required
                                 placeholder="아이디"
                                 @keyup.enter="confirm">
@@ -32,7 +32,7 @@
                                 <base-input 
                                 type="password"
                                 id="userpwd"
-                                v-model="user.userpwd"
+                                v-model="user.password"
                                 required
                                 placeholder="비밀번호 입력...."
                                 @keyup.enter="confirm">
@@ -65,37 +65,45 @@
 </template>
 
 <script>
-import { mapState, mapActions } from "vuex";
-
-const memberStore = "memberStore";
+import { mapState, mapActions, mapMutations } from "vuex";
 
 export default {
-  name: "MemberLogin",
+  name: "UserLogin",
   data() {
     return {
-      // isLoginError: false,
       user: {
-        userid: null,
-        userpwd: null,
+        id: null,
+        password: null,
       },
     };
   },
   computed: {
-    ...mapState(memberStore, ["isLogin", "isLoginError", "userInfo"]),
+    ...mapState("userStore", ["isLogin", "isLoginError", "userInfo"]),
   },
   methods: {
-    ...mapActions(memberStore, ["userConfirm", "getUserInfo"]),
+    ...mapMutations("userStore", ["SET_IS_LOGIN_ERROR"]),
+    ...mapActions("userStore", ["userConfirm", "getUserInfo"]),
+
     async confirm() {
       await this.userConfirm(this.user);
       let token = sessionStorage.getItem("access-token");
       if (this.isLogin) {
         await this.getUserInfo(token);
-        this.$router.push({ name: "main" });
+        this.$router.push({ name: "home" });
       }
     },
-    movePage() {
+    moveJoin() {
       this.$router.push({ name: "join" });
     },
+    moveFindId() {
+      this.$router.push({ name: "findId" });
+    },
+    moveFindPw() {
+      this.$router.push({ name: "findPw" });
+    },
+  },
+  mounted() {
+    this.SET_IS_LOGIN_ERROR(false);
   },
 };
 </script>
