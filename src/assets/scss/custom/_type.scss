@@ -1,20 +1,30 @@
 // General styles
+* {
+	font-family: "KCCMurukmuruk";
+}
 
 p {
 	font-size: $paragraph-font-size;
 	font-weight: $paragraph-font-weight;
 	line-height: $paragraph-line-height;
+	font-weight: $lead-font-weight;
 } 
 
 .lead {
 	font-size: $lead-font-size;
-  	font-weight: $lead-font-weight;
 	line-height: $paragraph-line-height;
 	margin-top: 1.5rem;
 
 	+ .btn-wrapper {
 		margin-top: 3rem;
 	}
+}
+
+@font-face {
+	font-family: 'KCCMurukmuruk';
+	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.0/KCCMurukmuruk.woff2') format('woff2');
+	font-weight: normal;
+	font-style: normal;
 }
 
 .description {
