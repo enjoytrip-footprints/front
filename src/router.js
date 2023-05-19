@@ -4,14 +4,34 @@ import AppHeader from "./layout/AppHeader";
 import AppFooter from "./layout/AppFooter";
 import Components from "./views/Components.vue";
 import Landing from "./views/Landing.vue";
-import Login from "./views/Login.vue";
-import Register from "./views/Register.vue";
+import Login from "@/components/user/UserLogin";
+import Register from "@/components/user/UserRegister";
 import Profile from "./views/Profile.vue";
 import BoardView from "@/views/BoardView.vue";
 import TourSearch from "@/views/TourSearch.vue";
 import TourPlan from "@/views/TourPlan.vue";
 
 Vue.use(Router);
+
+const onlyAuthUser = async (to, from, next) => {
+  const checkUserInfo = store.getters["memberStore/checkUserInfo"];
+  const checkToken = store.getters["memberStore/checkToken"];
+  let token = sessionStorage.getItem("access-token");
+  console.log("로그인 처리 전", checkUserInfo, token);
+
+  if (checkUserInfo != null && token) {
+    console.log("토큰 유효성 체크하러 가자!!!!");
+    await store.dispatch("memberStore/getUserInfo", token);
+  }
+  if (!checkToken || checkUserInfo === null) {
+    alert("로그인이 필요한 페이지입니다..");
+    // next({ name: "login" });
+    router.push({ name: "login" });
+  } else {
+    console.log("로그인 했다!!!!!!!!!!!!!.");
+    next();
+  }
+};
 
 export default new Router({
   linkExactActiveClass: "active",
@@ -55,6 +75,7 @@ export default new Router({
     {
       path: "/login",
       name: "login",
+      // component: () => import(/* webpackChunkName: "user" */ "@/components/user/UserLogin"),
       components: {
         header: AppHeader,
         default: Login,
@@ -64,6 +85,7 @@ export default new Router({
     {
       path: "/register",
       name: "register",
+      // component: () => import(/* webpackChunkName: "user" */ "@/components/user/UserRegister"),
       components: {
         header: AppHeader,
         default: Register,

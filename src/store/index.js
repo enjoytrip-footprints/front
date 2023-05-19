@@ -4,6 +4,7 @@ import Vuex from "vuex";
 // import http from "@/util/http-common";
 import { createVuexPersistedState } from "vue-persistedstate";
 import axios from "axios";
+import userStore from "@/store/userStore";
 import board from "@/store/board.js";
 import itemStore from "@/store/itemStore.js";
 // import comment from "@/store/comment.js";
@@ -15,6 +16,7 @@ export default new Vuex.Store({
     // index.js가 많아지면 복잡하니 모듈화해서 나누어서 사용
     board: board,
     itemStore: itemStore,
+    userStore: userStore,
     // comment: comment,
   },
 

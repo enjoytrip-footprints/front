@@ -5,18 +5,10 @@
     <h1 v-else class="underline text-white">글 수정</h1>
 
     <div class="regist_form">
-      <!-- <label for="articleNo">도서번호</label>
-
-      <input v-if="type == 'create'" type="text" id="articleNo" name="articleNo" v-model="articleNo" ref="articleNo" />
-      <input v-else type="text" id="articleNo" name="articleNo" v-model="articleNo" ref="articleNo" readonly /><br /> -->
-
-      <!-- 추후 jwt 구현시 글쓴이 고정으로 바꿔야함 -->
       <label for="author">글쓴이</label>
       <input type="text" id="author" name="author" v-model="author" ref="author" /><br />
       <label for="title">제목</label>
       <input type="text" id="title" name="title" v-model="title" ref="title" /><br />
-      <!-- <label for="article">글 내용</label>
-      <input type="number" id="article" name="article" v-model="article" ref="article" /><br /> -->
       <label for="article">글 내용</label><br />
       <textarea id="article" name="article" v-model="article" ref="article" cols="35" rows="5"></textarea><br />
 

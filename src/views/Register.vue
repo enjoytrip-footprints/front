@@ -21,22 +21,8 @@
                             <div class="text-muted text-center mb-3">
                                 <small>발자취에 오신걸 환영합니다</small>
                             </div>
-                            <!-- <div class="btn-wrapper text-center">
-                                <base-button type="neutral">
-                                    <img slot="icon" src="img/icons/common/github.svg">
-                                    Github
-                                </base-button>
-
-                                <base-button type="neutral">
-                                    <img slot="icon" src="img/icons/common/google.svg">
-                                    Google
-                                </base-button>
-                            </div> -->
                         </template>
                         <template>
-                            <!-- <div class="text-center text-muted mb-4">
-                                <small>Or sign up with credentials</small>
-                            </div> -->
                             <form role="form">
                                 <base-input alternative
                                             class="mb-3"
@@ -85,7 +71,9 @@
     </section>
 </template>
 <script>
-export default {};
+export default {
+    name: "RegisterView"
+};
 </script>
 <style>
 </style>
