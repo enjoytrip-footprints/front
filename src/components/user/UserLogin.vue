@@ -1,5 +1,5 @@
 <template>
-    <section class="section section-shaped section-lg my-0">
+      <section class="section section-shaped section-lg my-0">
         <div class="shape shape-style-1 bg-gradient-red">
             <span></span>
             <span></span>
@@ -22,21 +22,26 @@
                                 <small>어서오세요</small>
                             </div>
                             <form role="form">
-                                <base-input alternative
-                                            class="mb-3"
-                                            placeholder="Id"
-                                            addon-left-icon="ni ni-hat-3">
+                                <base-input 
+                                id="userid"
+                                v-model="user.userid"
+                                required
+                                placeholder="아이디"
+                                @keyup.enter="confirm">
                                 </base-input>
-                                <base-input alternative
-                                            type="password"
-                                            placeholder="Password"
-                                            addon-left-icon="ni ni-lock-circle-open">
+                                <base-input 
+                                type="password"
+                                id="userpwd"
+                                v-model="user.userpwd"
+                                required
+                                placeholder="비밀번호 입력...."
+                                @keyup.enter="confirm">
                                 </base-input>
                                 <base-checkbox>
                                     Remember me
                                 </base-checkbox>
                                 <div class="text-center">
-                                    <base-button style="background-color: Tomato; border-color: Tomato;" type="primary" class="my-4">로그인</base-button>
+                                    <base-button style="background-color: Tomato; border-color: Tomato;" type="primary" class="my-4" @click="confirm">로그인</base-button>
                                 </div>
                             </form>
                         </template>
@@ -58,8 +63,41 @@
         </div>
     </section>
 </template>
+
 <script>
-export default {};
+import { mapState, mapActions } from "vuex";
+
+const memberStore = "memberStore";
+
+export default {
+  name: "MemberLogin",
+  data() {
+    return {
+      // isLoginError: false,
+      user: {
+        userid: null,
+        userpwd: null,
+      },
+    };
+  },
+  computed: {
+    ...mapState(memberStore, ["isLogin", "isLoginError", "userInfo"]),
+  },
+  methods: {
+    ...mapActions(memberStore, ["userConfirm", "getUserInfo"]),
+    async confirm() {
+      await this.userConfirm(this.user);
+      let token = sessionStorage.getItem("access-token");
+      if (this.isLogin) {
+        await this.getUserInfo(token);
+        this.$router.push({ name: "main" });
+      }
+    },
+    movePage() {
+      this.$router.push({ name: "join" });
+    },
+  },
+};
 </script>
-<style>
-</style>
+
+<style></style>
