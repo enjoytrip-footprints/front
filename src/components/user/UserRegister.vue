@@ -152,7 +152,6 @@ export default {
         alert("비밀번호가 일치하지 않습니다!!");
         return;
       } else {
-        alert("등록할거 ");
         this.userSignup(this.user);
       }
     },

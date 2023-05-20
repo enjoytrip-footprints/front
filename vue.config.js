@@ -1,7 +1,9 @@
 const webpack = require("webpack");
 const dotenv = require("dotenv");
-
 module.exports = {
+  devServer:{
+    proxy:"http://localhost:8080"
+  },
   configureWebpack: {
     // Set up all the aliases we use in our app.
     plugins: [
