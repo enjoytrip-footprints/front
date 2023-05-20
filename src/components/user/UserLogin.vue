@@ -23,7 +23,8 @@
                             </div>
                             <form role="form">
                                 <base-input 
-                                id="userid"
+                                id="login-form-id"
+                                name="id"
                                 v-model="user.id"
                                 required
                                 placeholder="아이디"
@@ -31,7 +32,8 @@
                                 </base-input>
                                 <base-input 
                                 type="password"
-                                id="userpwd"
+                                id="login-form-pw"
+                                name="pwd"
                                 v-model="user.password"
                                 required
                                 placeholder="비밀번호 입력...."
@@ -65,6 +67,7 @@
 </template>
 
 <script>
+import { userInfo } from "os";
 import { mapState, mapActions, mapMutations } from "vuex";
 
 export default {
@@ -87,6 +90,7 @@ export default {
     async confirm() {
       await this.userConfirm(this.user);
       let token = sessionStorage.getItem("access-token");
+      console.log("sessionStorage : "+sessionStorage)
       if (this.isLogin) {
         await this.getUserInfo(token);
         this.$router.push({ name: "components" });

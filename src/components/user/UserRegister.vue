@@ -29,6 +29,8 @@
                                           placeholder="Id"
                                           addon-left-icon="ni ni-hat-3"
                                           type="text"
+                                          id="signup-form-id"
+                                          name="id"
                                           v-model="user.id"
                                           @keyup="checkId">
                               </base-input>
@@ -37,6 +39,7 @@
                                           :class="pwdValid"
                                           placeholder="Password"
                                           id="signup-form-pwd"
+                                          name="password"
                                           addon-left-icon="ni ni-lock-circle-open"
                                           v-model="user.password">
                               </base-input>
@@ -153,6 +156,7 @@ export default {
         return;
       } else {
         this.userSignup(this.user);
+        alert("sssss");
       }
     },
   },
