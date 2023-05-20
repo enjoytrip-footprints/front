@@ -25,7 +25,7 @@
                     <div class="dropdown-menu dropdown-menu-xl">
                         <div class="dropdown-menu-inner">
                             <a href="https://demos.creative-tim.com/argon-design-system/docs/getting-started/overview.html"
-                               class="media d-flex align-items-center">
+                                class="media d-flex align-items-center">
                                 <div class="icon icon-shape bg-gradient-primary rounded-circle text-white">
                                     <i class="ni ni-spaceship"></i>
                                 </div>
@@ -36,7 +36,7 @@
                                 </div>
                             </a>
                             <a href="https://demos.creative-tim.com/argon-design-system/docs/components/alerts.html"
-                               class="media d-flex align-items-center">
+                                class="media d-flex align-items-center">
                                 <div class="icon icon-shape bg-gradient-warning rounded-circle text-white">
                                     <i class="ni ni-ui-04"></i>
                                 </div>

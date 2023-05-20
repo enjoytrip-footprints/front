@@ -27,23 +27,12 @@
         <div class="col px-0">
           <div class="row">
             <div class="col-lg-6">
-              <h1 class="display-3  text-white">
-                여행 후기 공유
-              </h1>
-              <p class="lead  text-white">
-                여러분의 발자취를 남겨주세요.
-              </p>
-              <p class="lead  text-white">
-                흩어지는 소중한 추억을 간직하고 자랑해보아요.
-              </p>
             </div>
           </div>
           <router-view></router-view><br /><br />
-          <!-- <board-search></board-search> -->
         </div>
       </div>
     </section>
-    <!-- 1st Hero Variation -->
   </div>
 </template>
 
