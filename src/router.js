@@ -3,13 +3,14 @@ import Router from "vue-router";
 import AppHeader from "./layout/AppHeader";
 import AppFooter from "./layout/AppFooter";
 import Components from "./views/Components.vue";
-import Landing from "./views/Landing.vue";
+import Landing from "./views/base/Landing.vue";
 import Login from "@/components/user/UserLogin";
 import Register from "@/components/user/UserRegister";
-import Profile from "./views/Profile.vue";
+import Profile from "./views/base/Profile.vue";
 import BoardView from "@/views/BoardView.vue";
 import TourSearch from "@/views/TourSearch.vue";
 import TourPlan from "@/views/TourPlan.vue";
+import PlanWrite from "@/components/map/PlanWrite";
 
 Vue.use(Router);
 
@@ -71,7 +72,20 @@ export default new Router({
         default: TourPlan,
         footer: AppFooter,
       },
+      // children: [
+      //   { path: "write", name: "PlanWrite", component: () => import("@/components/map/PlanWrite.vue") },
+      // ],
     },
+    {
+      path: "/tourwrite",
+      name: "PlanWrite",
+      components: {
+        header: AppHeader,
+        default: PlanWrite,
+        footer: AppFooter,
+      },
+    },
+    
     {
       path: "/login",
       name: "login",
