@@ -1,18 +1,6 @@
 <template>
   <div>
     <detail-view></detail-view>
-    <!-- <comment-write :isbn="isbn" />
-    <comment-write
-      v-if="isModifyShow && this.modifyComment != null"
-      :modifyComment="this.modifyComment"
-      @modify-comment-cancel="onModifyCommentCancel"
-    />
-    <comment-row
-      v-for="(comment, index) in comments"
-      :key="index"
-      :comment="comment"
-      @modify-comment="onModifyComment"
-    /> -->
   </div>
 </template>
 
