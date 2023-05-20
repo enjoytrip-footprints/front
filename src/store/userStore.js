@@ -1,8 +1,9 @@
 import jwtDecode from "jwt-decode";
 import router from "@/router";
 import { login, findById, tokenRegeneration, logout } from "@/api/user";
-import http from "@/util/http-common";
+import http from "@/api/http";
 import axios from "axios";
+
 const userStore = {
   namespaced: true,
   state: {
@@ -58,6 +59,11 @@ const userStore = {
   },
   actions: {
     async userConfirm({ commit }, user) {
+      const headers = {
+        'Content-type': 'application/json',
+        'Accept': '*/*'
+      }
+      axios.defaults.headers.post = null
       await login(
         user,
         ({ data }) => {
@@ -175,15 +181,9 @@ const userStore = {
           console.log(error);
         });
     },
-    
-    async userSignup(context, param) {
-      const headers = {
-        'Content-type': 'application/json',
-        'Accept': '*/*'
-      }
-      axios.defaults.headers.post = null
-      await http
-        .post(`member`, JSON.stringify(param), {headers})
+    userSignup(context, param) {
+      http
+        .post(`user/join`, JSON.stringify(param))
         .then(() => {
           alert("회원가입이 완료되었습니다!!");
           router.push({ name: "login" });
