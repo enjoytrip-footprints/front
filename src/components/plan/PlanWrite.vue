@@ -52,7 +52,7 @@
 import { electricChargerStationList } from "@/api/electric.js";
 import SelectSido from "@/components/item/SelectSido.vue";
 import SelectGugun from "@/components/item/SelectGugun.vue";
-import TheKakaoMap from "@/components/map/TheKakaoMapSearch.vue";
+import TheKakaoMap from "@/components/plan/TheKakaoMapSearch.vue";
 export default {
   name: "TourSearch",
   components: {
