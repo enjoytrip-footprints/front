@@ -7,6 +7,7 @@ import Landing from "./views/base/Landing.vue";
 import Login from "@/components/user/UserLogin";
 import Register from "@/components/user/UserRegister";
 import Profile from "./views/base/Profile.vue";
+import MyProfile from "@/components/user/MyProfile.vue";
 import BoardView from "@/views/BoardView.vue";
 import TourSearch from "@/views/TourSearch.vue";
 import TourPlan from "@/views/TourPlan.vue";
@@ -52,6 +53,15 @@ export default new Router({
       components: {
         header: AppHeader,
         default: Landing,
+        footer: AppFooter,
+      },
+    },
+    {
+      path: "/myProfile",
+      name: "MyProfile",
+      components: {
+        header: AppHeader,
+        default: MyProfile,
         footer: AppFooter,
       },
     },

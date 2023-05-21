@@ -2,6 +2,7 @@ import jwtDecode from "jwt-decode";
 import router from "@/router";
 import { login, findById, tokenRegeneration, logout } from "@/api/user";
 import http from "@/api/http";
+import axios from "axios";
 
 const userStore = {
   namespaced: true,
@@ -184,8 +185,13 @@ const userStore = {
         });
     },
     userSignup(context, param) {
+      const headers = {
+        'Content-type': 'application/json',
+        'Accept': '*/*'
+      }
+      axios.defaults.headers.post = null
       http
-        .post(`user/join`, JSON.stringify(param))
+        .post(`member`, JSON.stringify(param))
         .then(() => {
           alert("회원가입이 완료되었습니다!!");
           router.push({ name: "login" });
@@ -199,12 +205,21 @@ const userStore = {
         console.log(error);
       });
     },
-    async userModify(context, formData) {
+    async upUser(context, formData) {
+      const headers = {
+        'Content-type': 'application/json',
+        'Accept': '*/*'
+      }
+      axios.defaults.headers.put = null
       await http
-        .put(`user/modify`, formData, {
+        .put(`member`, formData, {
           headers: {
             "Content-Type": "multipart/form-data",
           },
+        }) 
+        .then(() => {
+          alert("정보수정이 완료되었습니다!!");
+          router.push({ name: "components" });
         })
         .catch((error) => {
           console.log(error);
