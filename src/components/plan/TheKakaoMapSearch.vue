@@ -6,7 +6,24 @@
         <div class="option">
             <div>
                 <!-- <form onsubmit="searchPlaces(); return false;"> -->
-                    키워드 : <input type="text" value="이태원 맛집" id="keyword" size="15" v-bind="keyword"> 
+                    키워드 : 
+                    <input
+                class="form-control pl-2"
+                type="text"
+                value=""
+                id="keyword"
+                placeholder="키워드 입력"
+                style="line-height: 28px"
+                @keyup.enter="searchKeyword()"
+              />
+              <button
+                id="keyword_search"
+                class="btn btn-default p-1"
+                style="width: 20%"
+                @click="searchKeyword()"
+              >
+                <b-icon icon="search"></b-icon>
+              </button>
                     <button @click="loadMaker">검색하기</button> 
                 <!-- </form> -->
             </div>
@@ -21,6 +38,7 @@
 
 
 <script >
+import { mapState, mapActions, mapMutations } from 'vuex';
 export default {
   name: "KakaoMap",
   components: {},
@@ -31,6 +49,10 @@ export default {
       markers: [],
     };
   },
+  computed:{
+    ...mapState("planStore", ["searchSpots"]),
+  },
+  
   created() {},
   mounted() {
     // api 스크립트 소스 불러오기 및 지도 출력
@@ -44,6 +66,16 @@ export default {
     }
   },
   methods: {
+    ...mapMutations("planStore", ["CLEAR_SEARCHSPOT_LIST", "CLEAR_SCHEDULE_LIST"]),
+    ...mapActions("planStore", ["searchSpot"]),
+    
+    searchKeyword() {
+      this.CLEAR_SEARCHSPOT_LIST();
+      var keyword = document.querySelector("#keyword").value;
+      this.searchSpot(keyword);
+    },
+
+
     // api 불러오기
     loadScript() {
       const script = document.createElement("script");
@@ -87,7 +119,7 @@ export default {
     },
     // 지정한 위치에 마커 불러오기
     loadMaker() {
-
+      console.log("키워드 : " + this.keyword);
       this.deleteMarker();
 
       this.markers = [];
