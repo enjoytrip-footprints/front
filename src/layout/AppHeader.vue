@@ -58,7 +58,7 @@
             <i class="ni ni-collection d-lg-none"></i>
             <span class="nav-link-inner--text">마이페이지</span>
           </a>
-          
+          <router-link v-if="userInfo" to="/myprofile" class="dropdown-item">내 정보</router-link>
           <a v-if="userInfo" class="dropdown-item" @click="logout">로그아웃</a>
           <router-link v-if="!userInfo" to="/login" class="dropdown-item">로그인</router-link>
           <router-link v-if="!userInfo" to="/register" class="dropdown-item">회원가입</router-link>
