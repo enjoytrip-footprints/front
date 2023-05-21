@@ -5,6 +5,7 @@ import AppFooter from "./layout/AppFooter";
 import Components from "./views/Components.vue";
 import Landing from "./views/base/Landing.vue";
 import Login from "@/components/user/UserLogin";
+import ReviewView from "./views/ReviewView";
 import Register from "@/components/user/UserRegister";
 import Profile from "./views/base/Profile.vue";
 import MyProfile from "@/components/user/MyProfile.vue";
@@ -12,28 +13,29 @@ import BoardView from "@/views/BoardView.vue";
 import TourSearch from "@/views/TourSearch.vue";
 import TourPlan from "@/views/TourPlan.vue";
 import PlanWrite from "@/components/plan/PlanWrite";
+import store from "@/store";
 
 Vue.use(Router);
 
-const onlyAuthUser = async (to, from, next) => {
-  const checkUserInfo = store.getters["memberStore/checkUserInfo"];
-  const checkToken = store.getters["memberStore/checkToken"];
-  let token = sessionStorage.getItem("access-token");
-  console.log("로그인 처리 전", checkUserInfo, token);
+// const onlyAuthUser = async (to, from, next) => {
+//   const checkUserInfo = store.getters["memberStore/checkUserInfo"];
+//   const checkToken = store.getters["memberStore/checkToken"];
+//   let token = sessionStorage.getItem("access-token");
+//   console.log("로그인 처리 전", checkUserInfo, token);
 
-  if (checkUserInfo != null && token) {
-    console.log("토큰 유효성 체크하러 가자!!!!");
-    await store.dispatch("memberStore/getUserInfo", token);
-  }
-  if (!checkToken || checkUserInfo === null) {
-    alert("로그인이 필요한 페이지입니다..");
-    // next({ name: "login" });
-    router.push({ name: "login" });
-  } else {
-    console.log("로그인 했다!!!!!!!!!!!!!.");
-    next();
-  }
-};
+//   if (checkUserInfo != null && token) {
+//     console.log("토큰 유효성 체크하러 가자!!!!");
+//     await store.dispatch("memberStore/getUserInfo", token);
+//   }
+//   if (!checkToken || checkUserInfo === null) {
+//     alert("로그인이 필요한 페이지입니다..");
+//     // next({ name: "login" });
+//     router.push({ name: "login" });
+//   } else {
+//     console.log("로그인 했다!!!!!!!!!!!!!.");
+//     next();
+//   }
+// };
 
 export default new Router({
   linkExactActiveClass: "active",
@@ -95,7 +97,35 @@ export default new Router({
         footer: AppFooter,
       },
     },
-    
+    {
+      path: "/review",
+      name: "review",
+      components: {
+        header: AppHeader,
+        default: ReviewView,
+        footer: AppFooter,
+      },
+      // component: () => import("@/views/ReviewView"),
+      children: [
+        {
+          path: "list",
+          name: "reviewList",
+          component: () => import("@/components/review/ReviewList"),
+        },
+        {
+          path: "share",
+          name: "reviewShare",
+          // beforeEnter: onlyAuthUser,
+          component: () => import("@/components/review/ReviewShare"),
+        },
+        {
+          path: "modify",
+          name: "reviewModify",
+          // beforeEnter: onlyAuthUser,
+          component: () => import("@/components/review/ReviewModify"),
+        },
+      ],
+    },
     {
       path: "/login",
       name: "login",

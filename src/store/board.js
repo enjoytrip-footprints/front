@@ -58,9 +58,13 @@ export default {
           alert("글조회: 에러발생!");
         });
     },
-
     async regBoard(context, board) {
-      await http.post("/board", board).then(({ data }) => {
+      await http
+      .post("/board", board, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      }).then(({ data }) => {
         let msg = "등록 처리시 문제가 발생했습니다.";
         if (data === "success") {
           msg = "등록이 완료되었습니다.";
