@@ -71,11 +71,11 @@
           return;
         } else {
           let data = new FormData();
-          data.append("userid", this.userInfo.Id);
+          data.append("userId", this.userInfo.id);
           data.append("title", this.title);
           data.append("desc", this.desc);
           data.append("upfile", this.file);
-  
+
           await this.writeReview(data);
           this.CLEAR_REVIEW_LIST();
           this.getReviewList();
