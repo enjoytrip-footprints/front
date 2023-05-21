@@ -53,15 +53,21 @@
           <router-link to="/landing" class="dropdown-item">인기 여행 후기</router-link>
           <router-link to="/board" class="dropdown-item">여행 후기</router-link>
         </base-dropdown>
-        <base-dropdown tag="li" class="nav-item">
+        <base-dropdown v-if="!userInfo" ag="li" class="nav-item">
+          <a slot="title" href="#" class="nav-link" data-toggle="dropdown" role="button">
+            <i class="ni ni-collection d-lg-none"></i>
+            <span class="nav-link-inner--text">로그인</span>
+          </a>
+          <router-link to="/login" class="dropdown-item">로그인</router-link>
+          <router-link to="/register" class="dropdown-item">회원가입</router-link>
+        </base-dropdown>
+        <base-dropdown v-if="userInfo" tag="li" class="nav-item">
           <a slot="title" href="#" class="nav-link" data-toggle="dropdown" role="button">
             <i class="ni ni-collection d-lg-none"></i>
             <span class="nav-link-inner--text">마이페이지</span>
           </a>
-          <router-link v-if="userInfo" to="/myprofile" class="dropdown-item">내 정보</router-link>
-          <a v-if="userInfo" class="dropdown-item" @click="logout">로그아웃</a>
-          <router-link v-if="!userInfo" to="/login" class="dropdown-item">로그인</router-link>
-          <router-link v-if="!userInfo" to="/register" class="dropdown-item">회원가입</router-link>
+          <router-link to="/myprofile" class="dropdown-item">내 정보</router-link>
+          <router-link to="/myreview" class="dropdown-item">내 후기</router-link>
         </base-dropdown>
       </ul>
       <!-- <ul class="navbar-nav align-items-lg-center ml-lg-auto">

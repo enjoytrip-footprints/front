@@ -73,6 +73,7 @@
                               </base-input>
                               <div class="text-center">
                                   <base-button style="background-color: Tomato; border-color: Tomato;" type="primary" id="btn-signup" class="my-4" @click="userModify">정보 수정</base-button>
+                                  <base-button style="background-color: Tomato; border-color: Tomato;" type="primary" id="btn-signup" class="my-4" @click="logout">로그아웃</base-button>
                               </div>
                           </form>
                       </template>
@@ -102,10 +103,17 @@ export default {
     };
   },
   computed: {
-    ...mapState("userStore", ["userInfo"]),
+    ...mapState("userStore", ["isLogin","userInfo"]),
   },
   methods: {
-    ...mapActions("userStore", ["getIdCheck", "upUser"]),
+    ...mapActions("userStore", ["getIdCheck", "upUser","userLogout"]),
+    logout() {
+      this.userLogout(this.userInfo.id);
+      sessionStorage.removeItem("access-token"); //저장된 토큰 없애기
+      sessionStorage.removeItem("refresh-token"); //저장된 토큰 없애기
+      if (this.$route.path != "/") this.$router.push({ name: "login" });
+      console.log("userInfo : " + userInfo);
+    },
     async userModify() {
       await this.upUser({
         name: this.userInfo.name,
