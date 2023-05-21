@@ -46,7 +46,7 @@
         <base-dropdown tag="li" class="nav-item">
           <a slot="title" href="#" class="nav-link" data-toggle="dropdown" role="button">
             <i class="ni ni-collection d-lg-none"></i>
-            <span class="nav-link-inner--text">게시글</span>
+            <span class="nav-link-inner--text">여행 후기</span>
           </a>
           <!-- <router-link to="/landing" class="dropdown-item">Landing</router-link> -->
           <!-- <router-link to="/profile" class="dropdown-item">Profile</router-link> -->
@@ -56,10 +56,12 @@
         <base-dropdown tag="li" class="nav-item">
           <a slot="title" href="#" class="nav-link" data-toggle="dropdown" role="button">
             <i class="ni ni-collection d-lg-none"></i>
-            <span class="nav-link-inner--text">로그인 & 회원가입</span>
+            <span class="nav-link-inner--text">마이페이지</span>
           </a>
-          <router-link to="/login" class="dropdown-item">로그인</router-link>
-          <router-link to="/register" class="dropdown-item">회원가입</router-link>
+          <router-link v-if="userInfo" to="/myprofile" class="dropdown-item">내 정보</router-link>
+          <a v-if="userInfo" class="dropdown-item" @click="logout">로그아웃</a>
+          <router-link v-if="!userInfo" to="/login" class="dropdown-item">로그인</router-link>
+          <router-link v-if="!userInfo" to="/register" class="dropdown-item">회원가입</router-link>
         </base-dropdown>
       </ul>
       <!-- <ul class="navbar-nav align-items-lg-center ml-lg-auto">
@@ -105,11 +107,27 @@
   </header>
 </template>
 <script>
+import { mapState, mapActions } from "vuex";
+
 import BaseNav from "@/components/base/BaseNav";
 import BaseDropdown from "@/components/base/BaseDropdown";
 import CloseButton from "@/components/base/CloseButton";
 
 export default {
+  name: "AppHeader",
+  computed: {
+    ...mapState("userStore", ["isLogin", "userInfo"]),
+  },
+  methods: {
+    ...mapActions("userStore", ["userLogout"]),
+    logout() {
+      this.userLogout(this.userInfo.id);
+      sessionStorage.removeItem("access-token"); //저장된 토큰 없애기
+      sessionStorage.removeItem("refresh-token"); //저장된 토큰 없애기
+      if (this.$route.path != "/") this.$router.push({ name: "login" });
+      console.log("userInfo : " + userInfo);
+    },
+  },
   components: {
     BaseNav,
     CloseButton,

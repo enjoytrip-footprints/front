@@ -1,8 +1,9 @@
 import jwtDecode from "jwt-decode";
 import router from "@/router";
 import { login, findById, tokenRegeneration, logout } from "@/api/user";
-import http from "@/util/http-common";
+import http from "@/api/http";
 import axios from "axios";
+
 const userStore = {
   namespaced: true,
   state: {
@@ -42,6 +43,7 @@ const userStore = {
     SET_USER_INFO: (state, userInfo) => {
       state.isLogin = true;
       state.userInfo = userInfo;
+      console.log(userInfo);
     },
     SET_ID_CHECK: (state, idCheck) => {
       state.idCheck = idCheck;
@@ -70,6 +72,9 @@ const userStore = {
             commit("SET_IS_VALID_TOKEN", true);
             sessionStorage.setItem("access-token", accessToken);
             sessionStorage.setItem("refresh-token", refreshToken);
+            let token = sessionStorage.getItem("access-token");
+            let decodeToken = jwtDecode(token);
+            console.log("userid :" + decodeToken.userid)
           } else {
             commit("SET_IS_LOGIN", false);
             commit("SET_IS_LOGIN_ERROR", true);
@@ -83,13 +88,15 @@ const userStore = {
     },
     async getUserInfo({ commit, dispatch }, token) {
       let decodeToken = jwtDecode(token);
-      // console.log("2. getUserInfo() decodeToken :: ", decodeToken);
+      console.log(token);
+      console.log("2. getUserInfo() decodeToken :: ", decodeToken);
+      console.log("de:id ", decodeToken.userid);
       await findById(
-        decodeToken.id,
+        decodeToken.userid,
         ({ data }) => {
           if (data.message === "success") {
             commit("SET_USER_INFO", data.userInfo);
-            // console.log("3. getUserInfo data >> ", data);
+            console.log("3. getUserInfo data >> ", data);
           } else {
             console.log("유저 정보 없음!!!!");
           }
@@ -149,6 +156,7 @@ const userStore = {
       );
     },
     async userLogout({ commit }, userid) {
+      console.log(userid),
       await logout(
         userid,
         ({ data }) => {
@@ -164,6 +172,7 @@ const userStore = {
           console.log(error);
         }
       );
+      console.log(userInfo)
     },
     getIdCheck({ commit }, id) {
       http
@@ -175,15 +184,14 @@ const userStore = {
           console.log(error);
         });
     },
-    
-    async userSignup(context, param) {
+    userSignup(context, param) {
       const headers = {
         'Content-type': 'application/json',
         'Accept': '*/*'
       }
       axios.defaults.headers.post = null
-      await http
-        .post(`member`, JSON.stringify(param), {headers})
+      http
+        .post(`member`, JSON.stringify(param))
         .then(() => {
           alert("회원가입이 완료되었습니다!!");
           router.push({ name: "login" });
@@ -197,12 +205,21 @@ const userStore = {
         console.log(error);
       });
     },
-    async userModify(context, formData) {
+    async upUser(context, formData) {
+      const headers = {
+        'Content-type': 'application/json',
+        'Accept': '*/*'
+      }
+      axios.defaults.headers.put = null
       await http
-        .put(`user/modify`, formData, {
+        .put(`member`, formData, {
           headers: {
             "Content-Type": "multipart/form-data",
           },
+        }) 
+        .then(() => {
+          alert("정보수정이 완료되었습니다!!");
+          router.push({ name: "components" });
         })
         .catch((error) => {
           console.log(error);
