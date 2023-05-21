@@ -5,6 +5,7 @@ import AppFooter from "./layout/AppFooter";
 import Components from "./views/Components.vue";
 import Landing from "./views/base/Landing.vue";
 import Login from "@/components/user/UserLogin";
+import ReviewView from "./views/ReviewView";
 import Register from "@/components/user/UserRegister";
 import Profile from "./views/base/Profile.vue";
 import MyProfile from "@/components/user/MyProfile.vue";
@@ -99,7 +100,12 @@ export default new Router({
     {
       path: "/review",
       name: "review",
-      component: () => import("@/views/ReviewView"),
+      components: {
+        header: AppHeader,
+        default: ReviewView,
+        footer: AppFooter,
+      },
+      // component: () => import("@/views/ReviewView"),
       children: [
         {
           path: "list",
