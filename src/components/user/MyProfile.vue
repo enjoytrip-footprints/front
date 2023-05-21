@@ -24,15 +24,6 @@
                       </template>
                       <template>
                           <form role="form">
-                            아이디 
-                            <base-input alternative
-                                        class="mb-3"
-                                        ref="id"
-                                        type="text"
-                                        id="id"
-                                        name="id"
-                                        v-model="userInfo.id">
-                            </base-input>
                             이 름
                             <base-input alternative
                                           class="mb-3"
