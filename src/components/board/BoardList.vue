@@ -35,7 +35,7 @@
 
     <div style="text-align: right">
       <br />
-      <button variant="success" @click="moveCreate">글쓰기</button><br />
+      <button v-if="userInfo" variant="success" @click="moveCreate">글쓰기</button><br />
       <hr color="black" size="50" />
     </div>
   </div>
@@ -44,6 +44,7 @@
 <script>
 import { mapState, mapGetters, mapMutations, mapActions } from "vuex";
 import ListRow from "@/components/board/include/ListRow.vue";
+import { userInfo } from "os";
 
 export default {
   components: {
@@ -60,6 +61,7 @@ export default {
     ...mapGetters("board", ["boardsLength"]),
     ...mapState("board", ["searchBoards"]),
     ...mapGetters("board", ["searchboardsLength"]),
+    ...mapState("userStore", ["userInfo"]),
   },
   created() {
     this.getBoards();

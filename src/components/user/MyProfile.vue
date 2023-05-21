@@ -24,38 +24,38 @@
                       </template>
                       <template>
                           <form role="form">
+                            이 름
                             <base-input alternative
                                           class="mb-3"
-                                          addon-left-icon="ni ni-hat-3"
                                           type="text"
                                           id="name"
                                           name="name"
                                           v-model="userInfo.name"
                                           >
                               </base-input>
+                              비밀번호
                               <base-input alternative
                                           type="password"
                                           placeholder="******"
                                           id="password"
                                           name="password"
                                           v-model="userInfo.password"
-                                          addon-left-icon="ni ni-lock-circle-open"
                                           >
                               </base-input>
+                              이메일
                               <base-input alternative
                                           class="mb-3"
                                           placeholder="Email"
-                                          addon-left-icon="ni ni-email-83"
                                           type="text"
                                           id="email"
                                           name="email"
                                           v-model="userInfo.email"
                                           >
                               </base-input>
+                              나이
                               <base-input alternative
                                           class="mb-3"
                                           placeholder="Age"
-                                          addon-left-icon="ni ni-hat-3"
                                           type="number"
                                           id="age"
                                           name="age"
@@ -64,6 +64,7 @@
                               </base-input>
                               <div class="text-center">
                                   <base-button style="background-color: Tomato; border-color: Tomato;" type="primary" id="btn-signup" class="my-4" @click="userModify">정보 수정</base-button>
+                                  <base-button style="background-color: Tomato; border-color: Tomato;" type="primary" id="btn-signup" class="my-4" @click="logout">로그아웃</base-button>
                               </div>
                           </form>
                       </template>
@@ -83,24 +84,34 @@ export default {
   name: "MyProfile",
   data() {
     return {
-      name: "",
-      password: "",
-      email: "",
-      age: "",
+      user:{
+        id: null,
+        password: null,
+        name: null,
+        email: null,
+        age: null,
+      }
     };
   },
   computed: {
-    ...mapState("userStore", ["userInfo"]),
+    ...mapState("userStore", ["isLogin","userInfo"]),
   },
   methods: {
-    ...mapActions("userStore", ["getIdCheck", "userSignup", "upUser"]),
+    ...mapActions("userStore", ["getIdCheck", "upUser","userLogout"]),
+    logout() {
+      this.userLogout(this.userInfo.id);
+      sessionStorage.removeItem("access-token"); //저장된 토큰 없애기
+      sessionStorage.removeItem("refresh-token"); //저장된 토큰 없애기
+      if (this.$route.path != "/") this.$router.push({ name: "login" });
+      console.log("userInfo : " + userInfo);
+    },
     async userModify() {
       await this.upUser({
-        name: this.name,
-        password: this.password,
-        email: this.email,
-        age: this.age,
-        // id: userInfo.id
+        name: this.userInfo.name,
+        password: this.userInfo.password,
+        id: this.userInfo.id,
+        email: this.userInfo.email,
+        age: this.userInfo.age,
       });
     },
   },
