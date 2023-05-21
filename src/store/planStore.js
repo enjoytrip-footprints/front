@@ -31,7 +31,7 @@ const planStore = {
   actions: {
     searchSpot({ commit }, keyword) {
       http
-        .get(`http://localhost/spot/search/${keyword}`)
+        .get(`/mapapi/search/${keyword}`)
         .then(({ data }) => {
           commit("SET_SEARCHSPOT_LIST", data);
         })
@@ -39,38 +39,38 @@ const planStore = {
           console.log(error);
         });
     },
-    async writeSchedule(context, param) {
-      await http
-        .post(`http://localhost/board/writeSchedule`, {
-          uid: param.uid,
-          title: param.title,
-          content: param.content,
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    },
-    writeScheduleSpot(context, param) {
-      http
-        .post(`http://localhost/board/writeScheduleSpot`, {
-          boardid: param.boardid,
-          spotid: param.spotid,
-          memo: param.memo,
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    },
-    async getBoardid({ commit }, uid) {
-      await http
-        .get(`http://localhost/board/writeSchedule/boardid/${uid}`)
-        .then(({ data }) => {
-          commit("SET_BOARD_ID", data);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    },
+    // async writeSchedule(context, param) {
+    //   await http
+    //     .post(`http://localhost/board/writeSchedule`, {
+    //       uid: param.uid,
+    //       title: param.title,
+    //       content: param.content,
+    //     })
+    //     .catch((error) => {
+    //       console.log(error);
+    //     });
+    // },
+    // writeScheduleSpot(context, param) {
+    //   http
+    //     .post(`http://localhost/board/writeScheduleSpot`, {
+    //       boardid: param.boardid,
+    //       spotid: param.spotid,
+    //       memo: param.memo,
+    //     })
+    //     .catch((error) => {
+    //       console.log(error);
+    //     });
+    // },
+    // async getBoardid({ commit }, uid) {
+    //   await http
+    //     .get(`http://localhost/board/writeSchedule/boardid/${uid}`)
+    //     .then(({ data }) => {
+    //       commit("SET_BOARD_ID", data);
+    //     })
+    //     .catch((error) => {
+    //       console.log(error);
+    //     });
+    // },
   },
 };
 
