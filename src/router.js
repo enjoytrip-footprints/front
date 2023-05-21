@@ -11,7 +11,7 @@ import MyProfile from "@/components/user/MyProfile.vue";
 import BoardView from "@/views/BoardView.vue";
 import TourSearch from "@/views/TourSearch.vue";
 import TourPlan from "@/views/TourPlan.vue";
-import PlanWrite from "@/components/map/PlanWrite";
+import PlanWrite from "@/components/plan/PlanWrite";
 
 Vue.use(Router);
 
@@ -142,7 +142,9 @@ export default new Router({
           name: "BoardDetail",
           component: () => import("@/components/board/BoardDetail.vue"),
         },
-        { path: "write", name: "BoardWrite", component: () => import("@/components/board/BoardWrite.vue") },
+        { path: "write", name: "BoardWrite", 
+        //beforeEnter: onlyAuthUser, 
+        component: () => import("@/components/board/BoardWrite.vue") },
       ],
     },
   ],
