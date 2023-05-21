@@ -79,7 +79,6 @@ export default {
   created() {
     if (this.type != "create") {
       this.getBoard(this.$route.params.articleNo);
-
       this.articleNo = this.board.articleNo;
       this.author = this.board.author;
       this.title = this.board.title;

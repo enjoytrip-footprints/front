@@ -24,38 +24,47 @@
                       </template>
                       <template>
                           <form role="form">
+                            아이디 
+                            <base-input alternative
+                                        class="mb-3"
+                                        ref="id"
+                                        type="text"
+                                        id="id"
+                                        name="id"
+                                        v-model="userInfo.id">
+                            </base-input>
+                            이 름
                             <base-input alternative
                                           class="mb-3"
-                                          addon-left-icon="ni ni-hat-3"
                                           type="text"
                                           id="name"
                                           name="name"
                                           v-model="userInfo.name"
                                           >
                               </base-input>
+                              비밀번호
                               <base-input alternative
                                           type="password"
                                           placeholder="******"
                                           id="password"
                                           name="password"
                                           v-model="userInfo.password"
-                                          addon-left-icon="ni ni-lock-circle-open"
                                           >
                               </base-input>
+                              이메일
                               <base-input alternative
                                           class="mb-3"
                                           placeholder="Email"
-                                          addon-left-icon="ni ni-email-83"
                                           type="text"
                                           id="email"
                                           name="email"
                                           v-model="userInfo.email"
                                           >
                               </base-input>
+                              나이
                               <base-input alternative
                                           class="mb-3"
                                           placeholder="Age"
-                                          addon-left-icon="ni ni-hat-3"
                                           type="number"
                                           id="age"
                                           name="age"
@@ -83,24 +92,27 @@ export default {
   name: "MyProfile",
   data() {
     return {
-      name: "",
-      password: "",
-      email: "",
-      age: "",
+      user:{
+        id: null,
+        password: null,
+        name: null,
+        email: null,
+        age: null,
+      }
     };
   },
   computed: {
     ...mapState("userStore", ["userInfo"]),
   },
   methods: {
-    ...mapActions("userStore", ["getIdCheck", "userSignup", "upUser"]),
+    ...mapActions("userStore", ["getIdCheck", "upUser"]),
     async userModify() {
       await this.upUser({
-        name: this.name,
-        password: this.password,
-        email: this.email,
-        age: this.age,
-        // id: userInfo.id
+        name: this.userInfo.name,
+        password: this.userInfo.password,
+        id: this.userInfo.id,
+        email: this.userInfo.email,
+        age: this.userInfo.age,
       });
     },
   },

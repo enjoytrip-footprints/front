@@ -205,18 +205,9 @@ const userStore = {
         console.log(error);
       });
     },
-    async upUser(context, formData) {
-      const headers = {
-        'Content-type': 'application/json',
-        'Accept': '*/*'
-      }
-      axios.defaults.headers.put = null
+    async upUser(context, param) {
       await http
-        .put(`member`, formData, {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }) 
+        .put(`member`, JSON.stringify(param)) 
         .then(() => {
           alert("정보수정이 완료되었습니다!!");
           router.push({ name: "components" });
