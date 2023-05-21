@@ -4,31 +4,34 @@
       <!-- shape Hero -->
       <section class="section-shaped my-0">
         <div
-          class="shape shape-style-1 shape-default shape-skew bg-gradient-purple"
+          class="shape shape-style-1 shape-default  bg-gradient-orange"
         >
           <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
+          
         </div>
         <div class="container shape-container d-flex">
           <div class="col px-0">
             <div class="row">
               <div class="col-lg-6">
-                <h1 class="display-3 text-white">여행 계획 등록</h1>
+                <br/><br/><br/>
+                <h1 class="display-2 text-white">여행 계획 등록</h1>
+                <br/><br/><br/>
+              </div>
+            </div>
+
+            <div class="row ">
+              <div class="col-lg-6">
+                <h1 class="display-4 text-white">시작이 반이다</h1>
+                <h1 class="display-4 text-white">여행 계획을 설계해봅시다</h1>
               </div>
             </div>
           </div>
         </div>
+        
       </section>
       <!-- 1st Hero Variation -->
-    </div>
-    <section class="section section-lg pt-lg-0 mt--200">
+    
+    <section class="section section-lg pt-lg-0 ">
       <div class="container">
         <!-- <div class="row justify-content-center"> -->
         <!-- Map 추가하는 부분 -->
@@ -45,6 +48,7 @@
         </b-row>
       </div>
     </section>
+    </div>
   </div>
 </template>
 

@@ -6,13 +6,38 @@
         <div class="option">
             <div>
                 <!-- <form onsubmit="searchPlaces(); return false;"> -->
-                    키워드 : <input type="text" value="이태원 맛집" id="keyword" size="15" v-bind="keyword"> 
-                    <button @click="loadMaker">검색하기</button> 
+                    키워드 : 
+                    <input
+                class="form-control pl-2"
+                type="text"
+                value=""
+                id="keyword"
+                placeholder="키워드 입력"
+                style="line-height: 28px"
+                @keyup.enter="searchKeyword()"
+              />
+              <button
+                id="keyword_search"
+                class="btn btn-default p-1"
+                style="width: 20%"
+                @click="searchKeyword()"
+              >
+                <b-icon icon="search"></b-icon>
+              </button>
+                    <!-- <button @click="loadMaker">검색하기</button>  -->
                 <!-- </form> -->
             </div>
         </div>
         <hr>
-        <ul id="placesList"></ul>
+        <ul id="placesList">
+            <plan-search-item
+              v-for="spot in searchSpots"
+              :key="spot.spotid"
+              :spot="spot"
+              @click.native="callInfowindow(spot)"
+              @dblclick.native="addSchedule(spot)"
+            ></plan-search-item>
+          </ul>
         <div id="pagination"></div>
     </div>
 
@@ -21,9 +46,12 @@
 
 
 <script >
+import { mapState, mapActions, mapMutations } from 'vuex';
+import PlanSearchItem from "@/components/plan/PlanSearchItem";
+
 export default {
   name: "KakaoMap",
-  components: {},
+  components: {PlanSearchItem,},
   data() {
     return {
       map: null,
@@ -31,6 +59,10 @@ export default {
       markers: [],
     };
   },
+  computed:{
+    ...mapState("planStore", ["searchSpots"]),
+  },
+  
   created() {},
   mounted() {
     // api 스크립트 소스 불러오기 및 지도 출력
@@ -44,6 +76,44 @@ export default {
     }
   },
   methods: {
+    ...mapMutations("planStore", ["CLEAR_SEARCHSPOT_LIST", "CLEAR_SCHEDULE_LIST"]),
+    ...mapActions("planStore", ["searchSpot"]),
+    
+    searchKeyword() {
+      this.CLEAR_SEARCHSPOT_LIST();
+      var keyword = document.querySelector("#keyword").value;
+      this.searchSpot(keyword);
+    },
+    // selected(spot) {
+    //   this.$refs.map.callInfowindow(spot);
+    // },
+
+    callInfowindow(spot) {
+      var marker = new kakao.maps.Marker({
+        position: new kakao.maps.LatLng(spot.latitude, spot.longitude), // 마커의 위치
+      });
+
+      var content = `<div class="overlay_info">
+						<a><strong>${spot.title}</strong></a>
+							<div class="desc">`;
+      if (spot.first_image) content += `<img src="${spot.first_image}" alt="${spot.title}" width = "50px" height = "50px"/>`;
+      else
+        content += ` <img src="http://www.billking.co.kr/index/skin/board/basic_support/img/noimage.gif" alt="${spot.title}" width = "50px" height = "50px"/>`;
+      content += `<span class="address">${spot.addr1}</span></div>
+						</div>`;
+
+      this.map.setCenter(new kakao.maps.LatLng(spot.latitude, spot.longitude));
+      this.map.setLevel(6);
+
+      this.deleteMarker();
+      this.markers.push(marker);
+      var placePosition = new kakao.maps.LatLng(spot.latitude, spot.longitude);
+      marker = this.addMarker(placePosition, 0);
+      // this.infowindow.setContent(content);
+      // this.infowindow.open(this.map, marker);
+    },
+
+
     // api 불러오기
     loadScript() {
       const script = document.createElement("script");
@@ -87,7 +157,7 @@ export default {
     },
     // 지정한 위치에 마커 불러오기
     loadMaker() {
-
+      console.log("키워드 : " + this.keyword);
       this.deleteMarker();
 
       this.markers = [];
@@ -252,8 +322,8 @@ export default {
             image: markerImage 
         });
 
-    marker.setMap(map); // 지도 위에 마커를 표출합니다
-    markers.push(marker);  // 배열에 생성된 마커를 추가합니다
+    marker.setMap(this.map); // 지도 위에 마커를 표출합니다
+    // markers.push(marker);  // 배열에 생성된 마커를 추가합니다
 
     return marker;
     },

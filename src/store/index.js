@@ -8,6 +8,7 @@ import userStore from "@/store/userStore";
 import reviewStore from "@/store/reviewStore";
 import board from "@/store/board.js";
 import itemStore from "@/store/itemStore.js";
+import planStore from "@/store/planStore.js";
 // import comment from "@/store/comment.js";
 
 Vue.use(Vuex);
@@ -19,6 +20,7 @@ export default new Vuex.Store({
     itemStore: itemStore,
     userStore: userStore,
     reviewStore: reviewStore,
+    planStore: planStore,
     // comment: comment,
   },
 
