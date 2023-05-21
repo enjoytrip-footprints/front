@@ -156,7 +156,6 @@ export default {
         return;
       } else {
         this.userSignup(this.user);
-        alert("sssss");
       }
     },
   },
