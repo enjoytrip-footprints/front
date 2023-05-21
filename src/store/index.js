@@ -5,6 +5,7 @@ import Vuex from "vuex";
 import { createVuexPersistedState } from "vue-persistedstate";
 import axios from "axios";
 import userStore from "@/store/userStore";
+import reviewStore from "@/store/reviewStore";
 import board from "@/store/board.js";
 import itemStore from "@/store/itemStore.js";
 // import comment from "@/store/comment.js";
@@ -17,6 +18,7 @@ export default new Vuex.Store({
     board: board,
     itemStore: itemStore,
     userStore: userStore,
+    reviewStore: reviewStore,
     // comment: comment,
   },
 

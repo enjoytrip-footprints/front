@@ -1,6 +1,5 @@
 <template>
   <div>
-    <!-- <h1 class="underline">게시글</h1> -->
     <div style="text-align: right">
       <hr color="black" size="50" />
       <input class="view" type="text" v-model="search" placeholder="제목을 입력하세요." />

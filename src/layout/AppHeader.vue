@@ -51,7 +51,8 @@
           <!-- <router-link to="/landing" class="dropdown-item">Landing</router-link> -->
           <!-- <router-link to="/profile" class="dropdown-item">Profile</router-link> -->
           <router-link to="/landing" class="dropdown-item">인기 여행 후기</router-link>
-          <router-link to="/board" class="dropdown-item">여행 후기</router-link>
+          <router-link to="/review/list" class="dropdown-item">여행 후기</router-link>
+          <router-link to="/board" class="dropdown-item">게시판</router-link>
         </base-dropdown>
         <base-dropdown v-if="!userInfo" ag="li" class="nav-item">
           <a slot="title" href="#" class="nav-link" data-toggle="dropdown" role="button">
@@ -125,14 +126,6 @@ export default {
     ...mapState("userStore", ["isLogin", "userInfo"]),
   },
   methods: {
-    ...mapActions("userStore", ["userLogout"]),
-    logout() {
-      this.userLogout(this.userInfo.id);
-      sessionStorage.removeItem("access-token"); //저장된 토큰 없애기
-      sessionStorage.removeItem("refresh-token"); //저장된 토큰 없애기
-      if (this.$route.path != "/") this.$router.push({ name: "login" });
-      console.log("userInfo : " + userInfo);
-    },
   },
   components: {
     BaseNav,
