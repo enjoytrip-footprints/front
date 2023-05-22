@@ -44,8 +44,11 @@
           </b-row>
           <br /><br /><br />
 
-          <plan-regist>
-            v-on:upSchedule="upSchedule" v-on:downSchedule="downSchedule" v-on:deleteSchedule="deleteSchedule"
+          <plan-regist
+            v-on:upSchedule="upSchedule"
+            v-on:downSchedule="downSchedule"
+            v-on:deleteSchedule="deleteSchedule"
+          >
           </plan-regist>
         </div>
       </section>
@@ -59,6 +62,8 @@ import SelectSido from "@/components/item/SelectSido.vue";
 import SelectGugun from "@/components/item/SelectGugun.vue";
 import TheKakaoMap from "@/components/plan/TheKakaoMapSearch.vue";
 import PlanRegist from "@/components/plan/PlanRegist";
+import { mapState, mapActions, mapMutations } from "vuex";
+
 export default {
   name: "TourSearch",
   components: {
@@ -72,9 +77,18 @@ export default {
     return {
       sidoCode: null,
       chargerList: [],
+      markers: [],
+      linePath: [],
+      sMarkers: [],
+      sSchedules: [],
     };
   },
+  computed: {
+    ...mapState("planStore", ["searchSpots", "schedules"]),
+  },
   methods: {
+    ...mapMutations("planStore", ["CLEAR_SEARCHSPOT_LIST", "CLEAR_SCHEDULE_LIST", "SET_SCHEDULE_LIST"]),
+    ...mapActions("planStore", ["searchSpot"]),
     selectSido(sidoCode) {
       this.sidoCode = sidoCode;
     },
@@ -114,14 +128,87 @@ export default {
       );
     },
 
+    // upSchedule(spotid) {
+    //   console.log("clicked up2");
+    //   this.$emit("upSchedule", spotid);
+    // },
+    // downSchedule(spotid) {
+    //   console.log("clicked down2");
+    //   this.$emit("downSchedule", spotid);
+    // },
+    // deleteSchedule(spotid) {
+    //   console.log("clicked delete2");
+    //   this.$emit("deleteSchedule", spotid);
+    // },
+
     upSchedule(spotid) {
-      this.$refs.search.upSchedule(spotid);
+      for (var i = 1; i < this.schedules.length; i++) {
+        if (this.schedules[i].spotid == spotid) {
+          let temp = this.schedules[i];
+          this.schedules[i] = this.schedules[i - 1];
+          this.sshedules[i - 1] = temp;
+          break;
+        }
+      }
+
+      this.CLEAR_SCHEDULE_LIST();
+      this.SET_SCHEDULE_LIST(this.schedules);
+      // this.makeLine();
     },
     downSchedule(spotid) {
-      this.$refs.search.downSchedule(spotid);
+      for (var i = 0; i < this.schedules.length - 1; i++) {
+        if (this.schedules[i].spotid == spotid) {
+          let temp = this.schedules[i];
+          this.schedules[i] = this.schedules[i + 1];
+          this.schedules[i + 1] = temp;
+          break;
+        }
+      }
+
+      this.CLEAR_SCHEDULE_LIST();
+      this.SET_SCHEDULE_LIST(this.schedules);
+      // this.makeLine();
     },
     deleteSchedule(spotid) {
-      this.$refs.search.deleteSchedule(spotid);
+      console.log(this.schedules.length);
+      for (var i = 0; i < this.schedules.length; i++) {
+        console.log(this.schedules[i].spotid);
+        if (this.schedules[i].spotid == spotid) {
+          this.schedules.splice(i, 1);
+          i--;
+        }
+      }
+
+      this.CLEAR_SCHEDULE_LIST();
+      this.SET_SCHEDULE_LIST(this.schedules);
+      this.resetMarkers();
+      this.makeMarker();
+      // this.makeLine();
+    },
+    resetMarkers() {
+      for (var i = 0; i < this.sMarkers.length; i++) {
+        this.sMarkers[i].setMap(null);
+      }
+      this.sMarkers = [];
+    },
+    makeMarker() {
+      let vm = this;
+      this.schedules.forEach((schedule) => {
+        var latlang = new kakao.maps.LatLng(schedule.mapx, schedule.mapy);
+        var marker = new kakao.maps.Marker({
+          position: latlang,
+          image: new kakao.maps.MarkerImage(
+            "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png",
+            new kakao.maps.Size(29, 42)
+          ),
+        });
+        marker.setMap(this.map);
+        marker.setZIndex(50);
+        // kakao.maps.event.addListener(marker, "mouseover", function () {
+        //   vm.displayInfowindow(marker, schedule);
+        // });
+        this.sMarkers.push(marker);
+      });
     },
   },
 };
