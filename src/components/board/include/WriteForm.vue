@@ -33,16 +33,6 @@
                     ref="article"
                   ></textarea>
                 </base-input>
-                <input
-                  type="file"
-                  accept="image/*"
-                  id="img"
-                  name="img"
-                  class="form-control form-control-alternative"
-                  style="height: 45px"
-                  placeholder="이미지 등록"
-                  @change="handleFileChange"
-                />
                 <base-button v-if="type == 'create'" class="my-4" @click="checkValue"> 등록하기 </base-button>
                 <base-button v-else class="my-4" @click="checkValue"> 수정하기 </base-button>
                 <base-button class="my-4" @click="moveList">목록</base-button>
@@ -64,13 +54,11 @@ export default {
   },
   data() {
     return {
-      articleNo: "",
-      author: "",
-      title: "",
-      article: "",
-      cnt: "",
-      recommend: "",
-      img: "",
+        articleNo: "",
+        author: "",
+        title: "",
+        article: "",
+        cnt: "",
     };
   },
   computed: {
@@ -85,43 +73,35 @@ export default {
       this.title = this.board.title;
       this.article = this.board.article;
       this.cnt = this.board.cnt;
-      this.recommend = this.board.recommend;
-      this.img = this.board.img;
     }
   },
   methods: {
     ...mapActions("board", ["getBoard", "regBoard", "modBoard"]),
-
-    handleFileChange(e) {
-      this.img = e.target.files[0];
-    },
     checkValue() {
       let err = true;
       let msg = "";
       !this.title && ((msg = "제목 입력해주세요"), (err = false), this.$refs.title.focus());
       err && !this.article && ((msg = "내용 입력해주세요"), (err = false), this.$refs.article.focus());
-      err && !this.img && ((msg = "이미지를 등록해주세요"), (err = false), this.$refs.img.focus());
       if (!err) alert(msg);
       else this.type == "create" ? this.registBoard() : this.modifyBoard();
     },
     async registBoard() {
-      let data = new FormData();
-      data.append("author", this.userInfo.id);
-      data.append("title", this.title);
-      data.append("article", this.article);
-      data.append("img", this.img);
-
-      await this.regBoard(data);
-      this.moveList();
+      await this.regBoard({
+        articleNo: this.articleNo,
+        author: this.userInfo.id,
+        title: this.title,
+        article: this.article,
+        cnt: this.cnt,
+      });
+      this.moveList();w
     },
     async modifyBoard() {
-      let data = new FormData();
-      data.append("author", this.userInfo.id);
-      data.append("title", this.title);
-      data.append("article", this.article);
-      data.append("img", this.img);
-
-      await this.modBoard(data);
+      await this.modBoard({
+        articleNo: this.articleNo,
+        title: this.title,
+        article: this.article,
+        cnt: this.cnt,
+      });
       this.moveList();
     },
     moveList() {

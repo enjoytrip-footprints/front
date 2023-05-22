@@ -1,29 +1,30 @@
 <template>
   <div v-if="board" class="regist">
-    <h1 class="underline text-white"></h1>
-    <div class="regist_form">
-      <hr color="black" size="50" />
-      <label for="articleNo"><h3 class="text-white">글 번호</h3></label>
-      <p class="view text-white">{{ board.articleNo }}</p>
-      <label for="title"><h4 class="text-white">글 제목</h4></label>
-      <p class="view text-white">{{ board.title }}</p>
-      <label for="author"><h4 class="text-white">글쓴이</h4></label>
-      <p class="view text-white">{{ board.author }}</p>
-      <!-- <label for="price">가격</label>
-      <div class="view">{{ board.price | numberWithCommas }}원</div> -->
-      <label for="content"><h4 class="text-white">내용</h4></label>
-      <div class="view text-white">{{ board.article }}</div>
-      <!-- <div class="view" v-html="enterToBr"></div> -->
-      <hr color="black" size="50" />
-      <div style="padding-top: 15px">
-        <router-link :to="{ name: 'BoardWrite', params: { articleNo: board.articleNo } }" class="btn text-white"
-          >수정</router-link
-        >
-        <!-- <router-link :to="{ name: 'BoardWrite' }" class="btn">수정</router-link> -->
-        <a href="#" class="btn text-white" @click="deleteBoard">삭제</a>
-        <router-link :to="{ name: 'BoardList' }" class="btn text-white">목록</router-link>
+    <section class="section section-lg pt-lg-0 section-contact-us">
+      <div class="container">
+        <div class="row justify-content-center mt--400">
+          <div class="col-lg-8">
+            <card gradient="secondary" shadow body-classes="p-lg-5">
+              <h4 class="mb-1">{{board.author}} 님의 후기</h4>
+                <div style="margin-top: 30px;">
+                  <label for="title"><h4>글 제목</h4></label>
+                  <div>{{ board.title }}</div></div>
+                
+                <div style="margin-top: 30px;">
+                  <label><h4>내용</h4></label>
+                  <div>{{ board.article }}</div></div>
+
+                <base-button class="my-4"> <router-link :to="{ name: 'BoardWrite', params: { articleNo: board.articleNo } }"  style="color:white"
+                >수정</router-link></base-button>
+                <base-button class="my-4" 
+                @click="deleteBoard">삭제</base-button>
+                <base-button class="my-4">
+                <router-link :to="{ name: 'BoardList' }" style="color:white">목록</router-link></base-button>
+            </card>
+          </div>
+        </div>
       </div>
-    </div>
+    </section>
   </div>
 </template>
 
