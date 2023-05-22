@@ -50,9 +50,9 @@
           </a>
           <!-- <router-link to="/landing" class="dropdown-item">Landing</router-link> -->
           <!-- <router-link to="/profile" class="dropdown-item">Profile</router-link> -->
-          <router-link to="/review/list" class="dropdown-item">인기 여행 후기</router-link>
+          <router-link to="/review/hotlist" class="dropdown-item">인기 여행 후기</router-link>
           <router-link to="/review/list" class="dropdown-item">여행 후기</router-link>
-          <router-link to="/board" class="dropdown-item">게시판</router-link>
+          <router-link to="/board/list" class="dropdown-item">게시판</router-link>
         </base-dropdown>
         <base-dropdown v-if="!userInfo" ag="li" class="nav-item">
           <a slot="title" href="#" class="nav-link" data-toggle="dropdown" role="button">
