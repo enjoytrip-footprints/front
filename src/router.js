@@ -135,7 +135,6 @@ export default new Router({
         {
           path: "modify",
           name: "reviewModify",
-          // beforeEnter: onlyAuthUser,
           component: () => import("@/components/review/ReviewModify"),
         },
       ],
