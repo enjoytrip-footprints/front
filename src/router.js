@@ -115,8 +115,12 @@ export default new Router({
         default: ReviewView,
         footer: AppFooter,
       },
-      // component: () => import("@/views/ReviewView"),
       children: [
+        {
+          path: "/:reviewId",
+          name: "reviewDetail",
+          component: () => import("@/components/review/ReviewDetail.vue"),
+        },
         {
           path: "list",
           name: "reviewList",
