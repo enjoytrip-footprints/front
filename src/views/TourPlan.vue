@@ -22,10 +22,16 @@
                   상상만으로 설레는 여행!
                   <span>어디로 갈지 생각해 볼까요~?</span>
                 </h1>
-
-                <base-button class="mb-3 mb-sm-0 mt-5" type="info" icon="fa fa-code" @click="moveWrite">
-                  계획 세우기
-                </base-button>
+                
+                  <base-button
+                      class="mb-3 mb-sm-0 mt-5"
+                      type="info"
+                      icon="fa fa-code"
+                      @click="moveWrite"
+                    >
+                      계획 세우기
+                  </base-button>
+              
               </div>
             </div>
           </div>
@@ -87,7 +93,6 @@
                 </card>
               </div>
             </div> -->
-            <plan-list></plan-list>
           </div>
         </div>
       </div>
@@ -96,18 +101,15 @@
 </template>
 
 <script>
-import PlanList from "../components/plan/PlanList.vue";
-
 export default {
   name: "TourPlan",
-  components: {
-    PlanList,
-  },
+  components: {},
 
   methods: {
+
     moveWrite() {
       this.$router.push({ name: "PlanWrite" });
     },
-  },
+  }
 };
 </script>
