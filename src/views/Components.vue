@@ -10,6 +10,7 @@
     <examples></examples>
     <download-section></download-section> -->
     <carousel></carousel>
+    <main-weather></main-weather>
   </div>
 </template>
 <script>
@@ -20,6 +21,7 @@
 // import Navigation from "./components/Navigation";
 // import JavascriptComponents from "./components/JavascriptComponents";
 import Carousel from "./components/Carousel";
+import MainWeather from "@/components/main/MainWeather";
 // import Icons from "./components/Icons";
 // import Examples from "./components/Examples";
 // import DownloadSection from "./components/DownloadSection";
@@ -34,6 +36,7 @@ export default {
     // Navigation,
     // JavascriptComponents,
     Carousel,
+    MainWeather,
     // Icons,
     // Examples,
     // DownloadSection,
