@@ -1,15 +1,15 @@
 <template>
-  <section id="portfolio" class="portfolio" data-aos="fade-up">
+  <section id="portfolio" class="portfolio" data-aos="fade-up" style="pb-0">
     <div class="container-fluid" style="min-height: 750px; border-bottom: solid; ">
       <div class="section-header">
       </div>
       <div class="container-fluid mt-3" data-aos="fade-up" data-aos-delay="200" style="text-align: center; ">
         <div class="row g-0 portfolio-container">
-          <review-list-item
+          <my-review-item
             v-for="review in reviews"
             :key="review.reviewid"
             :review="review"
-          ></review-list-item>
+          ></my-review-item>
         </div>
       </div>
     </div>
@@ -18,26 +18,26 @@
 
 <script>
 
-import { mapState, mapActions } from "vuex";
-import ReviewListItem from "@/components/review/ReviewListItem";
+import { userInfo } from "os";
+import { mapState, mapGetters, mapActions } from "vuex";
+import MyReviewItem from "@/components/user/MyReviewItem";
+
 
 export default {
-  name: "ReviewList",
+
+  name: "MyReviewList",
   components: {
-    ReviewListItem,
+    MyReviewItem,
   },
   computed: {
     ...mapState("userStore", ["userInfo"]),
     ...mapState("reviewStore", ["reviews"]),
   },
   methods: {
-    ...mapActions("reviewStore", ["getReviewList"]),
-    shareReview() {
-      this.$router.push({ name: "reviewShare" });
-    },
+    ...mapActions("reviewStore", ["getPersonReviewList"]),
   },
   mounted() {
-    this.getReviewList();
+    this.getPersonReviewList(this.userInfo.id);
   },
 };
 </script>

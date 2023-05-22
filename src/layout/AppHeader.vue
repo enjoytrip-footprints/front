@@ -68,7 +68,7 @@
             <span class="nav-link-inner--text">마이페이지</span>
           </a>
           <router-link to="/myprofile" class="dropdown-item">내 정보</router-link>
-          <router-link to="/myreview" class="dropdown-item">내 후기</router-link>
+          <router-link to="/myReview/list" class="dropdown-item">내 후기</router-link>
         </base-dropdown>
       </ul>
       <!-- <ul class="navbar-nav align-items-lg-center ml-lg-auto">
