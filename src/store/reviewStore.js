@@ -43,6 +43,19 @@ const reviewStore = {
           console.log(error);
         });
     },
+
+    getPersonReviewList({ commit }, userId) {
+      console.log(userId)
+      http
+        .get(`review/getReviewList/${userId}`)
+        .then(({ data }) => {
+          commit("SET_REVIEW_LIST", data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+
     async writeReview(context, formData) {
       await http
         .post(`review/write`, formData, {
