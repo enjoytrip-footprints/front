@@ -44,7 +44,7 @@
   
 <script>
   import { mapState, mapActions } from "vuex";
-  import MyReviewItem from "@/components/review/MyReviewItem";
+  import MyReviewItem from "@/components/user/MyReviewItem";
   
   export default {
     name: "PersonReviewView",
