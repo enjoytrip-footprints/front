@@ -141,7 +141,7 @@ import { userInfo } from "os";
 import { mapState, mapGetters, mapActions } from "vuex";
 
 export default {
-  name: "MyProfile",
+  name: "MyReview",
   computed: {
     ...mapState("userStore", ["isLogin", "userInfo"]),
   },
