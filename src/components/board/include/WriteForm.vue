@@ -1,47 +1,58 @@
 <template>
   <div class="regist">
-  <section class="section section-lg pt-lg-0 section-contact-us">
+    <section class="section section-lg pt-lg-0 section-contact-us">
       <div class="container">
         <div class="row justify-content-center mt--400">
           <div class="col-lg-8">
             <card gradient="secondary" shadow body-classes="p-lg-5">
-              <h4 v-if="type == 'create'" class="mb-1" >여행 후기 남기기</h4>
-              <h4 v-else class="mb-1" >여행 후기 수정하기</h4>
-              <p class="mt-0">{{userInfo.name}} 님의 발자취를 남겨주세요.
-              흩어지는 소중한 추억을 간직하고 자랑해보아요.</p>
+              <h4 v-if="type == 'create'" class="mb-1">여행 후기 남기기</h4>
+              <h4 v-else class="mb-1">여행 후기 수정하기</h4>
+              <p class="mt-0">
+                {{ userInfo.name }} 님의 발자취를 남겨주세요. 흩어지는 소중한 추억을 간직하고 자랑해보아요.
+              </p>
               <div class="regist_form">
-              <base-input alternative placeholder="제목" type="text" id="title" name="title" v-model="title" ref="title"> </base-input>
-              <base-input class="mb-4">
-                <textarea
+                <base-input
+                  alternative
+                  placeholder="제목"
+                  type="text"
+                  id="title"
+                  name="title"
+                  v-model="title"
+                  ref="title"
+                >
+                </base-input>
+                <base-input class="mb-4">
+                  <textarea
+                    class="form-control form-control-alternative"
+                    rows="6"
+                    cols="100"
+                    placeholder="내용을 입력해주세요"
+                    id="article"
+                    name="article"
+                    v-model="article"
+                    ref="article"
+                  ></textarea>
+                </base-input>
+                <input
+                  type="file"
+                  accept="image/*"
+                  id="img"
+                  name="img"
                   class="form-control form-control-alternative"
-                  rows="6"
-                  cols="100"
-                  placeholder="내용을 입력해주세요"
-                  id="article" name="article" v-model="article" ref="article"
-                ></textarea>
-              </base-input>
-              <input 
-                type="file"
-                accept="image/*"
-                id="img" name="img"
-                class="form-control form-control-alternative"
-                style="height: 45px"
-                placeholder="이미지 등록"
-                @change="handleFileChange"/>
-              <base-button v-if="type == 'create'" class="my-4" @click="checkValue">
-                등록하기
-              </base-button>
-              <base-button v-else class="my-4" @click="checkValue">
-                수정하기
-              </base-button>
-              <base-button class="my-4" @click="moveList">목록</base-button>
+                  style="height: 45px"
+                  placeholder="이미지 등록"
+                  @change="handleFileChange"
+                />
+                <base-button v-if="type == 'create'" class="my-4" @click="checkValue"> 등록하기 </base-button>
+                <base-button v-else class="my-4" @click="checkValue"> 수정하기 </base-button>
+                <base-button class="my-4" @click="moveList">목록</base-button>
               </div>
             </card>
           </div>
         </div>
       </div>
     </section>
-    </div>
+  </div>
 </template>
 
 <script>

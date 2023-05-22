@@ -12,14 +12,16 @@
       <div class="row justify-content-between align-items-center">
         <div class="col-lg-5 mb-5 mb-lg-0">
           <h1 class="text-white font-weight-light">발자취</h1>
-          <p class="lead text-white mt-4">
-            남겨왔던 남길 예정인 모든 발자취는 아름답습니다.
-          </p>
-          <a
+          <p class="lead text-white mt-4">남겨왔던 남길 예정인 모든 발자취는 아름답습니다.</p>
+          <!-- <a
             href="https://demos.creative-tim.com/argon-design-system/docs/components/alerts.html"
             class="btn btn-white mt-4"
-            >See all components</a
-          >
+            >여행지 검색하기</a
+          > -->
+
+          <router-link to="/toursearch" class="btn btn-white mt-4"> 여행지 검색하기 </router-link>
+          <br />
+          <router-link to="/tourplan" class="btn btn-white mt-4"> 여행 계획 짜기 </router-link>
         </div>
         <div class="col-lg-6 mb-lg-auto">
           <div class="rounded shadow-lg overflow-hidden transform-perspective-right">
@@ -27,10 +29,10 @@
               <!-- Text slides with image -->
               <!-- <b-carousel-slide img-src="img/theme/img-1-1200x1000.jpg"></b-carousel-slide> -->
               <!-- <b-carousel-slide img-src="img/theme/img-2-1200x1000.jpg"></b-carousel-slide> -->
-              <b-carousel-slide img-src="img/theme/광화문.png"></b-carousel-slide>
-              <b-carousel-slide img-src="img/theme/외도.png"></b-carousel-slide>
-              <b-carousel-slide img-src="img/theme/제주도.png"></b-carousel-slide>
-              <b-carousel-slide img-src="img/theme/첨성대.png"></b-carousel-slide>
+              <b-carousel-slide img-src="img/theme/img1.png"></b-carousel-slide>
+              <b-carousel-slide img-src="img/theme/img2.png"></b-carousel-slide>
+              <b-carousel-slide img-src="img/theme/img3.png"></b-carousel-slide>
+              <b-carousel-slide img-src="img/theme/img4.png"></b-carousel-slide>
             </b-carousel>
           </div>
         </div>
