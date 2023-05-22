@@ -40,8 +40,9 @@
           <b-row class="mt-3">
             <b-col cols="12">
               <the-kakao-map ref="search"></the-kakao-map>
-            </b-col> </b-row
-          ><br /><br /><br />
+            </b-col>
+          </b-row>
+          <br /><br /><br />
 
           <plan-regist>
             v-on:upSchedule="upSchedule" v-on:downSchedule="downSchedule" v-on:deleteSchedule="deleteSchedule"

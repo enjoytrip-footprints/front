@@ -2,7 +2,7 @@
   <section id="my_schedule" style="padding-top: 0">
     <div class="container" style="min-height: 750px">
       <div class="section-header">
-        <h3>나의 여행 계획</h3>
+        <h3>나의 여행 순서</h3>
         <p v-if="!schedules.length" id="notice_add_schedule">
           여행 계획에 여행지가 없습니다, 지도에서 검색 후 추가해주세요 :)
         </p>

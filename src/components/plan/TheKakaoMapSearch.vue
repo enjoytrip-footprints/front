@@ -1,14 +1,13 @@
 <template>
   <div>
     <div id="map"></div>
-
     <div id="menu_wrap" class="bg_white">
       <div class="option">
         <div>
           <!-- <form onsubmit="searchPlaces(); return false;"> -->
           키워드 :
           <input
-            class="form-control pl-2"
+            class="form-control"
             type="text"
             value=""
             id="keyword"
@@ -16,7 +15,7 @@
             style="line-height: 28px"
             @keyup.enter="searchKeyword()"
           />
-          <button id="keyword_search" class="btn btn-default p-1" style="width: 20%" @click="searchKeyword()">
+          <button id="keyword_search" class="btn btn-default p-1" style="width: 30%" @click="searchKeyword()">
             <b-icon icon="search"></b-icon>
           </button>
           <!-- <button @click="loadMaker">검색하기</button>  -->

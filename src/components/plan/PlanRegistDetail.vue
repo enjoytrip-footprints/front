@@ -27,12 +27,12 @@
             <div class="container p-0">
               <section class="py-5 pb-5">
                 <ul class="timeline-with-icons ms-3" id="planInner">
-                  <plan-write-detail-item
+                  <plan-regist-detail-item
                     v-for="(schedule, index) in schedules"
                     :key="schedule.spotid"
                     :schedule="schedule"
                     :num="index + 1"
-                  ></plan-write-detail-item>
+                  ></plan-regist-detail-item>
                 </ul>
               </section>
             </div>
@@ -107,11 +107,13 @@ export default {
           this.writeScheduleSpot(scheduleSpot);
         }
 
-        this.$router.push({ name: "board" });
+        alert("여행 계획이 등록되었습니다.");
+        this.$router.push("/tourplan");
       }
     },
     cancel() {
-      this.$router.push("/tourplan").catch(() => {});
+      if (confirm("정말 취소하시겠습니까?\n작성 내용은 저장되지 않습니다."))
+        this.$router.push("/tourplan").catch(() => {});
     },
   },
   mounted() {
