@@ -9,7 +9,7 @@ import ReviewView from "./views/ReviewView";
 import Register from "@/components/user/UserRegister";
 import Profile from "./views/base/Profile.vue";
 import MyProfile from "@/components/user/MyProfile.vue";
-import MyReview from "@/components/user/MyReview.vue";
+import PersonReviewView from "./views/PersonReviewView";
 import BoardView from "@/views/BoardView.vue";
 import TourSearch from "@/views/TourSearch.vue";
 import TourPlan from "@/views/TourPlan.vue";
@@ -69,11 +69,11 @@ export default new Router({
       },
     },
     {
-      path: "/myreview",
-      name: "MyReview",
+      path: "/myReview",
+      name: "myReviewList",
       components: {
         header: AppHeader,
-        default: MyReview,
+        default: PersonReviewView,
         footer: AppFooter,
       },
     },
@@ -108,6 +108,26 @@ export default new Router({
       },
     },
     {
+      path: "/myReview",
+      name: "myReview",
+      components: {
+        header: AppHeader,
+        default: PersonReviewView,
+        footer: AppFooter,
+      },children: [
+        // {
+        //   path: "/:reviewId",
+        //   name: "reviewDetail",
+        //   component: () => import("@/components/user/MyReviewDetail.vue"),
+        // },
+        {
+          path: "list",
+          name: "myReviewList",
+          component: () => import("@/components/user/MyReviewList"),
+        },
+      ]
+    },
+    {
       path: "/review",
       name: "review",
       components: {
@@ -126,6 +146,11 @@ export default new Router({
           name: "reviewList",
           component: () => import("@/components/review/ReviewList"),
         },
+        // {
+        //   path: "myReview",
+        //   name: "myReviewList",
+        //   component: () => import("@/components/user/MyReviewList"),
+        // },
         {
           path: "share",
           name: "reviewShare",
