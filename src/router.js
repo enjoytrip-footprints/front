@@ -9,6 +9,7 @@ import ReviewView from "./views/ReviewView";
 import Register from "@/components/user/UserRegister";
 import Profile from "./views/base/Profile.vue";
 import MyProfile from "@/components/user/MyProfile.vue";
+import MyReview from "@/components/user/MyReview.vue";
 import BoardView from "@/views/BoardView.vue";
 import TourSearch from "@/views/TourSearch.vue";
 import TourPlan from "@/views/TourPlan.vue";
@@ -64,6 +65,15 @@ export default new Router({
       components: {
         header: AppHeader,
         default: MyProfile,
+        footer: AppFooter,
+      },
+    },
+    {
+      path: "/myreview",
+      name: "MyReview",
+      components: {
+        header: AppHeader,
+        default: MyReview,
         footer: AppFooter,
       },
     },
