@@ -48,12 +48,19 @@ export default {
   data() {
     return {
       map: null,
+      clusterer: null,
+      polyline: null,
+      infowindow: null,
+      bounds: null,
       keyword: "",
       markers: [],
+      linePath: [],
+      sMarkers: [],
+      sSchedules: [],
     };
   },
   computed: {
-    ...mapState("planStore", ["searchSpots"]),
+    ...mapState("planStore", ["searchSpots", "schedules"]),
   },
 
   created() {},
@@ -69,7 +76,7 @@ export default {
     }
   },
   methods: {
-    ...mapMutations("planStore", ["CLEAR_SEARCHSPOT_LIST", "CLEAR_SCHEDULE_LIST"]),
+    ...mapMutations("planStore", ["CLEAR_SEARCHSPOT_LIST", "CLEAR_SCHEDULE_LIST", "SET_SCHEDULE_LIST"]),
     ...mapActions("planStore", ["searchSpot"]),
 
     searchKeyword() {
@@ -82,35 +89,49 @@ export default {
     // },
 
     callInfowindow(spot) {
+      this.deleteMarker();
+
       var marker = new kakao.maps.Marker({
         position: new kakao.maps.LatLng(spot.latitude, spot.longitude), // 마커의 위치
       });
 
-      var content = `<div class="overlay_info">
+      var contentInfo = `<div class="overlay_info">
 						<a><strong>${spot.title}</strong></a>
 							<div class="desc">`;
       if (spot.first_image)
-        content += `<img src="${spot.first_image}" alt="${spot.title}" width = "50px" height = "50px"/>`;
+        contentInfo += `<img src="${spot.first_image}" alt="${spot.title}" width = "50px" height = "50px"/>`;
       else
-        content += ` <img src="http://www.billking.co.kr/index/skin/board/basic_support/img/noimage.gif" alt="${spot.title}" width = "50px" height = "50px"/>`;
-      content += `<span class="address">${spot.addr1}</span></div>
-						</div>`;
+        contentInfo += ` <img src="img/brand/foot23_purple.png" alt="${spot.title}" width = "50px" height = "50px"/>`;
+
+      contentInfo += `<span class="address">${spot.addr1}</span></div>
+      </div>`;
 
       this.map.setCenter(new kakao.maps.LatLng(spot.latitude, spot.longitude));
       this.map.setLevel(6);
 
-      this.deleteMarker();
       this.markers.push(marker);
       var placePosition = new kakao.maps.LatLng(spot.latitude, spot.longitude);
       marker = this.addMarker(placePosition, 0);
       // this.infowindow.setContent(content);
       // this.infowindow.open(this.map, marker);
-      // var infowindow = new kakao.maps.InfoWindow({
-      //   // content: `${this.positions[i].title}<br/> <img src="${this.positions[i].firstimage}" alt="${this.positions[i].title}" width = "150px" height = "150px"/>`, // 인포윈도우에 표시할 내용
-      //   content: content,
-      // });
-      // kakao.maps.event.addListener(marker, "mouseover", this.makeOverListener(this.map, marker, infowindow));
-      // kakao.maps.event.addListener(marker, "mouseout", this.makeOutListener(infowindow));
+      var infowindow = new kakao.maps.InfoWindow({
+        // content: `${this.positions[i].title}<br/> <img src="${this.positions[i].firstimage}" alt="${this.positions[i].title}" width = "150px" height = "150px"/>`, // 인포윈도우에 표시할 내용
+        content: contentInfo,
+      });
+      kakao.maps.event.addListener(marker, "mouseover", this.makeOverListener(this.map, marker, infowindow));
+      kakao.maps.event.addListener(marker, "mouseout", this.makeOutListener(infowindow));
+      // kakao.maps.event.addListener(marker, "rightclick", this.addSchedule(spot));
+    },
+
+    makeOverListener(map, marker, infowindow) {
+      return function () {
+        infowindow.open(map, marker);
+      };
+    },
+    makeOutListener(infowindow) {
+      return function () {
+        infowindow.close();
+      };
     },
 
     // api 불러오기
@@ -389,19 +410,19 @@ export default {
 
       if (flag) {
         let schedule = {
-          spotid: spot.spotid,
+          spotid: spot.content_id,
           title: spot.title,
-          address: spot.address,
-          image: spot.image,
-          mapx: spot.lat,
-          mapy: spot.lang,
-          theme: spot.theme,
+          address: spot.addr1,
+          image: spot.first_image,
+          mapx: spot.latitude,
+          mapy: spot.longitude,
+          theme: spot.content_type_id,
         };
 
         this.sSchedules.push(schedule);
         this.SET_SCHEDULE_LIST(this.sSchedules);
         this.makeMarker();
-        this.makeLine();
+        // this.makeLine();
       } else {
         alert("이미 추가한 장소입니다.");
       }
@@ -419,27 +440,27 @@ export default {
         });
         marker.setMap(this.map);
         marker.setZIndex(50);
-        kakao.maps.event.addListener(marker, "mouseover", function () {
-          vm.displayInfowindow(marker, schedule);
-        });
+        // kakao.maps.event.addListener(marker, "mouseover", function () {
+        //   vm.displayInfowindow(marker, schedule);
+        // });
         this.sMarkers.push(marker);
       });
     },
-    makeLine() {
-      this.polyline.setMap(null);
-      this.linePath = [];
-      this.sSchedules.forEach((schedule) => {
-        this.linePath.push(new kakao.maps.LatLng(schedule.mapx, schedule.mapy));
-      });
-      this.polyline = new kakao.maps.Polyline({
-        path: this.linePath, // 선을 구성하는 좌표배열 입니다
-        strokeWeight: 5, // 선의 두께 입니다
-        strokeColor: "#0EA2BD", // 선의 색깔입니다
-        strokeOpacity: 1, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
-        strokeStyle: "solid", // 선의 스타일입니다
-      });
-      this.polyline.setMap(this.map);
-    },
+    // makeLine() {
+    //   this.polyline.setMap(null);
+    //   this.linePath = [];
+    //   this.sSchedules.forEach((schedule) => {
+    //     this.linePath.push(new kakao.maps.LatLng(schedule.mapx, schedule.mapy));
+    //   });
+    //   this.polyline = new kakao.maps.Polyline({
+    //     path: this.linePath, // 선을 구성하는 좌표배열 입니다
+    //     strokeWeight: 5, // 선의 두께 입니다
+    //     strokeColor: "#0EA2BD", // 선의 색깔입니다
+    //     strokeOpacity: 1, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
+    //     strokeStyle: "solid", // 선의 스타일입니다
+    //   });
+    //   this.polyline.setMap(this.map);
+    // },
   },
 };
 </script>
