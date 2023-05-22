@@ -115,7 +115,7 @@ export default {
         this.markers.push(marker);
 
         var infowindow = new kakao.maps.InfoWindow({
-          content: `${this.positions[i].title}`, // 인포윈도우에 표시할 내용
+          content: `${this.positions[i].title}<br/> <img src="${this.positions[i].firstimage}" alt="${this.positions[i].title}" width = "150px" height = "150px"/>`, // 인포윈도우에 표시할 내용
         });
 
         kakao.maps.event.addListener(marker, "mouseover", this.makeOverListener(this.map, marker, infowindow));

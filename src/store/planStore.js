@@ -33,6 +33,7 @@ const planStore = {
       http
         .get(`/mapapi/search/${keyword}`)
         .then(({ data }) => {
+          console.log(data);
           commit("SET_SEARCHSPOT_LIST", data);
         })
         .catch((error) => {
