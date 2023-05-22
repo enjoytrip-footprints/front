@@ -49,12 +49,15 @@ export default {
   },
   methods: {
     upSchedule(spotid) {
+      console.log("clicked up1");
       this.$emit("upSchedule", spotid);
     },
     downSchedule(spotid) {
+      console.log("clicked down1");
       this.$emit("downSchedule", spotid);
     },
     deleteSchedule(spotid) {
+      console.log("clicked delete1");
       this.$emit("deleteSchedule", spotid);
     },
   },
