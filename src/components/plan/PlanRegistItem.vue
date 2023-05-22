@@ -55,10 +55,14 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
 export default {
   name: "PlanWriteItem",
   props: {
     schedule: Object,
+  },
+  computed: {
+    ...mapState("planStore", ["schedules"]),
   },
   methods: {
     theme(tCode) {
@@ -74,14 +78,60 @@ export default {
       return themes[tCode];
     },
     upSchedule(spotid) {
+      console.log("clicked up");
       this.$emit("upSchedule", spotid);
     },
     downSchedule(spotid) {
+      console.log("clicked down");
       this.$emit("downSchedule", spotid);
     },
     deleteSchedule(spotid) {
+      console.log("clicked delete");
       this.$emit("deleteSchedule", spotid);
     },
+
+    // upSchedule(spotid) {
+    //   for (var i = 1; i < this.sSchedules.length; i++) {
+    //     if (this.sSchedules[i].spotid == spotid) {
+    //       let temp = this.sSchedules[i];
+    //       this.sSchedules[i] = this.sSchedules[i - 1];
+    //       this.sSchedules[i - 1] = temp;
+    //       break;
+    //     }
+    //   }
+
+    //   this.CLEAR_SCHEDULE_LIST();
+    //   this.SET_SCHEDULE_LIST(this.sSchedules);
+    //   // this.makeLine();
+    // },
+    // downSchedule(spotid) {
+    //   for (var i = 0; i < this.sSchedules.length - 1; i++) {
+    //     if (this.sSchedules[i].spotid == spotid) {
+    //       let temp = this.sSchedules[i];
+    //       this.sSchedules[i] = this.sSchedules[i + 1];
+    //       this.sSchedules[i + 1] = temp;
+    //       break;
+    //     }
+    //   }
+
+    //   this.CLEAR_SCHEDULE_LIST();
+    //   this.SET_SCHEDULE_LIST(this.sSchedules);
+    //   // this.makeLine();
+    // },
+    // deleteSchedule(spotid) {
+    //   for (var i = 0; i < this.sSchedules.length; i++) {
+    //     if (this.sSchedules[i].spotid == spotid) {
+    //       this.sSchedules.splice(i, 1);
+    //       i--;
+    //     }
+    //   }
+
+    //   this.CLEAR_SCHEDULE_LIST();
+    //   this.SET_SCHEDULE_LIST(this.sSchedules);
+    //   this.resetMarkers();
+    //   this.makeMarker();
+    //   // this.makeLine();
+    // },
   },
 };
 </script>
