@@ -10,7 +10,16 @@
     <label class="col-6">도착일 <input class="form-control" type="date" id="arrive_date" name="arrive_date" /></label>
     <p />
     <label class="col-6"
-      >예상 경비(원) <input class="form-control" type="number" id="fee" name="fee" min="1" max="100000000" />
+      >예상 경비(원)
+      <input
+        class="form-control"
+        type="text"
+        id="fee"
+        name="fee"
+        min="1"
+        max="100000000"
+        oninput="this.value = this.value.replace(/^0+|\D+/g, '').replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');"
+      />
     </label>
     <label class="col-6"
       >예상 행복도(1~100) <input class="form-control" type="number" id="happy" name="happy" min="1" max="100"
@@ -40,6 +49,11 @@ export default {
         39: "음식점",
       };
       return themes[tCode];
+    },
+
+    numberComma(value) {
+      const rtnValue = `${value}`;
+      return String(rtnValue).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     },
   },
 };
