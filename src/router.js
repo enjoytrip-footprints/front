@@ -51,6 +51,26 @@ export default new Router({
       },
     },
     {
+      path: "/login",
+      name: "login",
+      // component: () => import(/* webpackChunkName: "user" */ "@/components/user/UserLogin"),
+      components: {
+        header: AppHeader,
+        default: Login,
+        footer: AppFooter,
+      },
+    },
+    {
+      path: "/register",
+      name: "register",
+      // component: () => import(/* webpackChunkName: "user" */ "@/components/user/UserRegister"),
+      components: {
+        header: AppHeader,
+        default: Register,
+        footer: AppFooter,
+      },
+    },
+    {
       path: "/landing",
       name: "landing",
       components: {
@@ -68,15 +88,15 @@ export default new Router({
         footer: AppFooter,
       },
     },
-    {
-      path: "/myReview",
-      name: "myReviewList",
-      components: {
-        header: AppHeader,
-        default: PersonReviewView,
-        footer: AppFooter,
-      },
-    },
+    // {
+    //   path: "/myReview",
+    //   name: "myReviewList",
+    //   components: {
+    //     header: AppHeader,
+    //     default: PersonReviewView,
+    //     footer: AppFooter,
+    //   },
+    // },
     {
       path: "/toursearch",
       name: "TourSearch",
@@ -163,26 +183,6 @@ export default new Router({
           component: () => import("@/components/review/ReviewModify"),
         },
       ],
-    },
-    {
-      path: "/login",
-      name: "login",
-      // component: () => import(/* webpackChunkName: "user" */ "@/components/user/UserLogin"),
-      components: {
-        header: AppHeader,
-        default: Login,
-        footer: AppFooter,
-      },
-    },
-    {
-      path: "/register",
-      name: "register",
-      // component: () => import(/* webpackChunkName: "user" */ "@/components/user/UserRegister"),
-      components: {
-        header: AppHeader,
-        default: Register,
-        footer: AppFooter,
-      },
     },
     {
       path: "/profile",
