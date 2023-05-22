@@ -20,7 +20,7 @@
           </base-button>
         </div>
       </div>
-      <div class="container-fluid mt-3" data-aos="fade-up" data-aos-delay="200">
+      <div class="container-fluid mt-3" data-aos="fade-up" data-aos-delay="200" style="border-top: solid; text-align: center;">
         <div class="row g-0 portfolio-container">
           <review-list-item
             v-for="review in reviews"

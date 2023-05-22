@@ -20,11 +20,11 @@
                 ></textarea>
               </base-input>
               <input 
-              type="file"
+                type="file"
                 accept="image/*"
                 class="form-control"
                 style="height: 45px"
-                placeholder="이미지를 통록해주세요"
+                placeholder="이미지를 등록해주세요"
                 @change="handleFileChange"/>
               <base-button class="my-4" @click="share">
                 등록하기
@@ -67,7 +67,7 @@
           alert("설명을 입력해 주세요!!!");
           return;
         } else if (!this.file) {
-          alert("핫 플레이스 사진을 추가해주세요!!!");
+          alert("여행지 사진을 추가해주세요!!!");
           return;
         } else {
           let data = new FormData();
