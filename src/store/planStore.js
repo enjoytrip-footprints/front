@@ -46,8 +46,6 @@ const planStore = {
           memberId: param.memberId,
           planTitle: param.planTitle,
           planDetail: param.planDetail,
-          departTime: param.departTime,
-          arriveTime: param.arriveTime,
         })
         .catch((error) => {
           console.log(error);
