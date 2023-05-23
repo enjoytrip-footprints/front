@@ -29,7 +29,7 @@
                 </base-button>
                 <base-button
                     class="my-4"
-                    v-if="userInfo.id != review.userId"
+                    v-if="!userInfo || userInfo.id != review.userId"
                     @click="moveUser">{{review.userId}} 님의 발자취 보러가기
                 </base-button>
                 <base-button 
