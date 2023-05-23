@@ -156,6 +156,10 @@ export default {
       // this.makeLine();
     },
     downSchedule(spotid) {
+      console.log("down2");
+      for (var i = 0; i < this.schedules.length; i++)
+        console.log("check : "+this.schedules[i].spotid)
+
       for (var i = 0; i < this.schedules.length - 1; i++) {
         if (this.schedules[i].spotid == spotid) {
           let temp = this.schedules[i];
@@ -170,9 +174,9 @@ export default {
       // this.makeLine();
     },
     deleteSchedule(spotid) {
-      console.log(this.schedules.length);
+      // console.log(this.schedules.length);
       for (var i = 0; i < this.schedules.length; i++) {
-        console.log(this.schedules[i].spotid);
+        // console.log(this.schedules[i].spotid);
         if (this.schedules[i].spotid == spotid) {
           this.schedules.splice(i, 1);
           i--;

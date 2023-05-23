@@ -4,7 +4,7 @@
       <div class="section-header">
         <h3>나의 여행 계획</h3>
         <p v-if="!schedules.length" id="notice_add_schedule">
-          여행 계획에 여행지가 없습니다, 지도에서 검색 후 추가해주세요 :)
+          여행 계획에 여행지가 없습니다, 지도에서 검색 후 더블클릭해서 추가해주세요 :)
         </p>
       </div>
       <div class="schedule_list">
@@ -18,6 +18,7 @@
             v-on:deleteSchedule="deleteSchedule"
           ></plan-write-item> -->
           <plan-regist-item
+            v-model="schedules"
             v-for="schedule in schedules"
             :key="schedule.spotid"
             :schedule="schedule"
