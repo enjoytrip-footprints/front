@@ -25,8 +25,8 @@
                       <template>
                           <form role="form">
                               <base-input alternative
-                                          class="mb-3"
-                                          placeholder="Id"
+                                          :class="idValid"
+                                          placeholder="아이디"
                                           addon-left-icon="ni ni-hat-3"
                                           type="text"
                                           id="signup-form-id"
@@ -34,6 +34,7 @@
                                           v-model="user.id"
                                           @keyup="checkId">
                               </base-input>
+                              <div id="idcheck-result"></div>
                               <base-input alternative
                                           type="password"
                                           :class="pwdValid"
@@ -219,4 +220,11 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+  .input-success {
+  box-shadow: 0 0 5px green;
+}
+.input-fail {
+  box-shadow: 0 0 5px red;
+}
+</style>

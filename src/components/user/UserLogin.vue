@@ -82,9 +82,9 @@ export default {
   data() {
     return {
       user: {
-        id: null,
-        password: null,
-      },
+      id: null,
+      password: null,
+    },
     };
   },
   computed: {
