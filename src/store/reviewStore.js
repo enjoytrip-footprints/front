@@ -32,7 +32,6 @@ const reviewStore = {
           console.log(error);
         });
     },
-
     getReviewList({ commit }) {
       http
         .get(`review/getReviewList`)
@@ -43,7 +42,6 @@ const reviewStore = {
           console.log(error);
         });
     },
-
     getHotReviewList({ commit }) {
       http
         .get(`review/getHotReviewList`)
@@ -54,7 +52,6 @@ const reviewStore = {
           console.log(error);
         });
     },
-
     getPersonReviewList({ commit }, userId) {
       console.log(userId)
       http
@@ -66,7 +63,6 @@ const reviewStore = {
           console.log(error);
         });
     },
-
     async writeReview(context, formData) {
       await http
         .post(`review/write`, formData, {
@@ -79,17 +75,22 @@ const reviewStore = {
         });
     },
     async modifyReview(context, param) {
-      await http.put(`review/modify`, JSON.stringify(param)).catch((error) => {
+      await http
+      .put(`review/modify`, JSON.stringify(param))
+      .catch((error) => {
         console.log(error);
       });
     },
     async deleteReview(context, reviewid) {
-      await http.delete(`review/${reviewid}`).catch((error) => {
+      await http
+      .delete(`review/${reviewid}`)
+      .catch((error) => {
         console.log(error);
       });
     },
     updateLikes(context, reviewid) {
-      http.put(`review/likes/${reviewid}`)
+      http
+      .put(`review/likes/${reviewid}`)
       .catch((error) => {
       console.log(error);
     });
