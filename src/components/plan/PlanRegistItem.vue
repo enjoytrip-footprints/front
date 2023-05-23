@@ -41,12 +41,12 @@
     <p class="text-muted mb-2 fw-bold">{{ schedule.addr1 }}</p>
     <p class="text-muted mb-2">{{ theme(schedule.content_type_id) }}</p>
     <div class="text-end mb-2">
-      <button class="btn btn-circle btn-primary btn-sm mb-1 mr-1" name="up" @click="upSchedule(schedule.spotid)">
+      <!-- <button class="btn btn-circle btn-primary btn-sm mb-1 mr-1" name="up" @click="upSchedule(schedule.spotid)">
         <b-icon icon="chevron-up"></b-icon>
       </button>
       <button class="btn btn-circle btn-primary btn-sm mb-1 mr-1" name="down" @click="downSchedule(schedule.spotid)">
         <b-icon icon="chevron-down"></b-icon>
-      </button>
+      </button> -->
       <button class="btn btn-circle btn-danger btn-sm mb-1 mr-1" name="delete" @click="deleteSchedule(schedule.spotid)">
         <b-icon icon="x"></b-icon>
       </button>
