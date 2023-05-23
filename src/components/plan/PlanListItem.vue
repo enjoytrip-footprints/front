@@ -49,18 +49,31 @@ export default {
   computed: {
     ...mapState("userStore", ["userInfo"]),
     ...mapState("planStore", ["deslist"]),
+    ...mapState("itemStore", ["tours"]),
   },
   methods: {
     ...mapMutations("planStore", ["CLEAR_PLAN_LIST"]),
+    ...mapMutations("itemStore", ["CLEAR_TOURS"]),
     ...mapActions("planStore", [
       "getPlan",
       "getPlanList",
       "getDesList",
       // , "deletePlan"
     ]),
+    ...mapActions("itemStore", [
+      "getTours",
+      // , "deletePlan"
+    ]),
     async readPlan() {
+      // plan 찾아오기
       await this.getPlan(this.plan.id);
+      // 해당 plan에 소속된 description 찾아오기
       await this.getDesList(this.plan.id);
+      // 각 description 에 해당하는 상세 관광지 정보 갱신하기
+      this.CLEAR_TOURS();
+      for (var i = 0; i < this.deslist.length; i++) {
+        await this.getTours(this.deslist[i].placeId);
+      }
 
       this.$router.push({ name: "PlanDetail" });
     },
