@@ -51,7 +51,14 @@
           </a>
           <router-link to="/hotReview/list" class="dropdown-item">인기 여행 후기</router-link>
           <router-link to="/review/list" class="dropdown-item">여행 후기</router-link>
-          <router-link to="/board/list" class="dropdown-item">게시판</router-link>
+        </base-dropdown>
+
+        <base-dropdown tag="li" class="nav-item">
+          <a slot="title" href="#" class="nav-link" data-toggle="dropdown" role="button">
+            <i class="ni ni-collection d-lg-none"></i>
+            <span class="nav-link-inner--text">Q&A</span>
+          </a>
+          <router-link to="/board/list" class="dropdown-item"> 건의사항</router-link>
         </base-dropdown>
 
         <base-dropdown v-if="!userInfo" ag="li" class="nav-item">
