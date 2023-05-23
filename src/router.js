@@ -16,29 +16,8 @@ import BoardView from "@/views/BoardView.vue";
 import TourSearch from "@/views/TourSearch.vue";
 import TourPlan from "@/views/TourPlan.vue";
 import PlanWrite from "@/components/plan/PlanWrite";
-import store from "@/store";
 
 Vue.use(Router);
-
-// const onlyAuthUser = async (to, from, next) => {
-//   const checkUserInfo = store.getters["memberStore/checkUserInfo"];
-//   const checkToken = store.getters["memberStore/checkToken"];
-//   let token = sessionStorage.getItem("access-token");
-//   console.log("로그인 처리 전", checkUserInfo, token);
-
-//   if (checkUserInfo != null && token) {
-//     console.log("토큰 유효성 체크하러 가자!!!!");
-//     await store.dispatch("memberStore/getUserInfo", token);
-//   }
-//   if (!checkToken || checkUserInfo === null) {
-//     alert("로그인이 필요한 페이지입니다..");
-//     // next({ name: "login" });
-//     router.push({ name: "login" });
-//   } else {
-//     console.log("로그인 했다!!!!!!!!!!!!!.");
-//     next();
-//   }
-// };
 
 export default new Router({
   linkExactActiveClass: "active",
@@ -55,7 +34,6 @@ export default new Router({
     {
       path: "/login",
       name: "login",
-      // component: () => import(/* webpackChunkName: "user" */ "@/components/user/UserLogin"),
       components: {
         header: AppHeader,
         default: Login,
@@ -65,7 +43,6 @@ export default new Router({
     {
       path: "/register",
       name: "register",
-      // component: () => import(/* webpackChunkName: "user" */ "@/components/user/UserRegister"),
       components: {
         header: AppHeader,
         default: Register,
@@ -90,15 +67,6 @@ export default new Router({
         footer: AppFooter,
       },
     },
-    // {
-    //   path: "/myReview",
-    //   name: "myReviewList",
-    //   components: {
-    //     header: AppHeader,
-    //     default: PersonReviewView,
-    //     footer: AppFooter,
-    //   },
-    // },
     {
       path: "/toursearch",
       name: "TourSearch",
@@ -193,11 +161,6 @@ export default new Router({
           name: "reviewList",
           component: () => import("@/components/review/ReviewList"),
         },
-        // {
-        //   path: "hotlist",
-        //   name: "hotReviewList",
-        //   component: () => import("@/components/review/HotReviewList"),
-        // },
         {
           path: "share",
           name: "reviewShare",
@@ -223,7 +186,6 @@ export default new Router({
     {
       path: "/board",
       name: "BoardView",
-      // component: boardView,
       components: {
         header: AppHeader,
         default: BoardView,
@@ -238,7 +200,6 @@ export default new Router({
           component: () => import("@/components/board/BoardDetail.vue"),
         },
         { path: "write", name: "BoardWrite", 
-        //beforeEnter: onlyAuthUser, 
         component: () => import("@/components/board/BoardWrite.vue") },
       ],
     },
