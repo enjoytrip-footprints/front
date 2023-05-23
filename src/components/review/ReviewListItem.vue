@@ -9,10 +9,10 @@
                   <img :src="'img/' + review.image" class="img-fluid" style="width: 200px; height: 200px; margin-top: 0; margin-bottom: 10px; " alt="" />
                   <h6 class="text-primary text-uppercase">{{ review.title }}</h6>
                   <p class="description mt-3" >
-                    <span  style="float: left">  ❤️ {{ review.likes }}</span>
+                    <span style="float: left">  ❤️ {{ review.likes }}</span>
                     <span style="float: right">조회수 {{review.hit}} </span>
                   </p>
-                  <base-button @click="readReview" style="margin-top: 20px;" tag="a" type="primary" class="mt-4">
+                  <base-button @click="readReview" style="margin-top: 20px; color: white;" tag="a" type="primary" class="mt-4">
                     상세보기
                   </base-button>
                 </card>
@@ -38,7 +38,7 @@ import { mapState, mapMutations, mapActions } from "vuex";
     },
     methods: {
       ...mapMutations("reviewStore", ["CLEAR_REVIEW_LIST"]),
-      ...mapActions("reviewStore", ["getReview", "getReviewList", "deleteReview"]),
+      ...mapActions("reviewStore", ["getReview", "getReviewList", "deleteReview", "updateLikes"]),
       readReview(){
         this.getReview(this.review.reviewId);
         this.$router.push({ name: "reviewDetail", params:{reviewId: this.review.reviewId} });
@@ -56,6 +56,7 @@ import { mapState, mapMutations, mapActions } from "vuex";
           this.$router.push({ name: "reviewList" });
         }
       },
+
     },
   };
   </script>
