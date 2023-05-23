@@ -16,6 +16,10 @@ const itemStore = {
     CLEAR_GUGUN_LIST(state) {
       state.guguns = [{ value: null, text: "구/군 선택" }];
     },
+    CLEAR_TOURS(state) {
+      state.tours = [];
+    },
+
     SET_SIDO_LIST(state, sidos) {
       sidos.forEach((sido) => {
         state.sidos.push({ value: sido.sido_code, text: sido.sido_name });
@@ -25,6 +29,9 @@ const itemStore = {
       guguns.forEach((gugun) => {
         state.guguns.push({ value: gugun.gugun_code, text: gugun.gugun_name });
       });
+    },
+    SET_TOURS(state, tours) {
+      state.tours.push(tours);
     },
   },
   actions: {
@@ -56,6 +63,18 @@ const itemStore = {
         .then(({ data }) => {
           console.log(data);
           commit("SET_GUGUN_LIST", data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+
+    getTours: ({ commit }, planId) => {
+      http
+        .get(`/mapapi/readSpot/${planId}`)
+        .then(({ data }) => {
+          commit("SET_TOURS", data);
+          console.log(data);
         })
         .catch((error) => {
           console.log(error);

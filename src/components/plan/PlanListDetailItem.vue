@@ -1,16 +1,11 @@
 <template>
   <li class="timeline-item mb-4">
     <span class="timeline-icon"> {{ num }} </span>
-    <h5 class="fw-bold">{{ planSelected.planTitle }}</h5>
+    <h5 class="fw-bold">{{ tours[num - 1].title }}</h5>
 
     <card class="border-0" hover shadow body-classes="py-5" style="width: 550px; height: 200px; margin-top: 40px">
-      <!-- <img
-                  :src="'img/' + review.image"
-                  class="img-fluid"
-                  style="width: 200px; height: 200px; margin-top: 0; margin-bottom: 10px"
-                  alt=""
-                /> -->
-
+      <!-- <img :src="'' + image" style="width: 200px; height: 200px; margin-top: 0; margin-bottom: 10px" alt="" /> -->
+      <!-- <img :src="image" /> -->
       <label class="col-6"
         >출발일 :
         <!-- <input class="form-control" type="date" id="depart_date" name="depart_date" /> -->
@@ -58,10 +53,12 @@ export default {
   data() {
     return {
       price: this.des.price.replace(/^0+|\D+/g, "").replace(/(\d)(?=(?:\d{3})+(?!\d))/g, "$1,"),
+      // image: this.tours[this.num - 1].firstImage,
     };
   },
   computed: {
     ...mapState("planStore", ["planSelected"]),
+    ...mapState("itemStore", ["tours"]),
   },
   methods: {
     ...mapActions("planStore", ["writeScheduleSpot"]),

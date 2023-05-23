@@ -31,7 +31,7 @@
       <input class="form-control" type="number" id="happy" name="happy" min="1" max="100" v-model="happy"
     /></label>
     <p />
-    기타
+    메모
     <input
       type="text"
       class="form-control"
