@@ -14,6 +14,7 @@
           <span></span>
           <span></span>
         </div>
+
         <div class="container shape-container d-flex">
           <div class="col px-0">
             <div class="row">
@@ -22,16 +23,13 @@
                   상상만으로 설레는 여행!
                   <span>어디로 갈지 생각해 볼까요~?</span>
                 </h1>
-                
-                  <base-button
-                      class="mb-3 mb-sm-0 mt-5"
-                      type="info"
-                      icon="fa fa-code"
-                      @click="moveWrite"
-                    >
-                      계획 세우기
-                  </base-button>
-              
+
+                <base-button v-if="userInfo" class="mb-3 mb-sm-0 mt-5" type="info" icon="fa fa-code" @click="moveWrite">
+                  계획 세우기
+                </base-button>
+                <base-button v-else class="mb-3 mb-sm-0 mt-5" type="info" icon="fa fa-code" @click="moveLogin">
+                  로그인이 필요한 서비스 입니다.
+                </base-button>
               </div>
             </div>
           </div>
@@ -101,15 +99,22 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
 export default {
   name: "TourPlan",
   components: {},
 
-  methods: {
+  computed: {
+    ...mapState("userStore", ["userInfo"]),
+  },
 
+  methods: {
     moveWrite() {
       this.$router.push({ name: "PlanWrite" });
     },
-  }
+    moveLogin() {
+      this.$router.push("/login");
+    },
+  },
 };
 </script>

@@ -40,17 +40,17 @@ const planStore = {
           console.log(error);
         });
     },
-    // async writeSchedule(context, param) {
-    //   await http
-    //     .post(`http://localhost/board/writeSchedule`, {
-    //       uid: param.uid,
-    //       title: param.title,
-    //       content: param.content,
-    //     })
-    //     .catch((error) => {
-    //       console.log(error);
-    //     });
-    // },
+    async writeSchedule(context, param) {
+      await http
+        .post(`/plan/write`, {
+          memberId: param.memberId,
+          planTitle: param.planTitle,
+          planDetail: param.planDetail,
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
     // writeScheduleSpot(context, param) {
     //   http
     //     .post(`http://localhost/board/writeScheduleSpot`, {

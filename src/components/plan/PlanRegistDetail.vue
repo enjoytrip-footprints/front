@@ -45,7 +45,7 @@
               style="background: #0ea2bd; border: none"
               @click="share"
             >
-              여행계획 공유하기
+              여행계획 작성하기
             </button>
             <button type="button" id="btn-cancel" class="btn btn-danger mb-3" @click="cancel">계획 취소하기</button>
           </div>
