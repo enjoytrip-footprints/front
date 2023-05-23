@@ -70,7 +70,7 @@ import { mapState, mapMutations, mapActions } from "vuex";
       },
       async likes(){
         this.updateLikes(this.review.reviewId);
-        this.getReview(this.review.reviewId);
+        this.review.likes +=1;
       },
       created() {
       this.reviewId = this.$route.params.reviewId;

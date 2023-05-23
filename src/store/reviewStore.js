@@ -44,6 +44,17 @@ const reviewStore = {
         });
     },
 
+    getHotReviewList({ commit }) {
+      http
+        .get(`review/getHotReviewList`)
+        .then(({ data }) => {
+          commit("SET_REVIEW_LIST", data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+
     getPersonReviewList({ commit }, userId) {
       console.log(userId)
       http

@@ -6,6 +6,7 @@ import Components from "./views/Components.vue";
 import Landing from "./views/base/Landing.vue";
 import Login from "@/components/user/UserLogin";
 import ReviewView from "./views/ReviewView";
+import HotReviewView from "./views/HotReviewView";
 import Register from "@/components/user/UserRegister";
 import Profile from "./views/base/Profile.vue";
 import MyProfile from "@/components/user/MyProfile.vue";
@@ -148,6 +149,21 @@ export default new Router({
       ]
     },
     {
+      path: "/hotReview",
+      name: "hotReview",
+      components: {
+        header: AppHeader,
+        default: HotReviewView,
+        footer: AppFooter,
+      },children: [
+        {
+          path: "list",
+          name: "hotReviewList",
+          component: () => import("@/components/review/HotReviewList"),
+        },
+      ]
+    },
+    {
       path: "/review",
       name: "review",
       components: {
@@ -167,9 +183,9 @@ export default new Router({
           component: () => import("@/components/review/ReviewList"),
         },
         // {
-        //   path: "myReview",
-        //   name: "myReviewList",
-        //   component: () => import("@/components/user/MyReviewList"),
+        //   path: "hotlist",
+        //   name: "hotReviewList",
+        //   component: () => import("@/components/review/HotReviewList"),
         // },
         {
           path: "share",
