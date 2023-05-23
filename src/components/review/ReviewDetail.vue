@@ -11,7 +11,7 @@
                     {{review.desc}}
                   </p>
                 <div class="description mt-3" style="margin-bottom: 10px; " >
-                    <span  style="float: left">  ❤️ {{ review.likes }}</span>
+                    <span  style="float: left" @click="likes">  ❤️ {{ review.likes }}</span>
                     <span style="float: right">조회수 {{review.hit}} </span>
                 </div>
             </div>
@@ -53,7 +53,7 @@ import { mapState, mapMutations, mapActions } from "vuex";
     },
     methods: {
       ...mapMutations("reviewStore", ["CLEAR_REVIEW_LIST"]),
-      ...mapActions("reviewStore", ["getReview", "getReviewList", "deleteReview"]),
+      ...mapActions("reviewStore", ["getReview", "getReviewList", "deleteReview", "updateLikes"]),
   
       editReview() {
         this.getReview(this.review.reviewId);
@@ -68,13 +68,17 @@ import { mapState, mapMutations, mapActions } from "vuex";
           this.$router.push({ name: "reviewList" });
         }
       },
-        created() {
-        this.reviewId = this.$route.params.reviewId;
-        this.getReview(this.reviewId);
-        },
-        moveList() {
-        this.$router.push({ name: "reviewList" });
-        },
+      async likes(){
+        this.updateLikes(this.review.reviewId);
+        this.getReview(this.review.reviewId);
+      },
+      created() {
+      this.reviewId = this.$route.params.reviewId;
+      this.getReview(this.reviewId);
+      },
+      moveList() {
+      this.$router.push({ name: "reviewList" });
+      },
     },
   };
   </script>

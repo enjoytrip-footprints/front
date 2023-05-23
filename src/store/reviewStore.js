@@ -77,6 +77,12 @@ const reviewStore = {
         console.log(error);
       });
     },
+    updateLikes(context, reviewid) {
+      http.put(`review/likes/${reviewid}`)
+      .catch((error) => {
+      console.log(error);
+    });
+    },
   },
 };
 
