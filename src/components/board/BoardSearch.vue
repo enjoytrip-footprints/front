@@ -2,10 +2,7 @@
   <div class="container">
     <div class="text-center">
       <input class="view" type="text" v-model="search" placeholder="제목을 입력하세요." />
-      <button class="btn" 
-        @click="searchB">
-        검색
-      </button>
+      <button class="btn" @click="searchB">검색</button>
     </div>
     <br/>
     <hr/>
@@ -53,7 +50,6 @@
 </template>
 
 <script>
-
 import { mapState, mapGetters, mapMutations, mapActions } from "vuex";
 
 export default {
