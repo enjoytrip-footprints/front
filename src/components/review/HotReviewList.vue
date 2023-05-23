@@ -8,8 +8,8 @@
           <review-list-item
             v-for="review in reviews"
             :key="review.reviewid"
-            :review="review"
-          ></review-list-item>
+            :review="review">
+          </review-list-item>
         </div>
       </div>
     </div>
@@ -17,7 +17,6 @@
 </template>
 
 <script>
-
 import { mapState, mapActions } from "vuex";
 import ReviewListItem from "@/components/review/ReviewListItem";
 
@@ -27,7 +26,6 @@ export default {
     ReviewListItem,
   },
   computed: {
-    ...mapState("userStore", ["userInfo"]),
     ...mapState("reviewStore", ["reviews"]),
   },
   methods: {

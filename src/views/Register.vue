@@ -13,10 +13,7 @@
         <div class="container pt-lg-md">
             <div class="row justify-content-center">
                 <div class="col-lg-5">
-                    <card type="secondary" shadow
-                          header-classes="bg-white pb-5"
-                          body-classes="px-lg-5 py-lg-5"
-                          class="border-0">
+                    <card type="secondary" shadow header-classes="bg-white pb-5" body-classes="px-lg-5 py-lg-5" class="border-0">
                         <template>
                             <div class="text-muted text-center mb-3">
                                 <small>발자취에 오신걸 환영합니다</small>
@@ -49,18 +46,18 @@
                                             placeholder="Age"
                                             addon-left-icon="ni ni-hat-3">
                                 </base-input>
-                                <!-- <div class="text-muted font-italic">
-                                    <small>password strength:
-                                        <span class="text-success font-weight-700">strong</span>
-                                    </small>
-                                </div> -->
                                 <base-checkbox>
                                     <span>I agree with the
                                         <a style="color: Tomato;" href="#">Privacy Policy</a>
                                     </span>
                                 </base-checkbox>
                                 <div class="text-center">
-                                    <base-button style="background-color: Tomato; border-color: Tomato;" type="primary" class="my-4">회원가입</base-button>
+                                    <base-button 
+                                        style="background-color: Tomato; border-color: Tomato;" 
+                                        type="primary" 
+                                        class="my-4"
+                                        >회원가입
+                                    </base-button>
                                 </div>
                             </form>
                         </template>
@@ -70,10 +67,11 @@
         </div>
     </section>
 </template>
+
 <script>
 export default {
     name: "RegisterView"
 };
 </script>
-<style>
-</style>
+
+<style></style>

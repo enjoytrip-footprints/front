@@ -30,17 +30,15 @@
                                           type="text"
                                           id="name"
                                           name="name"
-                                          v-model="name"
-                                          >
+                                          v-model="userInfo.name">
                               </base-input>
                               <base-input alternative
                                           type="password"
                                           placeholder="Password"
                                           id="password"
                                           name="password"
-                                          v-model="password"
-                                          addon-left-icon="ni ni-lock-circle-open"
-                                          >
+                                          v-model="userInfo.password"
+                                          addon-left-icon="ni ni-lock-circle-open">
                               </base-input>
                               <base-input alternative
                                           class="mb-3"
@@ -49,8 +47,7 @@
                                           type="text"
                                           id="email"
                                           name="email"
-                                          v-model="email"
-                                          >
+                                          v-model="userInfo.email">
                               </base-input>
                               <base-input alternative
                                           class="mb-3"
@@ -59,11 +56,15 @@
                                           type="number"
                                           id="age"
                                           name="age"
-                                          v-model="age"
-                                          >
+                                          v-model="userInfo.age">
                               </base-input>
                               <div class="text-center">
-                                  <base-button style="background-color: Tomato; border-color: Tomato;" type="primary" id="btn-signup" class="my-4">정보 수정</base-button>
+                                  <base-button 
+                                    style="background-color: Tomato; border-color: Tomato;" 
+                                    type="primary"
+                                    class="my-4">
+                                    정보 수정
+                                  </base-button>
                               </div>
                           </form>
                       </template>
@@ -75,9 +76,7 @@
 </template>
 
 <script>
-
-import { mapState, mapGetters, mapActions } from "vuex";
-
+import { mapState } from "vuex";
 export default {
   name: "MyProfile",
   data() {
@@ -90,10 +89,6 @@ export default {
   },
   computed: {
     ...mapState("userStore", ["userInfo"]),
-  },
-  methods: {
-    ...mapGetters("userStore", ["checkIdCheck"]),
-    ...mapActions("userStore", ["getIdCheck", "userSignup"]),
   },
 };
 </script>

@@ -1,5 +1,4 @@
 <template>
-
   <div class="position-relative">
     <section class="section-shaped my-0">
       <div class="shape shape-style-1 shape-default shape-skew bg-gradient-default">
@@ -21,9 +20,11 @@
             </div>
             <div class="row" style="border-bottom: solid;">
             </div>
-            </div>
-            <div style="margin-top:100px;">
-          <router-view></router-view><br /><br /></div>
+          </div>
+          <div style="margin-top:100px;">
+            <router-view></router-view>
+            <br/><br/>
+          </div>
         </div>
       </div>
     </section>
@@ -50,6 +51,6 @@ export default {
     this.getHotReviewList();
   },
 };
-  </script>
-  
-  <style></style>
+</script>
+
+<style></style>
