@@ -51,27 +51,32 @@ const planStore = {
           console.log(error);
         });
     },
-    // writeScheduleSpot(context, param) {
-    //   http
-    //     .post(`http://localhost/board/writeScheduleSpot`, {
-    //       boardid: param.boardid,
-    //       spotid: param.spotid,
-    //       memo: param.memo,
-    //     })
-    //     .catch((error) => {
-    //       console.log(error);
-    //     });
-    // },
-    // async getBoardid({ commit }, uid) {
-    //   await http
-    //     .get(`http://localhost/board/writeSchedule/boardid/${uid}`)
-    //     .then(({ data }) => {
-    //       commit("SET_BOARD_ID", data);
-    //     })
-    //     .catch((error) => {
-    //       console.log(error);
-    //     });
-    // },
+    async getBoardid({ commit }, memberId) {
+      await http
+        .get(`/plan/getLast/${memberId}`)
+        .then(({ data }) => {
+          console.log("데이터는 : " + data);
+          commit("SET_BOARD_ID", data.id);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+    async writeScheduleSpot(context, param) {
+      await http
+        .post(`/plan/writeDes`, {
+          planId: param.planId,
+          placeId: param.placeId,
+          content: param.content,
+          price: param.price,
+          happy: param.happy,
+          departTime: param.departTime,
+          arriveTime: param.arriveTime,
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
   },
 };
 
