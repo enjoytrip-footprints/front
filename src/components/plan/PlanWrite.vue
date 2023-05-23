@@ -151,7 +151,7 @@ export default {
         }
       }
 
-      this.CLEAR_SCHEDULE_LIST();
+      // this.CLEAR_SCHEDULE_LIST();
       this.SET_SCHEDULE_LIST(this.schedules);
       // this.makeLine();
     },
@@ -165,7 +165,7 @@ export default {
         }
       }
 
-      this.CLEAR_SCHEDULE_LIST();
+      // this.CLEAR_SCHEDULE_LIST();
       this.SET_SCHEDULE_LIST(this.schedules);
       // this.makeLine();
     },
@@ -179,7 +179,7 @@ export default {
         }
       }
 
-      this.CLEAR_SCHEDULE_LIST();
+      // this.CLEAR_SCHEDULE_LIST();
       this.SET_SCHEDULE_LIST(this.schedules);
       this.resetMarkers();
       this.makeMarker();

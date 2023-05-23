@@ -47,6 +47,11 @@ export default {
   computed: {
     ...mapState("planStore", ["schedules"]),
   },
+  watch:{
+    schedules: function(val){
+      console.log("changed  : " +val);
+    }
+  },
   methods: {
     upSchedule(spotid) {
       console.log("clicked up1");
