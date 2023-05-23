@@ -3,16 +3,29 @@
       <div class="container">
         <div class="row justify-content-center mt--400">
           <card gradient="secondary" shadow body-classes="p-lg-5">
-              <h4 class="mb-1"> {{review.userId}} 님의 발자취</h4>
+              <h4 class="mb-1"> 
+                {{review.userId}} 님의 발자취
+              </h4>
               <div class="regist_form">
-                <img :src="'img/' + review.image" class="img-fluid" style="width: 500px; height: 500px; margin-top: 0; margin-bottom: 10px; " alt="" />
-                <h6 class="text-primary text-uppercase">{{ review.title }}</h6>
+                <img 
+                  :src="'img/' + review.image" 
+                  class="img-fluid" 
+                  style="width: 500px; height: 500px; margin-top: 0; margin-bottom: 10px;"
+                  alt=""/>
+                <h6 class="text-primary text-uppercase">
+                  {{ review.title }}
+                </h6>
                 <p class="description mt-3" >
-                    {{review.desc}}
-                  </p>
+                  {{review.desc}}
+                </p>
                 <div class="description mt-3" style="margin-bottom: 10px; " >
-                    <span  style="float: left" @click="likes">  ❤️ {{ review.likes }}</span>
-                    <span style="float: right">조회수 {{review.hit}} </span>
+                    <span style="float: left" 
+                      @click="likes">
+                      ❤️ {{ review.likes }}
+                    </span>
+                    <span style="float: right">
+                      조회수 {{review.hit}}
+                    </span>
                 </div>
             </div>
             <div style="margin-top: 50px; ">
@@ -25,20 +38,22 @@
                 <base-button
                     class="my-4"
                     v-if="userInfo && userInfo.id == review.userId"
-                    @click="removeReview">삭제
+                    @click="removeReview">
+                    삭제
                 </base-button>
                 <base-button
                     class="my-4"
                     v-if="!userInfo || userInfo.id != review.userId"
-                    @click="moveUser">{{review.userId}} 님의 발자취 보러가기
+                    @click="moveUser">
+                    {{review.userId}} 님의 발자취 보러가기
                 </base-button>
                 <base-button 
                     class="my-4" 
-                    @click="moveList">목록
+                    @click="moveList"> 
+                    목록
                 </base-button>
                 </div>
             </card>
-            
           </div>
         </div>
     </section>
@@ -59,7 +74,6 @@ import { mapState, mapMutations, mapActions } from "vuex";
     methods: {
       ...mapMutations("reviewStore", ["CLEAR_REVIEW_LIST"]),
       ...mapActions("reviewStore", ["getReview", "getReviewList", "deleteReview", "updateLikes","getPersonReviewList"]),
-  
       editReview() {
         this.getReview(this.review.reviewId);
         this.$router.push({ name: "reviewModify" });

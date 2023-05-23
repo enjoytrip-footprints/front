@@ -3,11 +3,23 @@
       <div class="container">
         <div class="row justify-content-center mt--400">
           <card gradient="secondary" shadow body-classes="p-lg-5">
-              <h4 class="mb-1" >여행 후기 남기기</h4>
-              <p class="mt-0">{{userInfo.name}} 님의 발자취를 남겨주세요.
-              흩어지는 소중한 추억을 간직하고 자랑해보아요.</p>
+              <h4 class="mb-1">
+                여행 후기 남기기
+              </h4>
+              <p class="mt-0">
+                {{userInfo.name}} 님의 발자취를 남겨주세요.
+                흩어지는 소중한 추억을 간직하고 자랑해보아요.
+              </p>
               <div class="regist_form">
-              <base-input alternative placeholder="제목" type="text" id="title" name="title" v-model="title" ref="title"> </base-input>
+              <base-input 
+                alternative 
+                placeholder="제목" 
+                type="text" 
+                id="title" 
+                name="title" 
+                v-model="title" 
+                ref="title">
+              </base-input>
               <base-input class="mb-4">
                 <textarea
                   class="form-control form-control-alternative"
@@ -16,8 +28,8 @@
                   id="content"
                   name="content"
                   placeholder="내용을 입력해주세요"
-                  v-model="desc"
-                ></textarea>
+                  v-model="desc">
+                </textarea>
               </base-input>
               <input 
                 type="file"
@@ -26,10 +38,16 @@
                 style="height: 45px"
                 placeholder="이미지를 등록해주세요"
                 @change="handleFileChange"/>
-              <base-button class="my-4" @click="share">
+              <base-button 
+                class="my-4"
+                @click="share">
                 등록하기
               </base-button>
-              <base-button class="my-4" @click="moveList">목록</base-button>
+              <base-button 
+                class="my-4"
+                @click="moveList">
+                목록
+              </base-button>
               </div>
             </card>
           </div>
@@ -75,7 +93,6 @@
           data.append("title", this.title);
           data.append("desc", this.desc);
           data.append("upfile", this.file);
-
           await this.writeReview(data);
           this.CLEAR_REVIEW_LIST();
           this.getReviewList();
