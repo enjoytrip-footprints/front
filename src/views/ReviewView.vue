@@ -1,5 +1,4 @@
 <template>
-
   <div class="position-relative">
     <section class="section-shaped my-0">
       <div class="shape shape-style-1 shape-default shape-skew">
@@ -21,17 +20,19 @@
             </div>
             <div class="row" style="border-bottom: solid;">
               <base-button 
-              style="position: absolute; 
+                style="position: absolute; 
                 right: 18px" 
                 v-if="userInfo" 
                 class="my-4" 
-                @click="shareReview">
-                여행후기  공유하기
+                @click="shareReview"
+                >여행후기  공유하기
               </base-button>
             </div>
-            </div>
-            <div style="margin-top:100px;">
-          <router-view></router-view><br /><br /></div>
+          </div>
+          <div style="margin-top:100px;">
+            <router-view></router-view>
+            <br/><br/>
+          </div>
         </div>
       </div>
     </section>
@@ -49,11 +50,9 @@ export default {
   },
   computed: {
     ...mapState("userStore", ["userInfo"]),
-    ...mapState("reviewStore", ["reviews"]),
   },
   methods: {
     ...mapActions("reviewStore", ["getReviewList"]),
-
     shareReview() {
       this.$router.push({ name: "reviewShare" });
     },

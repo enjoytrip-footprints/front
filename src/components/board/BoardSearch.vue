@@ -4,8 +4,8 @@
       <input class="view" type="text" v-model="search" placeholder="제목을 입력하세요." />
       <button class="btn" @click="searchB">검색</button>
     </div>
-    <br />
-    <hr />
+    <br/>
+    <hr/>
     <div>
       <h2>검색 결과</h2>
       <div v-if="searchboardsLength">
@@ -29,28 +29,39 @@
             <tr v-for="(board, index) in searchBoards" :key="index">
               <td>{{ index + 1 }}</td>
               <td>
-                <router-link class="board-link" :to="`/${board.articleNo}`">{{ board.title }}</router-link>
+                <router-link 
+                  :to="`/${board.articleNo}`"
+                  class="board-link">
+                  {{ board.title }}
+                </router-link>
               </td>
               <td>{{ board.author }}</td>
               <td>{{ board.cnt }}</td>
-              <!-- <td>{{ board.age }} 세</td> -->
             </tr>
           </tbody>
         </table>
       </div>
-      <div v-else>검색 결과가 없습니다.</div>
+      <div v-else>
+        검색 결과가 없습니다.
+      </div>
     </div>
     <br />
   </div>
 </template>
+
 <script>
 import { mapState, mapGetters, mapMutations, mapActions } from "vuex";
+
 export default {
   name: "BoardSearch",
   data() {
     return {
       search: "",
     };
+  },
+  computed: {
+    ...mapState("board", ["searchBoards"]),
+    ...mapGetters("board", ["searchboardsLength"]),
   },
   methods: {
     ...mapMutations("board", ["SEARCH_BOARD"]),
@@ -59,10 +70,6 @@ export default {
       console.log(this.search);
       this.searchBoard(this.search);
     },
-  },
-  computed: {
-    ...mapState("board", ["searchBoards"]),
-    ...mapGetters("board", ["searchboardsLength"]),
   },
   created() {
     this.SEARCH_BOARD([]);

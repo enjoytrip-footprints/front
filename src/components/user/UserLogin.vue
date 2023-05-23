@@ -43,7 +43,14 @@
                                     Remember me
                                 </base-checkbox>
                                 <div class="text-center">
-                                    <base-button style="background-color: Tomato; border-color: Tomato;" type="primary" class="my-4" @click="confirm">로그인</base-button>
+                                    <base-button 
+                                      style="background-color: Tomato;
+                                      border-color: Tomato;"
+                                      type="primary"
+                                      class="my-4"
+                                      @click="confirm">
+                                      로그인
+                                    </base-button>
                                 </div>
                             </form>
                         </template>
@@ -51,12 +58,13 @@
                     <div class="row mt-3">
                         <div class="col-6">
                             <a href="#" class="text-light">
-                                <small>Forgot password?</small>
                             </a>
                         </div>
-                        <div class="col-6 text-right">
-                            <a href="#/register" class="text-light">
-                                <small>Create new account</small>
+                        <div class="col-6 text-right" @click="moveJoin">
+                            <a class="text-light">
+                                <small style="color: white;">
+                                  Create new account
+                                </small>
                             </a>
                         </div>
                     </div>
@@ -80,29 +88,21 @@ export default {
     };
   },
   computed: {
-    ...mapState("userStore", ["isLogin", "isLoginError", "userInfo"]),
+    ...mapState("userStore", ["isLogin", "userInfo"]),
   },
   methods: {
     ...mapMutations("userStore", ["SET_IS_LOGIN_ERROR"]),
     ...mapActions("userStore", ["userConfirm", "getUserInfo"]),
-
     async confirm() {
       await this.userConfirm(this.user);
       let token = sessionStorage.getItem("access-token");
-      console.log("sessionStorage : "+sessionStorage)
       if (this.isLogin) {
         await this.getUserInfo(token);
         this.$router.push({ name: "components" });
       }
     },
     moveJoin() {
-      this.$router.push({ name: "join" });
-    },
-    moveFindId() {
-      this.$router.push({ name: "findId" });
-    },
-    moveFindPw() {
-      this.$router.push({ name: "findPw" });
+      this.$router.push({ name: "register" });
     },
   },
   mounted() {

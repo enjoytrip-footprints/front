@@ -3,10 +3,13 @@
       <div class="container">
         <card gradient="secondary" shadow body-classes="p-lg-5">
           <div class="row justify-content-center mt--400">
-            
               <div class="col-lg-8">
-                  <h2>여행 후기 수정하기</h2>
-                  <p class="mt-0">{{userInfo.name}} 님의 발자취를 남겨주세요.</p>
+                  <h2>
+                    여행 후기 수정하기
+                  </h2>
+                  <p class="mt-0">
+                    {{userInfo.name}} 님의 발자취를 남겨주세요.
+                  </p>
               </div>
           </div>
         <div class="row justify-content-center">
@@ -29,15 +32,14 @@
                   rows="5"
                   style="resize: none"
                   placeholder="내용을 입력해주세요."
-                  v-model="review.desc"
-                ></textarea>
+                  v-model="review.desc">
+                </textarea>
             </base-input>
             </div>
             <div class="col-auto text-center">
               <base-button
                 class="my-4"
-                @click="modify"
-              >
+                @click="modify">
                 후기 수정하기
               </base-button>
               </div>
@@ -60,10 +62,8 @@
     methods: {
       ...mapMutations("reviewStore", ["CLEAR_REVIEW_LIST"]),
       ...mapActions("reviewStore", ["modifyReview", "getReviewList"]),
-  
       async modify() {
         await this.modifyReview(this.review);
-  
         alert("여행 후기가 수정되었습니다!!");
         this.CLEAR_REVIEW_LIST();
         this.getReviewList();

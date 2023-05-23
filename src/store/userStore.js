@@ -66,7 +66,7 @@ const userStore = {
           if (data.message === "success") {
             let accessToken = data["access-token"];
             let refreshToken = data["refresh-token"];
-            // console.log("login success token created!!!! >> ", accessToken, refreshToken);
+            console.log("login success token created!!!! >> ", accessToken, refreshToken);
             commit("SET_IS_LOGIN", true);
             commit("SET_IS_LOGIN_ERROR", false);
             commit("SET_IS_VALID_TOKEN", true);
@@ -127,10 +127,8 @@ const userStore = {
           }
         },
         async (error) => {
-          // HttpStatus.UNAUTHORIZE(401) : RefreshToken 기간 만료 >> 다시 로그인!!!!
           if (error.response.status === 401) {
             console.log("갱신 실패");
-            // 다시 로그인 전 DB에 저장된 RefreshToken 제거.
             await logout(
               state.userInfo.userid,
               ({ data }) => {
@@ -215,46 +213,6 @@ const userStore = {
         .catch((error) => {
           console.log(error);
         });
-    },
-    async getIdByEmail({ commit }, email) {
-      await http
-        .get(`user/findId/${email}`)
-        .then(({ data }) => {
-          commit("SET_USER_ID", data);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    },
-    sendFindIdEmail(context, param) {
-      http.post(`user/findId`, JSON.stringify(param)).catch((error) => {
-        console.log(error);
-      });
-    },
-    async getUidForPw({ commit }, id) {
-      await http
-        .get(`user/findPw/${id}`)
-        .then(({ data }) => {
-          commit("SET_TEMP_USER", data);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    },
-    async sendFindPwEmail({ commit }, email) {
-      await http
-        .post(`user/findPw/${email}`)
-        .then(({ data }) => {
-          commit("SET_TEMP_PW", data);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    },
-    async changeTempPw(context, param) {
-      await http.put(`user/findPw`, JSON.stringify(param)).catch((error) => {
-        console.log(error);
-      });
     },
   },
 };
