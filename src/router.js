@@ -16,6 +16,7 @@ import BoardView from "@/views/BoardView.vue";
 import TourSearch from "@/views/TourSearch.vue";
 import TourPlan from "@/views/TourPlan.vue";
 import PlanWrite from "@/components/plan/PlanWrite";
+import PlanDetail from "@/components/plan/PlanListDetail";
 
 Vue.use(Router);
 
@@ -98,19 +99,29 @@ export default new Router({
       },
     },
     {
+      path: "/plandetail",
+      name: "PlanDetail",
+      components: {
+        header: AppHeader,
+        default: PlanDetail,
+        footer: AppFooter,
+      },
+    },
+    {
       path: "/myReview",
       name: "myReview",
       components: {
         header: AppHeader,
         default: MyReviewView,
         footer: AppFooter,
-      },children: [
+      },
+      children: [
         {
           path: "list",
           name: "MyReviewList",
           component: () => import("@/components/user/MyReviewList"),
         },
-      ]
+      ],
     },
     {
       path: "/personReview",
@@ -119,13 +130,14 @@ export default new Router({
         header: AppHeader,
         default: PersonReviewView,
         footer: AppFooter,
-      },children: [
+      },
+      children: [
         {
           path: "/:personId",
           name: "PersonReviewList",
           component: () => import("@/components/user/PersonReviewList"),
         },
-      ]
+      ],
     },
     {
       path: "/hotReview",
@@ -134,13 +146,14 @@ export default new Router({
         header: AppHeader,
         default: HotReviewView,
         footer: AppFooter,
-      },children: [
+      },
+      children: [
         {
           path: "list",
           name: "hotReviewList",
           component: () => import("@/components/review/HotReviewList"),
         },
-      ]
+      ],
     },
     {
       path: "/review",
@@ -199,8 +212,7 @@ export default new Router({
           name: "BoardDetail",
           component: () => import("@/components/board/BoardDetail.vue"),
         },
-        { path: "write", name: "BoardWrite", 
-        component: () => import("@/components/board/BoardWrite.vue") },
+        { path: "write", name: "BoardWrite", component: () => import("@/components/board/BoardWrite.vue") },
       ],
     },
   ],

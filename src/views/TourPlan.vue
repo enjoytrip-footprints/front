@@ -34,6 +34,9 @@
             </div>
           </div>
         </div>
+        <div class="container shape-container d-flex">
+          <plan-list></plan-list>
+        </div>
       </section>
       <!-- 1st Hero Variation -->
     </div>
@@ -100,9 +103,13 @@
 
 <script>
 import { mapState } from "vuex";
+import PlanList from "../components/plan/PlanList.vue";
+
 export default {
   name: "TourPlan",
-  components: {},
+  components: {
+    PlanList,
+  },
 
   computed: {
     ...mapState("userStore", ["userInfo"]),
