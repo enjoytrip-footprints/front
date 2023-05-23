@@ -13,7 +13,6 @@
     </div>
     <div v-if="boardsLength">
       <table id="board-list">
-
         <colgroup>
           <col style="width: 5%" />
           <col style="width: 20%" />
@@ -37,7 +36,6 @@
     <div v-else class="text-center text-white">
       해당 검색조건을 만족하는 게시글이 없습니다.
     </div>
-
     <div style="text-align: right">
       <br/>
       <button 
@@ -66,23 +64,17 @@ export default {
       search: "",
     };
   },
-
   computed: {
     ...mapState("board", ["boards", "searchBoards"]),
     ...mapGetters("board", ["boardsLength", "searchboardsLength"]),
     ...mapState("userStore", ["userInfo"]),
   },
-
   methods: {
     ...mapActions("board", ["getBoards", "searchBoard"]),
     ...mapMutations("board", ["SEARCH_BOARD"]),
-
-    
-
     moveCreate() {
       this.$router.push({ name: "BoardWrite", params: { isbn: 0 } });
     },
-
     searchB() {
       this.searchBoard(this.search);
     },

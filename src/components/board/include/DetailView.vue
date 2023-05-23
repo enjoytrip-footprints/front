@@ -51,12 +51,10 @@
 import { mapState, mapActions } from "vuex";
 
 export default {
-
   computed: {
     ...mapState("userStore", ["userInfo"]),
     ...mapState("board", ["board"]),
   },
-
   methods: {
     ...mapActions("board", ["delBoard"]),
     async deleteBoard() {
@@ -64,6 +62,5 @@ export default {
       this.$router.push({ name: "BoardList" });
     },
   },
-
 };
 </script>

@@ -11,11 +11,9 @@
               <h4 v-else class="mb-1">
                 여행 후기 수정하기
               </h4>
-
               <p class="mt-0">
                 {{ userInfo.name }} 님의 발자취를 남겨주세요. 흩어지는 소중한 추억을 간직하고 자랑해보아요.
               </p>
-
               <div class="regist_form">
                 <base-input
                   alternative
@@ -27,7 +25,6 @@
                   ref="title"
                 >
                 </base-input>
-
                 <base-input class="mb-4">
                   <textarea
                     class="form-control form-control-alternative"
@@ -40,26 +37,22 @@
                     ref="article">
                   </textarea>
                 </base-input>
-
                 <base-button 
                   v-if="type == 'create'" 
                   class="my-4" 
                   @click="checkValue"> 
                   등록하기
                 </base-button>
-
                 <base-button 
                   v-else class="my-4" 
                   @click="checkValue"> 
                   수정하기 
                 </base-button>
-
                 <base-button 
                   class="my-4" 
                   @click="moveList">
                   목록
                 </base-button>
-
               </div>
             </card>
           </div>
