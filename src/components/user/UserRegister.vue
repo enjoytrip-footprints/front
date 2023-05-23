@@ -124,11 +124,9 @@ export default {
   methods: {
     ...mapGetters("userStore", ["checkIdCheck"]),
     ...mapActions("userStore", ["getIdCheck", "userSignup"]),
-
     checkId() {
       this.getIdCheck(this.user.id);
     },
-
     userJoin() {
       if (!this.user.id) {
         alert("아이디를 입력해주세요!!");
@@ -178,7 +176,6 @@ export default {
         this.isUseId = false;
       }
     },
-
     "user.name": function () {
       if (!this.user.name) {
         this.nameValid = null;
@@ -186,7 +183,6 @@ export default {
         this.nameValid = "input-success";
       }
     },
-
     "user.email": function () {
       if (!this.user.email) {
         this.emailValid = null;
@@ -199,7 +195,6 @@ export default {
         this.isEmail = true;
       }
     },
-
     "user.password": function () {
       if (!this.user.password) {
         this.pwdValid = null;

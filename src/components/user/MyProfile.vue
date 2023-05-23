@@ -33,6 +33,7 @@
                                           v-model="userInfo.name"
                                           >
                               </base-input>
+
                               비밀번호
                               <base-input alternative
                                           type="password"
@@ -42,6 +43,7 @@
                                           v-model="userInfo.password"
                                           >
                               </base-input>
+
                               이메일
                               <base-input alternative
                                           class="mb-3"
@@ -52,6 +54,7 @@
                                           v-model="userInfo.email"
                                           >
                               </base-input>
+
                               나이
                               <base-input alternative
                                           class="mb-3"
@@ -62,12 +65,36 @@
                                           v-model="userInfo.age"
                                           >
                               </base-input>
+
                               <div class="text-center">
-                                  <base-button style="background-color: Tomato; border-color: Tomato;" type="primary" id="btn-signup" class="my-4" @click="userModify">정보 수정</base-button>
+                                  <base-button 
+                                    style="background-color: Tomato; 
+                                    border-color: Tomato;" 
+                                    type="primary" 
+                                    class="my-4" 
+                                    @click="userModify">
+                                    정보 수정
+                                  </base-button>
                               </div>
+
                               <div class="text-center">
-                                  <base-button style="background-color: Tomato; border-color: Tomato;" type="primary" id="btn-signup" class="my-4" @click="logout">로그아웃</base-button>
-                                  <base-button style="background-color: Tomato; border-color: Tomato;" type="primary" id="btn-signup" class="my-4" @click="deleteUser">회원탈퇴</base-button>
+                                  <base-button 
+                                    style="background-color: Tomato; 
+                                    border-color: Tomato;" 
+                                    type="primary" 
+                                    class="my-4" 
+                                    @click="logout">
+                                    로그아웃
+                                  </base-button>
+                                  <base-button 
+                                    style="background-color: Tomato; 
+                                    border-color: Tomato;" 
+                                    type="primary" 
+                                    id="btn-signup" 
+                                    class="my-4" 
+                                    @click="deleteUser">
+                                    회원탈퇴
+                                  </base-button>
                               </div>
                           </form>
                       </template>
@@ -102,6 +129,10 @@ export default {
   methods: {
     ...mapMutations("userStore", ["SET_IS_LOGIN", "SET_USER_INFO", "SET_IS_VALID_TOKEN"]),
     ...mapActions("userStore", ["getIdCheck", "upUser","userLogout","userDelete"]),
+
+    /**
+     * 로그아웃
+     */
     logout() {
       this.userLogout(this.userInfo.id);
       sessionStorage.removeItem("access-token"); //저장된 토큰 없애기
@@ -109,6 +140,10 @@ export default {
       if (this.$route.path != "/") this.$router.push({ name: "login" });
       console.log("userInfo : " + userInfo);
     },
+
+    /**
+     * 회원 정보 수정
+     */
     async userModify() {
       await this.upUser({
         name: this.userInfo.name,
@@ -118,10 +153,13 @@ export default {
         age: this.userInfo.age,
       });
     },
+
+    /**
+     * 회원 탈퇴
+     */
     async deleteUser() {
       if (confirm("회원을 탈퇴하시겠습니까?? \n삭제된 회원 정보는 다시 불러올 수 없습니다!!")) {
         await this.userDelete(this.userInfo.id);
-
         alert("회원 정보가 삭제되었습니다!!!");
         this.SET_USER_INFO(null);
         this.SET_IS_LOGIN(false);
