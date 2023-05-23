@@ -200,8 +200,8 @@ const userStore = {
           console.log(error);
         });
     },
-    async userDelete(context, uid) {
-      await http.delete(`user/delete/${uid}`).catch((error) => {
+    async userDelete(context, id) {
+      await http.delete(`user/${id}`).catch((error) => {
         console.log(error);
       });
     },

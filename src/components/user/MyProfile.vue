@@ -64,7 +64,10 @@
                               </base-input>
                               <div class="text-center">
                                   <base-button style="background-color: Tomato; border-color: Tomato;" type="primary" id="btn-signup" class="my-4" @click="userModify">정보 수정</base-button>
+                              </div>
+                              <div class="text-center">
                                   <base-button style="background-color: Tomato; border-color: Tomato;" type="primary" id="btn-signup" class="my-4" @click="logout">로그아웃</base-button>
+                                  <base-button style="background-color: Tomato; border-color: Tomato;" type="primary" id="btn-signup" class="my-4" @click="deleteUser">회원탈퇴</base-button>
                               </div>
                           </form>
                       </template>
@@ -78,7 +81,7 @@
 <script>
 
 import { userInfo } from "os";
-import { mapState, mapActions } from "vuex";
+import { mapState, mapActions, mapMutations } from "vuex";
 
 export default {
   name: "MyProfile",
@@ -97,7 +100,8 @@ export default {
     ...mapState("userStore", ["isLogin","userInfo"]),
   },
   methods: {
-    ...mapActions("userStore", ["getIdCheck", "upUser","userLogout"]),
+    ...mapMutations("userStore", ["SET_IS_LOGIN", "SET_USER_INFO", "SET_IS_VALID_TOKEN"]),
+    ...mapActions("userStore", ["getIdCheck", "upUser","userLogout","userDelete"]),
     logout() {
       this.userLogout(this.userInfo.id);
       sessionStorage.removeItem("access-token"); //저장된 토큰 없애기
@@ -113,6 +117,17 @@ export default {
         email: this.userInfo.email,
         age: this.userInfo.age,
       });
+    },
+    async deleteUser() {
+      if (confirm("회원을 탈퇴하시겠습니까?? \n삭제된 회원 정보는 다시 불러올 수 없습니다!!")) {
+        await this.userDelete(this.userInfo.id);
+
+        alert("회원 정보가 삭제되었습니다!!!");
+        this.SET_USER_INFO(null);
+        this.SET_IS_LOGIN(false);
+        this.SET_IS_VALID_TOKEN(false);
+        this.$router.push({ name: "login" });
+      }
     },
   },
 };

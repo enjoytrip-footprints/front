@@ -27,6 +27,11 @@
                     v-if="userInfo && userInfo.id == review.userId"
                     @click="removeReview">삭제
                 </base-button>
+                <base-button
+                    class="my-4"
+                    v-if="userInfo.id != review.userId"
+                    @click="moveUser">{{review.userId}} 님의 발자취 보러가기
+                </base-button>
                 <base-button 
                     class="my-4" 
                     @click="moveList">목록
@@ -53,7 +58,7 @@ import { mapState, mapMutations, mapActions } from "vuex";
     },
     methods: {
       ...mapMutations("reviewStore", ["CLEAR_REVIEW_LIST"]),
-      ...mapActions("reviewStore", ["getReview", "getReviewList", "deleteReview", "updateLikes"]),
+      ...mapActions("reviewStore", ["getReview", "getReviewList", "deleteReview", "updateLikes","getPersonReviewList"]),
   
       editReview() {
         this.getReview(this.review.reviewId);
@@ -77,8 +82,12 @@ import { mapState, mapMutations, mapActions } from "vuex";
       this.getReview(this.reviewId);
       },
       moveList() {
-      this.$router.push({ name: "reviewList" });
+        this.$router.push({ name: "reviewList" });
       },
+      moveUser(){
+        this.getPersonReviewList(this.review.userId);
+        this.$router.push({ name: "PersonReviewList", params:{personId: this.review.userId} });
+      }
     },
   };
   </script>
