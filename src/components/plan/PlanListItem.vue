@@ -48,16 +48,20 @@ export default {
   },
   computed: {
     ...mapState("userStore", ["userInfo"]),
+    ...mapState("planStore", ["deslist"]),
   },
   methods: {
     ...mapMutations("planStore", ["CLEAR_PLAN_LIST"]),
     ...mapActions("planStore", [
       "getPlan",
       "getPlanList",
+      "getDesList",
       // , "deletePlan"
     ]),
-    readPlan() {
-      this.getPlan(this.plan.planId);
+    async readPlan() {
+      await this.getPlan(this.plan.id);
+      await this.getDesList(this.plan.id);
+
       this.$router.push({ name: "PlanDetail" });
     },
     // editPlan() {

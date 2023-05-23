@@ -12,27 +12,29 @@
       <span></span>
     </div>
     <div class="container shape-container d-flex">
-      <div class="section-header col-7">
+      <div class="section-header col-3">
         <h3>나의 여행 계획</h3>
       </div>
     </div>
-    <div class="container" style="min-height: 750px">
+    <div class="container" style="min-height: 250px">
       <div class="row justify-content-center">
         <div class="col-lg-8 col-md-10 col-sm-12">
           <div class="mb-3">
             <label for="subject" class="form-label">제목 : </label>
-            <input type="text" class="form-control" id="subject" name="subject" placeholder="제목..." />
+            <!-- <input type="text" class="form-control" id="subject" name="subject" placeholder="제목..." readonly /> -->
+            {{ planSelected.planTitle }}
           </div>
           <div class="mb-0">
             <label for="content" class="form-label">내용 : </label>
-            <textarea
+            {{ planSelected.planDetail }}
+            <!-- <textarea
               class="form-control"
               id="content"
               name="content"
               rows="7"
               style="resize: none"
               placeholder="내용..."
-            ></textarea>
+            ></textarea> -->
           </div>
           <div class="mb-0">
             <div class="container p-0">
@@ -71,53 +73,27 @@ import { mapState, mapMutations, mapActions } from "vuex";
 import PlanListDetailItem from "@/components/plan/PlanListDetailItem";
 export default {
   name: "PlanDetail",
-  props: {
-    plan: Object,
-  },
+  // props: {
+  //   plan: Object,
+  // },
   components: {
     PlanListDetailItem,
   },
   computed: {
     ...mapState("userStore", ["userInfo"]),
-    ...mapState("planStore", ["plan", "deslist"]),
+    ...mapState("planStore", ["planSelected", "deslist"]),
   },
   methods: {
     ...mapMutations("planStore", ["CLEAR_PLAN_LIST"]),
-    ...mapActions("planStore", [
-      "getPlan",
-      "getPlanList",
-      // "deletePlan",
-      // "getPersonPlanList"
-    ]),
+    ...mapActions("planStore", ["getPlan", "getPlanList"]),
 
-    // editPlan() {
-    //   this.getPlan(this.plan.pland);
-    //   this.$router.push({ name: "planModify" });
-    // },
-    // async removePlan() {
-    //   if (confirm("후기를 삭제하시겠습니까??")) {
-    //     await this.deletePlan(this.plan.planId);
-    //     this.CLEAR_PLAN_LIST();
-    //     this.getPlanList();
-    //     alert("후기가 삭제되었습니다!!");
-    //     this.$router.push({ name: "planList" });
-    //   }
-    // },
-    // async likes() {
-    //   this.updateLikes(this.plan.planId);
-    //   this.plan.likes += 1;
-    // },
     created() {
-      this.planId = this.$route.params.planId;
-      this.getPlan(this.planId);
+      // this.planId = this.$route.params.planId;
+      // this.getPlan(this.planId);
     },
     moveList() {
       this.$router.push({ name: "TourPlan" });
     },
-    // moveUser() {
-    //   this.getPersonPlanList(this.plan.userId);
-    //   this.$router.push({ name: "PersonPlanList", params: { personId: this.plan.userId } });
-    // },
   },
 };
 </script>
