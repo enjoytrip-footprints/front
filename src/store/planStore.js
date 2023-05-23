@@ -7,7 +7,7 @@ const planStore = {
     schedules: [],
     boardid: null,
     plans: [],
-    plan: null,
+    planSelected: null,
     deslist: [],
   },
   getters: {},
@@ -40,8 +40,8 @@ const planStore = {
     SET_PLAN_LIST(state, plans) {
       state.plans = plans;
     },
-    SET_PLAN(state, plan) {
-      state.plan = plan;
+    SET_PLAN(state, planSelected) {
+      state.planSelected = planSelected;
     },
     SET_DES_LIST(state, deslist) {
       state.deslist = deslist;
@@ -114,7 +114,7 @@ const planStore = {
       await http
         .get(`/plan/${planId}`)
         .then(({ data }) => {
-          console.log("데이터는 : " + data);
+          console.log("getPlan 데이터는 : " + data);
           commit("SET_PLAN", data);
         })
         .catch((error) => {
@@ -126,7 +126,7 @@ const planStore = {
       await http
         .get(`/plan/getDesList/${planId}`)
         .then(({ data }) => {
-          console.log("데이터는 : " + data);
+          console.log("getDesList 데이터는 : " + data);
           commit("SET_DES_LIST", data);
         })
         .catch((error) => {
