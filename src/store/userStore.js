@@ -172,16 +172,6 @@ const userStore = {
       );
       console.log(userInfo)
     },
-    getIdCheck({ commit }, id) {
-      http
-        .get(`user/${id}`)
-        .then(({ data }) => {
-          commit("SET_ID_CHECK", data);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    },
     userSignup(context, param) {
       const headers = {
         'Content-type': 'application/json',
@@ -209,6 +199,16 @@ const userStore = {
         .then(() => {
           alert("정보수정이 완료되었습니다!!");
           router.push({ name: "components" });
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+    getIdCheck({ commit }, id) {
+      http
+        .get(`member/checkId/${id}`)
+        .then(({ data }) => {
+          commit("SET_ID_CHECK", data);
         })
         .catch((error) => {
           console.log(error);

@@ -25,8 +25,8 @@
                       <template>
                           <form role="form">
                               <base-input alternative
-                                          class="mb-3"
-                                          placeholder="Id"
+                                          :class="idValid"
+                                          placeholder="아이디"
                                           addon-left-icon="ni ni-hat-3"
                                           type="text"
                                           id="signup-form-id"
@@ -34,6 +34,7 @@
                                           v-model="user.id"
                                           @keyup="checkId">
                               </base-input>
+                              <div id="idcheck-result"></div>
                               <base-input alternative
                                           type="password"
                                           :class="pwdValid"
@@ -52,16 +53,15 @@
                                           v-model="pwdCheck"
                                           @keyup.enter="userJoin">
                               </base-input>
-                              <div id="pwdcheck-result"></div>
                               <base-input alternative
-                                          class="mb-3"
+                                          :class="emailValid"
                                           placeholder="Email"
                                           addon-left-icon="ni ni-email-83"
                                           type="text"
                                           v-model="user.email">
                               </base-input>
                               <base-input alternative
-                                          class="mb-3"
+                                          :class="nameValid"
                                           placeholder="Name"
                                           addon-left-icon="ni ni-hat-3"
                                           type="text"
@@ -219,4 +219,11 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+  .input-success {
+  box-shadow: 0 0 5px green;
+}
+.input-fail {
+  box-shadow: 0 0 5px red;
+}
+</style>
