@@ -18,7 +18,7 @@
             <div class="row">
               <div class="col-lg-6" style="margin-bottom: 10px;">
                 <h1 class="display-3  text-white">
-                  {{review.userId}} 님의 후기
+                  {{userInfo.name}} 님의 후기
                 </h1>
               </div>
               <div class="row" style="border-bottom: solid;">
@@ -47,7 +47,7 @@
   import MyReviewItem from "@/components/user/MyReviewItem";
   
   export default {
-    name: "PersonReviewView",
+    name: "MyReviewView",
     components: {
         MyReviewItem,
     },
@@ -63,7 +63,7 @@
       },
     },
     mounted() {
-      this.getPersonReviewList(this.review.userId);
+        this.getPersonReviewList(this.userInfo.id);
     },
   };
     </script>
