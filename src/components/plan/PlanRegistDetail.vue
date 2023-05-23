@@ -32,6 +32,7 @@
                     :key="schedule.spotid"
                     :schedule="schedule"
                     :num="index + 1"
+                    ref="childCom"
                   ></plan-regist-detail-item>
                 </ul>
               </section>
@@ -78,6 +79,13 @@ export default {
     ...mapMutations("planStore", ["CLEAR_BOARD_ID"]),
     ...mapActions("planStore", ["writeSchedule", "getBoardid", "writeScheduleSpot"]),
 
+    checkBlankParent() {
+      for (var i = 0; i < this.$refs.childCom.length; i++) {
+        if (this.$refs.childCom[i].checkBlank()) return true;
+      }
+      return false;
+    },
+
     async share() {
       if (!this.title) {
         alert("제목을 입력해주세요!!!");
@@ -85,26 +93,36 @@ export default {
       } else if (!this.content) {
         alert("내용을 입력해주세요!!!");
         return;
+      } else if (this.checkBlankParent()) {
+        alert("세부 계획을 빠짐없이 입력해주세요 !!!");
+        return;
       } else {
+        // console.log(this.$refs.childCom.length);
+        // for (var i = 0; i < this.$refs.childCom.length; i++) this.$refs.childCom[i].test();
+
         let board = {
-          uid: this.userInfo.uid,
-          title: this.title,
-          content: this.content,
+          memberId: this.userInfo.id,
+          planTitle: this.title,
+          planDetail: this.content,
         };
         await this.writeSchedule(board);
 
         this.CLEAR_BOARD_ID();
-        await this.getBoardid(this.userInfo.uid);
+        await this.getBoardid(this.userInfo.id);
 
-        for (var i = 0; i < this.schedules.length; i++) {
-          var memo = document.querySelector(`#memo${i + 1}`).value;
-          this.schedules[i].memo = memo;
-          let scheduleSpot = {
-            boardid: this.boardid,
-            spotid: this.schedules[i].spotid,
-            memo: this.schedules[i].memo,
-          };
-          this.writeScheduleSpot(scheduleSpot);
+        // for (var i = 0; i < this.schedules.length; i++) {
+        //   var memo = document.querySelector(`#memo${i + 1}`).value;
+        //   this.schedules[i].memo = memo;
+        //   let scheduleSpot = {
+        //     boardid: this.boardid,
+        //     spotid: this.schedules[i].spotid,
+        //     memo: this.schedules[i].memo,
+        //   };
+        //   this.writeScheduleSpot(scheduleSpot);
+        // }
+
+        for (var i = 0; i < this.$refs.childCom.length; i++) {
+          await this.$refs.childCom[i].detailShare(this.boardid);
         }
 
         alert("여행 계획이 등록되었습니다.");
