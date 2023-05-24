@@ -158,10 +158,11 @@ export default {
       }
 
       console.log(itemsInKnapsack);
-
-      for (let i = 0; i < itemsInKnapsack.length; i++) {
-        console.log(itemsInKnapsack[i]);
-        this.$refs.childCom[itemsInKnapsack[i]].changeGreen();
+      // console.log(itemsInKnapsack.includes(1));
+      for (let i = 0; i < N; i++) {
+        // console.log(itemsInKnapsack[i]);
+        if (itemsInKnapsack.includes(i)) this.$refs.childCom[i].changeGreen();
+        else this.$refs.childCom[i].changeRed();
       }
 
       alert("반영되었습니다.");
