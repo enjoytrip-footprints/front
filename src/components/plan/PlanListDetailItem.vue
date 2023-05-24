@@ -3,7 +3,14 @@
     <span class="timeline-icon"> {{ num }} </span>
     <h5 class="fw-bold">{{ tours[num - 1].title }}</h5>
 
-    <card class="border-0" hover shadow body-classes="py-5" style="width: 550px; height: 200px; margin-top: 40px">
+    <b-card
+      :bg-variant="color"
+      class="border-0"
+      hover
+      shadow
+      body-classes="py-5"
+      style="width: 550px; height: 200px; margin-top: 40px"
+    >
       <!-- <img :src="'' + image" style="width: 200px; height: 200px; margin-top: 0; margin-bottom: 10px" alt="" /> -->
       <!-- <img :src="image" /> -->
       <label class="col-6"
@@ -36,9 +43,9 @@
         <!-- <input class="form-control" type="number" id="happy" name="happy" min="1" max="100"/> -->
       </label>
       <p />
-      할 일 : {{ des.content }}
+      메모 : {{ des.content }}
       <!-- <input type="text" class="form-control" v-bind:id="'memo' + num" name="memo" placeholder="메모..." /> -->
-    </card>
+    </b-card>
   </li>
 </template>
 
@@ -54,6 +61,7 @@ export default {
     return {
       price: this.des.price.replace(/^0+|\D+/g, "").replace(/(\d)(?=(?:\d{3})+(?!\d))/g, "$1,"),
       // image: this.tours[this.num - 1].firstImage,
+      color: "white",
     };
   },
   computed: {
@@ -82,6 +90,10 @@ export default {
       console.log(numb);
       console.log(this.schedule.spotid);
       await this.writeScheduleSpot(board);
+    },
+
+    changeGreen() {
+      this.color = "green";
     },
   },
 };
