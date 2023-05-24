@@ -26,7 +26,7 @@
                           <form role="form">
                             이 름
                             <base-input alternative
-                                          class="mb-3"
+                                          :class="nameValid"
                                           type="text"
                                           id="name"
                                           name="name"
@@ -36,17 +36,30 @@
 
                               비밀번호
                               <base-input alternative
+                                          :class="pwdValid"
                                           type="password"
                                           placeholder="******"
                                           id="password"
                                           name="password"
-                                          v-model="userInfo.password"
+                                          v-model="pwd"
+                                          >
+                              </base-input>
+
+                              비밀번호 확인
+                              <base-input alternative
+                                          :class="pwdCheckValid"
+                                          type="password"
+                                          placeholder="******"
+                                          id="password"
+                                          name="password"
+                                          v-model="pwdCheck"
+                                          @keyup.enter="userModify"
                                           >
                               </base-input>
 
                               이메일
                               <base-input alternative
-                                          class="mb-3"
+                                          :class="emailValid"
                                           placeholder="Email"
                                           type="text"
                                           id="email"
@@ -57,7 +70,7 @@
 
                               나이
                               <base-input alternative
-                                          class="mb-3"
+                                          :class="ageValid"
                                           placeholder="Age"
                                           type="number"
                                           id="age"
@@ -114,13 +127,18 @@ export default {
   name: "MyProfile",
   data() {
     return {
-      user:{
-        id: null,
-        password: null,
-        name: null,
-        email: null,
-        age: null,
-      }
+      pwd: null,
+      pwdCheck: null,
+      nameValid: "input-success",
+      emailValid: "input-success",
+      pwdValid: null,
+      pwdCheckValid: null,
+      ageValid: "input-success",
+      file: null,
+      isEmail: true,
+      pwdConfirm: false,
+      /* eslint-disable-next-line */
+      reg: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/,
     };
   },
   computed: {
@@ -145,13 +163,36 @@ export default {
      * 회원 정보 수정
      */
     async userModify() {
-      await this.upUser({
-        name: this.userInfo.name,
-        password: this.userInfo.password,
-        id: this.userInfo.id,
-        email: this.userInfo.email,
-        age: this.userInfo.age,
-      });
+      if (!this.userInfo.name) {
+        alert("이름을 입력해주세요!!");
+        return;
+      } else if (!this.userInfo.email) {
+        alert("이메일을 입력해주세요!!");
+        return;
+      } else if (!this.pwd) {
+        alert("비밀번호를 입력해주세요!!");
+        return;
+      } else if (!this.pwdCheck) {
+        alert("비밀번호 확인을 입력해주세요!!");
+        return;
+      } else if (!this.isEmail) {
+        alert("올바른 이메일 형식이 아닙니다!!");
+        return;
+      } else if (!this.pwdConfirm) {
+        alert("비밀번호가 일치하지 않습니다!!");
+        return;
+      } else if (!this.userInfo.age) {
+        alert("나이를 입력해주세요!!");
+        return;
+      } else {
+        await this.upUser({
+          name: this.userInfo.name,
+          password: this.pwd,
+          id: this.userInfo.id,
+          email: this.userInfo.email,
+          age: this.userInfo.age,
+        });
+      }
     },
 
     /**
@@ -168,7 +209,62 @@ export default {
       }
     },
   },
+  watch: {
+    "userInfo.name": function () {
+      if (!this.userInfo.name) {
+        this.nameValid = null;
+      } else {
+        this.nameValid = "input-success";
+      }
+    },
+    "userInfo.email": function () {
+      if (!this.userInfo.email) {
+        this.emailValid = null;
+        this.isEmail = false;
+      } else if (!this.reg.test(this.userInfo.email)) {
+        this.emailValid = "input-fail";
+        this.isEmail = false;
+      } else {
+        this.emailValid = "input-success";
+        this.isEmail = true;
+      }
+    },
+    "userInfo.age": function () {
+      if (!this.userInfo.age) {
+        this.ageValid = null;
+      } else{
+        this.ageValid = "input-success";
+      }
+    },
+    pwd() {
+      if (!this.userInfo.password) {
+        this.pwdValid = null;
+      }
+    },
+    pwdCheck() {
+      if (!this.pwdCheck) {
+        this.pwdCheckValid = null;
+        this.pwdConfirm = false;
+      }
+      if (this.pwdCheck == this.pwd) {
+        this.pwdValid = "input-success";
+        this.pwdCheckValid = "input-success";
+        this.pwdConfirm = true;
+      } else {
+        this.pwdValid = "input-fail";
+        this.pwdCheckValid = "input-fail";
+        this.pwdConfirm = false;
+      }
+    },
+  },
 };
 </script>
 
-<style></style>
+<style scoped>
+  .input-success {
+    box-shadow: 0 0 5px green;
+  }
+  .input-fail {
+    box-shadow: 0 0 5px red;
+  }
+</style>
