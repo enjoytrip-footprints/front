@@ -18,13 +18,21 @@
                   style="width: 200px; height: 200px; margin-top: 0; margin-bottom: 10px"
                   alt=""
                 /> -->
-                <h5 class="text-primary text-uppercase">{{ plan.planTitle }}</h5>
+                <h4 class="text-primary text-uppercase">{{ plan.planTitle }}</h4>
+                <div style="margin-bottom: 30px;">
+                <p class="description mt-3">
+                  <span style="float: left">  &#8361; {{ priceSum }},000</span>
+                  <span style="float: right">❤️ {{ happyAvg }} </span>
+                </p>
+              </div>
                 <base-button
                   @click="readPlan"
-                  style="margin-top: 20px; color: white"
+                  style="margin-top: 20px; color: white; margin-right: 7px;"
                   tag="a"
-                  type="primary"
+                  type="dark"
                   class="mt-4"
+                  
+                  
                 >
                   상세보기
                 </base-button>
@@ -45,6 +53,8 @@ export default {
   name: "PlanListItem",
   props: {
     plan: Object,
+    priceSum: String,
+    happyAvg: String,
   },
   computed: {
     ...mapState("userStore", ["userInfo"]),

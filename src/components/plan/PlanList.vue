@@ -4,7 +4,15 @@
       <div class="section-header"></div>
       <div class="container-fluid mt-3" data-aos="fade-up" data-aos-delay="200" style="text-align: center">
         <div class="row g-0 portfolio-container">
-          <plan-list-item v-for="plan in plans" :key="plan.planId" :plan="plan"></plan-list-item>
+          <plan-list-item 
+          v-for="(plan, index) in plans" 
+          :key="plan.planId" 
+          :plan="plan"
+          :num=index+1
+          :happyAvg="planInfo[index].happyAvg"
+          :priceSum="planInfo[index].priceSum"
+          ></plan-list-item>
+          
         </div>
       </div>
     </div>
@@ -22,16 +30,17 @@ export default {
   },
   computed: {
     ...mapState("userStore", ["userInfo"]),
-    ...mapState("planStore", ["plans"]),
+    ...mapState("planStore", ["plans", "planInfo"]),
   },
   methods: {
-    ...mapActions("planStore", ["getPlanList"]),
+    ...mapActions("planStore", ["getPlanList", "getPlanInfoList"]),
     sharePlan() {
       this.$router.push({ name: "planShare" });
     },
   },
   mounted() {
     this.getPlanList(this.userInfo.id);
+    this.getPlanInfoList(this.userInfo.id);
   },
 };
 </script>

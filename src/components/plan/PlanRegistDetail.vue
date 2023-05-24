@@ -27,6 +27,7 @@
             <div class="container p-0">
               <section class="py-5 pb-5">
                 <ul class="timeline-with-icons ms-3" id="planInner">
+                  <b-card style="background-color: khaki;">
                   <plan-regist-detail-item
                     v-for="(schedule, index) in schedules"
                     :key="schedule.spotid"
@@ -34,6 +35,7 @@
                     :num="index + 1"
                     ref="childCom"
                   ></plan-regist-detail-item>
+                </b-card>
                 </ul>
               </section>
             </div>
@@ -77,7 +79,7 @@ export default {
   },
   methods: {
     ...mapMutations("planStore", ["CLEAR_BOARD_ID"]),
-    ...mapActions("planStore", ["writeSchedule", "getBoardid", "writeScheduleSpot"]),
+    ...mapActions("planStore", ["writeSchedule", "getBoardid", "writeScheduleSpot", "writePlanInfo"]),
 
     checkBlankParent() {
       for (var i = 0; i < this.$refs.childCom.length; i++) {
@@ -120,10 +122,24 @@ export default {
         //   };
         //   this.writeScheduleSpot(scheduleSpot);
         // }
-
+        var happyNum = 0;
+        var priceNum = 0;
         for (var i = 0; i < this.$refs.childCom.length; i++) {
           await this.$refs.childCom[i].detailShare(this.boardid);
+
+          happyNum += Number(this.$refs.childCom[i].happy);
+          priceNum += Number(this.$refs.childCom[i].removeComma(this.$refs.childCom[i].price));
         }
+        happyNum = Math.trunc(happyNum / this.$refs.childCom.length); // 평균
+
+        let info = {
+          memberId: this.userInfo.id,
+          planId: this.boardid,
+          priceSum: priceNum,
+          happyAvg: happyNum,
+        }
+
+        await this.writePlanInfo(info);
 
         alert("여행 계획이 등록되었습니다.");
         this.$router.push("/tourplan");

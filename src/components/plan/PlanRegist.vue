@@ -17,6 +17,7 @@
             v-on:downSchedule="downSchedule"
             v-on:deleteSchedule="deleteSchedule"
           ></plan-write-item> -->
+          
           <plan-regist-item
             v-model="schedules"
             v-for="schedule in schedules"
@@ -26,8 +27,11 @@
             v-on:downSchedule="downSchedule"
             v-on:deleteSchedule="deleteSchedule"
           ></plan-regist-item>
+        
         </ul>
+      
         <plan-regist-detail />
+      
       </div>
     </div>
   </section>
