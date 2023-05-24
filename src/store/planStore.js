@@ -9,6 +9,7 @@ const planStore = {
     plans: [],
     planSelected: null,
     deslist: [],
+    planInfo:[],
   },
   getters: {},
   mutations: {
@@ -26,6 +27,9 @@ const planStore = {
     },
     CLEAR_DES_LIST(state) {
       state.deslist = [];
+    },
+    CLEAR_PLANINFO_LIST(state) {
+      state.planInfo = [];
     },
 
     SET_SEARCHSPOT_LIST(state, searchSpots) {
@@ -45,6 +49,9 @@ const planStore = {
     },
     SET_DES_LIST(state, deslist) {
       state.deslist = deslist;
+    },
+    SET_PLANINFO_LIST(state, planInfo) {
+      state.planInfo = planInfo;
     },
   },
   actions: {
@@ -70,6 +77,7 @@ const planStore = {
           console.log(error);
         });
     },
+    
     async getBoardid({ commit }, memberId) {
       await http
         .get(`/plan/getLast/${memberId}`)
@@ -96,6 +104,19 @@ const planStore = {
           console.log(error);
         });
     },
+    async writePlanInfo(context, param) {
+      await http
+        .post(`/plan/planInfo`, {
+          memberId: param.memberId,
+          planId: param.planId,
+          priceSum: param.priceSum,
+          happyAvg: param.happyAvg,
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+
 
     async getPlanList({ commit }, memberId) {
       await http
@@ -104,6 +125,19 @@ const planStore = {
           console.log(data);
           console.log("데이터는 : " + data);
           commit("SET_PLAN_LIST", data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+
+    async getPlanInfoList({ commit }, memberId) {
+      await http
+        .get(`/plan/planInfo/${memberId}`)
+        .then(({ data }) => {
+          console.log(data);
+          console.log("데이터는 : " + data);
+          commit("SET_PLANINFO_LIST", data);
         })
         .catch((error) => {
           console.log(error);
