@@ -177,10 +177,10 @@ export default {
     idCheck() {
       if (this.idCheck == 0) {
         this.idValid = "input-success";
-        this.isUseId = true;
+        this.isUseId = false;
       } else {
         this.idValid = "input-fail";
-        this.isUseId = false;
+        this.isUseId = true;
       }
     },
     "user.name": function () {
