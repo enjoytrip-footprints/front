@@ -3,7 +3,7 @@
     <div class="position-relative">
       <!-- shape Hero -->
       <section class="section-shaped my-0">
-        <div class="shape shape-style-1 shape-default bg-gradient-orange">
+        <div class="shape shape-style-1 shape-style-1 bg-gradient-gray">
           <span></span>
         </div>
         <div class="container shape-container d-flex">
@@ -18,8 +18,7 @@
 
             <div class="row">
               <div class="col-lg-6">
-                <h1 class="display-4 text-white">시작이 반이다</h1>
-                <h1 class="display-4 text-white">여행 계획을 설계해봅시다</h1>
+                
               </div>
             </div>
           </div>
@@ -27,8 +26,12 @@
       </section>
       <!-- 1st Hero Variation -->
 
-      <section class="section section-lg pt-lg-0">
+      <section class="section  " style="background-color: bisque;">
+        
         <div class="container">
+          <b-alert style="width:20% font-size:fit-content" variant="warning" dismissible show >키워드 검색 후 더블클릭하여
+                  <p/>나만의 여행 일정을 계획해봅시다
+                </b-alert>
           <!-- <div class="row justify-content-center"> -->
           <!-- Map 추가하는 부분 -->
           <!-- <b-row class="mt-3">
@@ -43,13 +46,14 @@
             </b-col>
           </b-row>
           <br /><br /><br />
-
+          <b-card style="background-color: ivory;">
           <plan-regist
             v-on:upSchedule="upSchedule"
             v-on:downSchedule="downSchedule"
             v-on:deleteSchedule="deleteSchedule"
           >
           </plan-regist>
+          </b-card>
         </div>
       </section>
     </div>

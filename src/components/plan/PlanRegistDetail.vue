@@ -27,6 +27,7 @@
             <div class="container p-0">
               <section class="py-5 pb-5">
                 <ul class="timeline-with-icons ms-3" id="planInner">
+                  <b-card style="background-color: khaki;">
                   <plan-regist-detail-item
                     v-for="(schedule, index) in schedules"
                     :key="schedule.spotid"
@@ -34,6 +35,7 @@
                     :num="index + 1"
                     ref="childCom"
                   ></plan-regist-detail-item>
+                </b-card>
                 </ul>
               </section>
             </div>
