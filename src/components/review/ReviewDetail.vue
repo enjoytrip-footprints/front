@@ -123,11 +123,6 @@ import CommentRow from "@/components/review/include/CommentRow.vue";
         this.updateLikes(this.review.reviewId);
         this.review.likes +=1;
       },
-      created() {
-      this.reviewId = this.$route.params.reviewId;
-      this.getReview(this.reviewId);
-      this.getComments(this.reviewId);
-      },
       moveList() {
         this.$router.push({ name: "reviewList" });
       },
@@ -136,6 +131,11 @@ import CommentRow from "@/components/review/include/CommentRow.vue";
         this.$router.push({ name: "PersonReviewList", params:{personId: this.review.userId} });
       }
     },
+    created() {
+        this.reviewId = this.$route.params.reviewId;
+        this.getReview(this.reviewId);
+        this.getComments(this.reviewId);
+      },
   };
   </script>
 <style>

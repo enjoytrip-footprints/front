@@ -12,7 +12,6 @@ const commentStore = {
     },
     actions: {
         getComments({ commit }, reviewId) {
-            console.log(reviewId);
             http.get(`comment/${reviewId}`)
             .then(({ data }) => {
             commit("SET_COMMENTS", data);

@@ -43,10 +43,8 @@ export default {
         reviewId: this.reviewId,
         userId: this.userInfo.id,
       },
-      console.log("??????? " + this.comment)
       );
       this.content = "";
-
       await this.getComments(this.reviewId);
     },
     async updateComment() {
@@ -67,7 +65,7 @@ export default {
 <style scoped>
 textarea {
   width: 90%;
-  font-size: medium;
+  font-size: small;
 }
 button {
   float: right;
