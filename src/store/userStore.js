@@ -189,7 +189,7 @@ const userStore = {
         });
     },
     async userDelete(context, id) {
-      await http.delete(`user/${id}`).catch((error) => {
+      await http.delete(`member/${id}`).catch((error) => {
         console.log(error);
       });
     },
