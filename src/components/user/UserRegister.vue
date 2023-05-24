@@ -127,6 +127,7 @@ export default {
     ...mapGetters("userStore", ["checkIdCheck"]),
     ...mapActions("userStore", ["getIdCheck", "userSignup"]),
     checkId() {
+      this.isUseId=false;
       this.getIdCheck(this.user.id);
     },
     userJoin() {
@@ -146,6 +147,7 @@ export default {
         alert("비밀번호 확인을 입력해주세요!!");
         return;
       } else if (this.isUseId) {
+        this.isUseId = false;
         alert("이미 사용중인 아이디입니다!!");
         return;
       } else if (!this.isEmail) {
