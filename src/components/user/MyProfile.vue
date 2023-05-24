@@ -1,125 +1,117 @@
 <template>
   <section class="section section-shaped section-lg my-0">
-      <div class="shape shape-style-1 bg-gradient-red">
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
+    <div class="shape shape-style-1 bg-gradient-red">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <div class="container pt-lg-md">
+      <div class="row justify-content-center">
+        <div class="col-lg-5">
+          <card type="secondary" shadow header-classes="bg-white pb-5" body-classes="px-lg-5 py-lg-5" class="border-0">
+            <template>
+              <div class="text-muted text-center mb-3">{{ userInfo.name }} 님 안녕하세요</div>
+            </template>
+            <template>
+              <form role="form">
+                이 름
+                <base-input alternative :class="nameValid" type="text" id="name" name="name" v-model="userInfo.name">
+                </base-input>
+
+                비밀번호
+                <base-input
+                  alternative
+                  :class="pwdValid"
+                  type="password"
+                  placeholder="******"
+                  id="password"
+                  name="password"
+                  v-model="pwd"
+                >
+                </base-input>
+
+                비밀번호 확인
+                <base-input
+                  alternative
+                  :class="pwdCheckValid"
+                  type="password"
+                  placeholder="******"
+                  id="password"
+                  name="password"
+                  v-model="pwdCheck"
+                  @keyup.enter="userModify"
+                >
+                </base-input>
+
+                이메일
+                <base-input
+                  alternative
+                  :class="emailValid"
+                  placeholder="Email"
+                  type="text"
+                  id="email"
+                  name="email"
+                  v-model="userInfo.email"
+                >
+                </base-input>
+
+                나이
+                <base-input
+                  alternative
+                  :class="ageValid"
+                  placeholder="Age"
+                  type="number"
+                  id="age"
+                  name="age"
+                  v-model="userInfo.age"
+                >
+                </base-input>
+
+                <div class="text-center">
+                  <base-button
+                    style="background-color: Tomato; border-color: Tomato"
+                    type="primary"
+                    class="my-4"
+                    @click="userModify"
+                  >
+                    정보 수정
+                  </base-button>
+                </div>
+
+                <div class="text-center">
+                  <base-button
+                    style="background-color: Tomato; border-color: Tomato"
+                    type="primary"
+                    class="my-4"
+                    @click="logout"
+                  >
+                    로그아웃
+                  </base-button>
+                  <base-button
+                    style="background-color: crimson; border-color: Tomato"
+                    type="primary"
+                    id="btn-signup"
+                    class="my-4"
+                    @click="deleteUser"
+                  >
+                    회원탈퇴
+                  </base-button>
+                </div>
+              </form>
+            </template>
+          </card>
+        </div>
       </div>
-      <div class="container pt-lg-md">
-          <div class="row justify-content-center">
-              <div class="col-lg-5">
-                  <card type="secondary" shadow
-                        header-classes="bg-white pb-5"
-                        body-classes="px-lg-5 py-lg-5"
-                        class="border-0">
-                      <template>
-                          <div class="text-muted text-center mb-3">
-                              {{userInfo.name}} 님 안녕하세요
-                          </div>
-                      </template>
-                      <template>
-                          <form role="form">
-                            이 름
-                            <base-input alternative
-                                          :class="nameValid"
-                                          type="text"
-                                          id="name"
-                                          name="name"
-                                          v-model="userInfo.name"
-                                          >
-                              </base-input>
-
-                              비밀번호
-                              <base-input alternative
-                                          :class="pwdValid"
-                                          type="password"
-                                          placeholder="******"
-                                          id="password"
-                                          name="password"
-                                          v-model="pwd"
-                                          >
-                              </base-input>
-
-                              비밀번호 확인
-                              <base-input alternative
-                                          :class="pwdCheckValid"
-                                          type="password"
-                                          placeholder="******"
-                                          id="password"
-                                          name="password"
-                                          v-model="pwdCheck"
-                                          @keyup.enter="userModify"
-                                          >
-                              </base-input>
-
-                              이메일
-                              <base-input alternative
-                                          :class="emailValid"
-                                          placeholder="Email"
-                                          type="text"
-                                          id="email"
-                                          name="email"
-                                          v-model="userInfo.email"
-                                          >
-                              </base-input>
-
-                              나이
-                              <base-input alternative
-                                          :class="ageValid"
-                                          placeholder="Age"
-                                          type="number"
-                                          id="age"
-                                          name="age"
-                                          v-model="userInfo.age"
-                                          >
-                              </base-input>
-
-                              <div class="text-center">
-                                  <base-button 
-                                    style="background-color: Tomato; 
-                                    border-color: Tomato;" 
-                                    type="primary" 
-                                    class="my-4" 
-                                    @click="userModify">
-                                    정보 수정
-                                  </base-button>
-                              </div>
-
-                              <div class="text-center">
-                                  <base-button 
-                                    style="background-color: Tomato; 
-                                    border-color: Tomato;" 
-                                    type="primary" 
-                                    class="my-4" 
-                                    @click="logout">
-                                    로그아웃
-                                  </base-button>
-                                  <base-button 
-                                    style="background-color: Tomato; 
-                                    border-color: Tomato;" 
-                                    type="primary" 
-                                    id="btn-signup" 
-                                    class="my-4" 
-                                    @click="deleteUser">
-                                    회원탈퇴
-                                  </base-button>
-                              </div>
-                          </form>
-                      </template>
-                  </card>
-              </div>
-          </div>
-      </div>
+    </div>
   </section>
 </template>
 
 <script>
-
 import { userInfo } from "os";
 import { mapState, mapActions, mapMutations } from "vuex";
 
@@ -142,11 +134,11 @@ export default {
     };
   },
   computed: {
-    ...mapState("userStore", ["isLogin","userInfo"]),
+    ...mapState("userStore", ["isLogin", "userInfo"]),
   },
   methods: {
     ...mapMutations("userStore", ["SET_IS_LOGIN", "SET_USER_INFO", "SET_IS_VALID_TOKEN"]),
-    ...mapActions("userStore", ["getIdCheck", "upUser","userLogout","userDelete"]),
+    ...mapActions("userStore", ["getIdCheck", "upUser", "userLogout", "userDelete"]),
 
     /**
      * 로그아웃
@@ -232,7 +224,7 @@ export default {
     "userInfo.age": function () {
       if (!this.userInfo.age) {
         this.ageValid = null;
-      } else{
+      } else {
         this.ageValid = "input-success";
       }
     },
@@ -261,10 +253,10 @@ export default {
 </script>
 
 <style scoped>
-  .input-success {
-    box-shadow: 0 0 5px green;
-  }
-  .input-fail {
-    box-shadow: 0 0 5px red;
-  }
+.input-success {
+  box-shadow: 0 0 5px green;
+}
+.input-fail {
+  box-shadow: 0 0 5px red;
+}
 </style>
