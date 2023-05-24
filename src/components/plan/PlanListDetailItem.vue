@@ -4,15 +4,16 @@
     <h5 class="fw-bold">{{ tours[num - 1].title }}</h5>
 
     <b-card
-      :bg-variant="color"
-      class="border-0"
+      :border-variant="color"
       hover
       shadow
       body-classes="py-5"
-      style="width: 550px; height: 200px; margin-top: 40px"
+      style="width: 550px; height: 400px; margin-top: 40px; border: 20px solid"
     >
       <!-- <img :src="'' + image" style="width: 200px; height: 200px; margin-top: 0; margin-bottom: 10px" alt="" /> -->
-      <!-- <img :src="image" /> -->
+      <!-- <img src="/public/img/brand/blue.png" />-->
+      <img :src="tour" style="width: 200px; height: 200px; margin-top: 0; margin-bottom: 10px" alt="" />
+      <br />
       <label class="col-6"
         >출발일 :
         <!-- <input class="form-control" type="date" id="depart_date" name="depart_date" /> -->
@@ -25,7 +26,7 @@
       </label>
       <p />
       <label class="col-6"
-        >예상 경비(원) :
+        >예상 경비(만원) :
         {{ price }}
         <!-- <input
         class="form-control"
@@ -56,12 +57,13 @@ export default {
   props: {
     num: Number,
     des: Object,
+    tour: String,
   },
   data() {
     return {
       price: this.des.price.replace(/^0+|\D+/g, "").replace(/(\d)(?=(?:\d{3})+(?!\d))/g, "$1,"),
-      // image: this.tours[this.num - 1].firstImage,
       color: "white",
+      // plan: null,
     };
   },
   computed: {
@@ -93,13 +95,32 @@ export default {
     },
 
     changeGreen() {
-      this.color = "green";
+      this.color = "success";
     },
     changeRed() {
       this.color = "danger";
     },
   },
+  // watch: {
+  //   changeGreen() {
+  //     this.plan = "input-success";
+  //   },
+  //   changeRed() {
+  //     this.plan = "input-fail";
+  //   },
+  // },
 };
 </script>
 
-<style></style>
+<style scoped>
+/* plan {
+  background-color: "#5D9C59";
+} */
+
+/* .input-success {
+  box-shadow: 0 0 5px green;
+}
+.input-fail {
+  box-shadow: 0 0 5px red;
+} */
+</style>

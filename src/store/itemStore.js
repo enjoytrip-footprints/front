@@ -31,7 +31,20 @@ const itemStore = {
       });
     },
     SET_TOURS(state, tours) {
-      state.tours.push(tours);
+      if (tours.first_image == "")
+        tours.first_image =
+          "https://cdn-icons-png.flaticon.com/512/1103/1103478.png?w=826&t=st=1684911849~exp=1684912449~hmac=35437c8000338cd0ecd19911007fdcfb5d2fc03bf11fbe57ceee666c3122a4f5";
+      state.tours.push({
+        addr1: tours.addr1,
+        content_id: tours.content_id,
+        content_type_id: tours.content_type_id,
+        first_image: tours.first_image,
+        gugun_code: tours.gugun_code,
+        latitude: tours.latitude,
+        longitude: tours.longitude,
+        sido_code: tours.sido_code,
+        title: tours.title,
+      });
     },
   },
   actions: {

@@ -14,14 +14,7 @@
       </div>
       <div class="container shape-container d-flex">
         <div class="col px-0">
-          <div class="row">
-            <div class="col-lg-6">
-                <h1 class="display-3 text-white">
-                  건의사항
-                </h1>
-                <span>불편한 점이 있으면 적어주세요.</span>
-            </div>
-          </div>
+          <div class="row" style="margin-top: 10%"></div>
           <router-view></router-view><br /><br />
         </div>
       </div>
