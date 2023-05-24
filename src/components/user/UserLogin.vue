@@ -19,7 +19,7 @@
                           class="border-0">
                         <template>
                             <div class="text-center text-muted mb-4">
-                                <small>어서오세요</small>
+                                <small > 어서오세요</small>
                             </div>
                             <form role="form">
                                 <base-input 
@@ -52,6 +52,9 @@
                                       로그인
                                     </base-button>
                                 </div>
+                                <b-alert show variant="danger" v-if="isLoginError">
+                                  아이디 또는 비밀번호를 확인하세요.
+                                </b-alert>
                             </form>
                         </template>
                     </card>
@@ -88,7 +91,7 @@ export default {
     };
   },
   computed: {
-    ...mapState("userStore", ["isLogin", "userInfo"]),
+    ...mapState("userStore", ["isLogin", "userInfo", "isLoginError"]),
   },
   methods: {
     ...mapMutations("userStore", ["SET_IS_LOGIN_ERROR"]),

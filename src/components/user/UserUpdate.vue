@@ -25,7 +25,7 @@
                       <template>
                           <form role="form">
                               <base-input alternative
-                                          class="mb-3"
+                                          :class="nameValid"
                                           addon-left-icon="ni ni-hat-3"
                                           type="text"
                                           id="name"
@@ -33,12 +33,23 @@
                                           v-model="userInfo.name">
                               </base-input>
                               <base-input alternative
+                                          :class="pwdValid"
                                           type="password"
                                           placeholder="Password"
                                           id="password"
                                           name="password"
                                           v-model="userInfo.password"
                                           addon-left-icon="ni ni-lock-circle-open">
+                              </base-input>
+                              <base-input alternative
+                                          :class="pwdCheckValid"
+                                          type="password"
+                                          placeholder="Password"
+                                          id="password"
+                                          name="password"
+                                          v-model="userInfo.password"
+                                          addon-left-icon="ni ni-lock-circle-open"
+                                          >
                               </base-input>
                               <base-input alternative
                                           class="mb-3"
@@ -93,4 +104,11 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+  .input-success {
+  box-shadow: 0 0 5px green;
+  }
+.input-fail {
+  box-shadow: 0 0 5px red;
+  }
+</style>

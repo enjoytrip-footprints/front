@@ -68,7 +68,7 @@
                                           v-model="user.name">
                               </base-input>
                               <base-input alternative
-                                          class="mb-3"
+                                          :class="ageValid"
                                           placeholder="Age"
                                           addon-left-icon="ni ni-hat-3"
                                           type="number"
@@ -103,8 +103,10 @@ export default {
       emailValid: null,
       pwdValid: null,
       pwdCheckValid: null,
+      ageValid: null,
       isUseId: false,
       isEmail: false,
+      isAge: false,
       pwdConfirm: false,
       user: {
         id: null,
@@ -125,6 +127,7 @@ export default {
     ...mapGetters("userStore", ["checkIdCheck"]),
     ...mapActions("userStore", ["getIdCheck", "userSignup"]),
     checkId() {
+      this.isUseId=false;
       this.getIdCheck(this.user.id);
     },
     userJoin() {
@@ -144,6 +147,7 @@ export default {
         alert("비밀번호 확인을 입력해주세요!!");
         return;
       } else if (this.isUseId) {
+        this.isUseId = false;
         alert("이미 사용중인 아이디입니다!!");
         return;
       } else if (!this.isEmail) {
@@ -151,6 +155,9 @@ export default {
         return;
       } else if (!this.pwdConfirm) {
         alert("비밀번호가 일치하지 않습니다!!");
+        return;
+      } else if (!this.isAge) {
+        alert("나이를 입력해주세요!!");
         return;
       } else {
         this.userSignup(this.user);
@@ -215,6 +222,15 @@ export default {
         this.pwdConfirm = false;
       }
     },
+    "user.age": function () {
+      if (!this.user.age) {
+        this.isAge = false;
+        this.ageValid = "input-fail";
+      } else{
+        this.isAge = true;
+        this.ageValid = "input-success";
+      }
+    },
   },
 };
 </script>
@@ -222,8 +238,8 @@ export default {
 <style scoped>
   .input-success {
   box-shadow: 0 0 5px green;
-}
-.input-fail {
+  }
+  .input-fail {
   box-shadow: 0 0 5px red;
-}
+  }
 </style>
