@@ -1,13 +1,14 @@
 <template>
   <div class="regist">
-    <div v-if="checkComment != null" class="regist_form">
+    <div v-if="!checkComment" class="regist_form" style="margin-bottom: 50px;">
+      <textarea id="comment" name="comment" v-model="comment" cols="35" rows="2"></textarea>
+      <button @click="registComment">등록</button>
+    </div>
+  
+    <div v-else class="regist_form" style="margin-bottom: 50px;">
       <textarea id="comment" name="comment" v-model="checkComment.comment" cols="35" rows="2"></textarea>
       <button class="small" @click="modifyCommentCancel">취소</button>
       <button class="small" @click="updateComment">수정</button>
-    </div>
-    <div v-else class="regist_form">
-      <textarea id="comment" name="comment" v-model="comment" cols="35" rows="2"></textarea>
-      <button @click="registComment">등록</button>
     </div>
   </div>
 </template>
@@ -43,10 +44,8 @@ export default {
         reviewId: this.reviewId,
         userId: this.userInfo.id,
       },
-      console.log("??????? " + this.comment)
       );
-      this.content = "";
-
+      this.comment = "";
       await this.getComments(this.reviewId);
     },
     async updateComment() {
@@ -67,7 +66,7 @@ export default {
 <style scoped>
 textarea {
   width: 90%;
-  font-size: medium;
+  font-size: small;
 }
 button {
   float: right;

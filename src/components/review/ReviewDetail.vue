@@ -59,8 +59,9 @@
               <small class="mb-1"> 
                 댓글
               </small>
-              <comment-write :reviewId="review.reviewId" />
+              <!-- <comment-write :reviewId="review.reviewId" /> -->
               <comment-write v-if="isModifyShow && this.modifyComment != null" :modifyComment="this.modifyComment" @modify-comment-cancel="onModifyCommentCancel" />
+              <comment-write v-else :reviewId="review.reviewId"/>
               <comment-row v-for="(comment, index) in comments" :key="index" :comment="comment" @modify-comment="onModifyComment" />
             </card>
           </div>
@@ -123,11 +124,6 @@ import CommentRow from "@/components/review/include/CommentRow.vue";
         this.updateLikes(this.review.reviewId);
         this.review.likes +=1;
       },
-      created() {
-      this.reviewId = this.$route.params.reviewId;
-      this.getReview(this.reviewId);
-      this.getComments(this.reviewId);
-      },
       moveList() {
         this.$router.push({ name: "reviewList" });
       },
@@ -136,6 +132,11 @@ import CommentRow from "@/components/review/include/CommentRow.vue";
         this.$router.push({ name: "PersonReviewList", params:{personId: this.review.userId} });
       }
     },
+    created() {
+        this.reviewId = this.$route.params.reviewId;
+        this.getReview(this.reviewId);
+        this.getComments(this.reviewId);
+      },
   };
   </script>
 <style>

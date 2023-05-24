@@ -1,7 +1,7 @@
 <template>
   <div v-show="isShow" class="comment">
     <div class="head">{{ comment.userId }}</div>
-    <div class="content" v-html="enterToBr(comment.comment)"></div>
+    <div class="content" v-html="enterToBr(comment.content)"></div>
 
     <div v-if="userInfo.id==comment.userId" class="cbtn"><label @click="modifyCommentView">수정</label> | <label @click="deleteComment">삭제</label></div>
   </div>
@@ -27,13 +27,14 @@ export default {
     modifyCommentView() {
       this.$emit("modify-comment", {
         id: this.comment.id,
-        content: this.comment.comment,
-        reviewId: this.reviewId,
+        content: this.comment.content,
+        reviewId: this.comment.reviewId,
       });
     },
     async deleteComment() {
-      await this.delComment(this.comment.id, this.comment.reviewId);
-      await this.getComments(this.reviewId);
+      // await this.delComment(this.comment.id, this.comment.reviewId);
+      await this.delComment(this.comment.id);
+      await this.getComments(this.comment.reviewId);
     },
     enterToBr(str) {
       return String(str).replace(/(?:\r\n|\r|\n)/g, "<br />");
@@ -55,6 +56,7 @@ export default {
   margin-bottom: 5px;
 }
 .content {
+  margin: 5px;
   padding: 5px;
 }
 .cbtn {
