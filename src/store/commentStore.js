@@ -1,6 +1,6 @@
 import http from "@/util/http-common";
 
-export default {
+const commentStore = {
     namespaced: true,
     state: {
         comments: [],
@@ -12,7 +12,8 @@ export default {
     },
     actions: {
         getComments({ commit }, reviewId) {
-            http.get("/comment/" + reviewId)
+            console.log(reviewId);
+            http.get(`comment/${reviewId}`)
             .then(({ data }) => {
             commit("SET_COMMENTS", data);
             })
@@ -21,7 +22,7 @@ export default {
             });
         },
         async regComment(context, comment) {
-            await http.post("/comment", comment)
+            await http.post("comment", comment)
             .then(({ data }) => {
                 let msg = "등록 처리시 문제가 발생했습니다.";
                 if (data === "success") {
@@ -31,7 +32,7 @@ export default {
             });
         },
         async modComment(context, comment) {
-            await http.put(`/comment`, comment)
+            await http.put(`comment`, comment)
             .then(({ data }) => {
                 let msg = "수정 처리시 문제가 발생했습니다.";
                 if (data === "success") {
@@ -40,8 +41,8 @@ export default {
                 alert(msg);
             });
         },
-        async delComment(context, commentId) {
-            await http.delete(`/comment/${commentId}`)
+        async delComment(context, id) {
+            await http.delete(`comment/${id}`)
             .then(({ data }) => {
                 let msg = "삭제 처리시 문제가 발생했습니다.";
                 if (data === "success") {
@@ -52,3 +53,4 @@ export default {
         },
     },
 };
+export default commentStore;

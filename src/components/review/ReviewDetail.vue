@@ -1,8 +1,8 @@
 <template>
     <section class="section section-lg pt-lg-0 section-contact-us">
       <div class="container">
-        <div class="row justify-content-center mt--400">
-          <card gradient="secondary" shadow body-classes="p-lg-5">
+        <div class="col justify-content-left mt--400"  >
+          <card gradient="secondary" style="float: left; width: 60%;" shadow body-classes="p-lg-5">
               <h4 class="mb-1"> 
                 {{review.userId}} 님의 발자취
               </h4>
@@ -54,26 +54,58 @@
                 </base-button>
                 </div>
             </card>
+
+            <card gradient="secondary" style="float: right; width: 33%; margin-top: 12px;" shadow body-classes="p-lg-5">
+              <small class="mb-1"> 
+                댓글
+              </small>
+              <comment-write :reviewId="review.reviewId" />
+              <comment-write v-if="isModifyShow && this.modifyComment != null" :modifyComment="this.modifyComment" @modify-comment-cancel="onModifyCommentCancel" />
+              <comment-row v-for="(comment, index) in comments" :key="index" :comment="comment" @modify-comment="onModifyComment" />
+            </card>
           </div>
+
         </div>
     </section>
 </template>
 
 <script>
 import { mapState, mapMutations, mapActions } from "vuex";
-  
+import CommentWrite from "@/components/review/include/CommentWrite.vue";
+import CommentRow from "@/components/review/include/CommentRow.vue";
+
   export default {
     name: "ReviewDetail",
+    components: {
+      CommentWrite,
+      CommentRow,
+    },
+    data() {
+      return {
+        reviewId: "",
+        isModifyShow: false,
+        modifyComment: Object,
+      }
+    },
     props: {
       review: Object,
     },
     computed: {
       ...mapState("userStore", ["userInfo"]),
       ...mapState("reviewStore", ["review"]),
+      ...mapState("commentStore", ["comments"]),
     },
     methods: {
       ...mapMutations("reviewStore", ["CLEAR_REVIEW_LIST"]),
       ...mapActions("reviewStore", ["getReview", "getReviewList", "deleteReview", "updateLikes","getPersonReviewList"]),
+      ...mapActions("commentStore",["getComments"]),
+      onModifyComment(comment) {
+        this.modifyComment = comment;
+        this.isModifyShow = true;
+      },
+      onModifyCommentCancel(isShow) {
+        this.isModifyShow = isShow;
+      },
       editReview() {
         this.getReview(this.review.reviewId);
         this.$router.push({ name: "reviewModify" });
@@ -94,6 +126,7 @@ import { mapState, mapMutations, mapActions } from "vuex";
       created() {
       this.reviewId = this.$route.params.reviewId;
       this.getReview(this.reviewId);
+      this.getComments(this.reviewId);
       },
       moveList() {
         this.$router.push({ name: "reviewList" });

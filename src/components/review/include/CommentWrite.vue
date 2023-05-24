@@ -1,0 +1,80 @@
+<template>
+  <div class="regist">
+    <div v-if="checkComment != null" class="regist_form">
+      <textarea id="comment" name="comment" v-model="checkComment.comment" cols="35" rows="2"></textarea>
+      <button class="small" @click="modifyCommentCancel">취소</button>
+      <button class="small" @click="updateComment">수정</button>
+    </div>
+    <div v-else class="regist_form">
+      <textarea id="comment" name="comment" v-model="comment" cols="35" rows="2"></textarea>
+      <button @click="registComment">등록</button>
+    </div>
+  </div>
+</template>
+
+<script>
+import { mapActions, mapState } from "vuex";
+
+export default {
+  props: {
+    reviewId: String,
+    modifyComment: Object,
+  },
+  data() {
+    return {
+      userId: "",
+      content: "",
+    };
+  },
+  computed: {
+    ...mapState("userStore", ["userInfo"]),
+    checkComment() {
+      return this.modifyComment;
+    },
+  },
+  methods: {
+    ...mapActions("commentStore", ["getComments", "regComment", "modComment"]),
+    async registComment() {
+      console.log("reviewId " + this.reviewId);
+      console.log("userId " + this.userInfo.id,);
+      console.log("content " + this.comment);
+      await this.regComment({
+        content: this.comment,
+        reviewId: this.reviewId,
+        userId: this.userInfo.id,
+      },
+      console.log("??????? " + this.comment)
+      );
+      this.content = "";
+
+      await this.getComments(this.reviewId);
+    },
+    async updateComment() {
+      await this.modComment({
+        id: this.modifyComment.id,
+        content: this.modifyComment.comment,
+      });
+      await this.getComments(this.modifyComment.reviewId);
+      this.modifyCommentCancel();
+    },
+    modifyCommentCancel() {
+      this.$emit("modify-comment-cancel", false);
+    },
+  },
+};
+</script>
+
+<style scoped>
+textarea {
+  width: 90%;
+  font-size: medium;
+}
+button {
+  float: right;
+}
+button.small {
+  width: 60px;
+  font-size: small;
+  font-weight: bold;
+}
+</style>
