@@ -56,9 +56,7 @@
             </card>
 
             <card gradient="secondary" style="float: right; width: 33%; margin-top: 12px;" shadow body-classes="p-lg-5">
-              <small class="mb-1"> 
-                댓글
-              </small>
+              
               <!-- <comment-write :reviewId="review.reviewId" /> -->
               <comment-write v-if="isModifyShow && this.modifyComment != null" :modifyComment="this.modifyComment" @modify-comment-cancel="onModifyCommentCancel" />
               <comment-write v-else :reviewId="review.reviewId"/>

@@ -1,5 +1,6 @@
 <template>
-  <div class="regist">
+  <div v-if="userInfo" class="regist">
+    <small>댓글</small>
     <div v-if="!checkComment" class="regist_form" style="margin-bottom: 50px;">
       <textarea id="comment" name="comment" v-model="comment" cols="35" rows="2"></textarea>
       <button @click="registComment">등록</button>
@@ -10,6 +11,9 @@
       <button class="small" @click="modifyCommentCancel">취소</button>
       <button class="small" @click="updateComment">수정</button>
     </div>
+  </div>
+  <div v-else class="regist">
+    <small>댓글이 없습니다.</small>
   </div>
 </template>
 
@@ -36,9 +40,6 @@ export default {
   methods: {
     ...mapActions("commentStore", ["getComments", "regComment", "modComment"]),
     async registComment() {
-      console.log("reviewId " + this.reviewId);
-      console.log("userId " + this.userInfo.id,);
-      console.log("content " + this.comment);
       await this.regComment({
         content: this.comment,
         reviewId: this.reviewId,

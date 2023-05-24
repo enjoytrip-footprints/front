@@ -74,7 +74,7 @@
 
                 <div class="text-center">
                   <base-button
-                    style="background-color: Tomato; border-color: Tomato"
+                    style="background-color: grey; border-color: whitesmoke;"
                     type="primary"
                     class="my-4"
                     @click="userModify"
@@ -85,7 +85,7 @@
 
                 <div class="text-center">
                   <base-button
-                    style="background-color: Tomato; border-color: Tomato"
+                    style="background-color: gray; border-color: whitesmoke"
                     type="primary"
                     class="my-4"
                     @click="logout"
@@ -93,7 +93,7 @@
                     로그아웃
                   </base-button>
                   <base-button
-                    style="background-color: crimson; border-color: Tomato"
+                    style="background-color: crimson; border-color: crimson"
                     type="primary"
                     id="btn-signup"
                     class="my-4"
@@ -191,7 +191,10 @@ export default {
      * 회원 탈퇴
      */
     async deleteUser() {
-      if (confirm("회원을 탈퇴하시겠습니까?? \n삭제된 회원 정보는 다시 불러올 수 없습니다!!")) {
+      if(!this.pwdConfirm){
+        confirm("회원 탈퇴를 위해 비밀번호를 입력해주세요.")
+      }
+      else if (confirm("회원을 탈퇴하시겠습니까?? \n삭제된 회원 정보는 다시 불러올 수 없습니다!!")) {
         await this.userDelete(this.userInfo.id);
         alert("회원 정보가 삭제되었습니다!!!");
         this.SET_USER_INFO(null);
