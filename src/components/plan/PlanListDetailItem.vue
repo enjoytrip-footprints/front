@@ -95,6 +95,9 @@ export default {
     changeGreen() {
       this.color = "green";
     },
+    changeRed() {
+      this.color = "danger";
+    },
   },
 };
 </script>
