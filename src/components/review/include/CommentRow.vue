@@ -56,6 +56,7 @@ export default {
   margin-bottom: 5px;
 }
 .content {
+  margin: 5px;
   padding: 5px;
 }
 .cbtn {

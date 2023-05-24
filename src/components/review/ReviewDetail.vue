@@ -59,8 +59,9 @@
               <small class="mb-1"> 
                 댓글
               </small>
-              <comment-write :reviewId="review.reviewId" />
+              <!-- <comment-write :reviewId="review.reviewId" /> -->
               <comment-write v-if="isModifyShow && this.modifyComment != null" :modifyComment="this.modifyComment" @modify-comment-cancel="onModifyCommentCancel" />
+              <comment-write v-else :reviewId="review.reviewId"/>
               <comment-row v-for="(comment, index) in comments" :key="index" :comment="comment" @modify-comment="onModifyComment" />
             </card>
           </div>
