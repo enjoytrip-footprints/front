@@ -34,7 +34,7 @@
             </div>
           </div>
         </div>
-        <div class="container shape-container d-flex">
+        <div v-if="userInfo" class="container shape-container d-flex">
           <plan-list></plan-list>
         </div>
       </section>

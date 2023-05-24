@@ -1,13 +1,15 @@
 <template>
   <header class="header-global">
     <base-nav class="navbar-main" transparent type="" effect="light" expand>
-      <router-link slot="brand" class="mr-lg-5" to="/">
+      <!-- <router-link slot="brand" class="mr-lg-5" to="/"> -->
+      <a href="/">
         <img src="img/brand/foot23.png" alt="logo" width="200px" height="100px" />
-      </router-link>
+      </a>
+      <!-- </router-link> -->
 
       <div class="row" slot="content-header" slot-scope="{ closeMenu }">
         <div class="col-6 collapse-brand">
-          <a href="https://demos.creative-tim.com/vue-argon-design-system/documentation/">
+          <a href="/">
             <img src="img/brand/foot23_purple.png" alt="logo" width="200px" height="100px" />
           </a>
         </div>
