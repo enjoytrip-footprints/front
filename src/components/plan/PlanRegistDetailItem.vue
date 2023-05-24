@@ -14,7 +14,7 @@
     /></label>
     <p />
     <label class="col-6"
-      >예상 경비(원)
+      >예상 경비(만원)
       <input
         class="form-control"
         type="text"
