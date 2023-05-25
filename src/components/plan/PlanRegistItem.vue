@@ -37,9 +37,19 @@
         icon="fa-solid  fa-utensils fa-lg"
       />
     </span> -->
-    <h5 class="fw-bold">{{ schedule.title }}</h5>
-    <p class="text-muted mb-2 fw-bold">{{ schedule.addr1 }}</p>
-    <p class="text-muted mb-2">{{ theme(schedule.content_type_id) }}</p>
+
+    <span class="fw-bold">{{ schedule.title }}</span>
+    <!-- <p class="text-muted mb-2 fw-bold">{{ schedule.addr1 }}</p> -->
+    <!-- <p class="text-muted mb-2">{{ theme(schedule.content_type_id) }}</p> -->
+    <button
+      class="btn btn-danger btn-sm"
+      style="margin-top: 10px; margin-left: 10px; margin-bottom: 10px"
+      name="delete"
+      @click="deleteSchedule(schedule.spotid)"
+    >
+      <b-icon icon="x"></b-icon>
+    </button>
+    <img :src="schedule.image" style="width: 200px; height: 200px; margin-top: 0; margin-bottom: 10px" alt="" />
     <div class="text-end mb-2">
       <!-- <button class="btn btn-circle btn-primary btn-sm mb-1 mr-1" name="up" @click="upSchedule(schedule.spotid)">
         <b-icon icon="chevron-up"></b-icon>
@@ -47,9 +57,6 @@
       <button class="btn btn-circle btn-primary btn-sm mb-1 mr-1" name="down" @click="downSchedule(schedule.spotid)">
         <b-icon icon="chevron-down"></b-icon>
       </button> -->
-      <button class="btn btn-circle btn-danger btn-sm mb-1 mr-1" name="delete" @click="deleteSchedule(schedule.spotid)">
-        <b-icon icon="x"></b-icon>
-      </button>
     </div>
   </li>
 </template>
