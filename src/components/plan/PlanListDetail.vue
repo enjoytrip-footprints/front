@@ -27,12 +27,12 @@
               <br />
 
               <!-- <label for="subject" class="form-label">제목 : </label> -->
-              <h3>제목 : {{ planSelected.planTitle }}</h3>
+              <h3>{{ planSelected.planTitle }}</h3>
               <!-- <input type="text" class="form-control" id="subject" name="subject" placeholder="제목..." readonly /> -->
             </div>
             <div class="mb-0">
               <!-- <label for="content" class="form-label">내용 : </label> -->
-              <h3>내용 : {{ planSelected.planDetail }}</h3>
+              <h6>{{ planSelected.planDetail }}</h6>
 
               <!-- <textarea
               class="form-control"
