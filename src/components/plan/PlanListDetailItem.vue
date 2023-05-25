@@ -12,7 +12,7 @@
     >
       <!-- <img :src="'' + image" style="width: 200px; height: 200px; margin-top: 0; margin-bottom: 10px" alt="" /> -->
       <!-- <img src="/public/img/brand/blue.png" />-->
-      <img :src="tour" style="width: 200px; height: 200px; margin-top: 0; margin-bottom: 10px" alt="" />
+      <img :src="tour" style="width: 300px; height: 200px; margin-top: 0; margin-bottom: 20px; margin-left: 15%;" alt="" />
       <br />
       <label class="col-6"
         >출발일 :

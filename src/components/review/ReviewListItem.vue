@@ -10,7 +10,6 @@
                 hover
                 shadow
                 body-classes="py-5"
-            
                 style="width: 250px; height: 400px; margin-top: 40px; color: #163A5F;"
               >
                 <img
@@ -19,16 +18,16 @@
                   style="width: 200px; height: 200px; margin-top: 0; margin-bottom: 10px"
                   alt=""
                 />
-                <h6 class="text-uppercase" style="color: #163A5F;">{{ review.title }}</h6>
+                <h6 class="text-uppercase" style="color: #1D566E;">{{ review.title }}</h6>
                 <p class="description mt-3">
                   <span style="float: left"> ❤️ {{ review.likes }}</span>
                   <span style="float: right">조회수 {{ review.hit }} </span>
                 </p>
                 <base-button
                   @click="readReview"
-                  style="margin-top: 20px; color: white;  background-color: #1D566E; 
-                border-color: #1D566E;"
-                    
+                  style="margin-top: 20px; color: white;  
+                  background-color: #1D566E; 
+                  border-color: #1D566E;"
                   tag="a"
                   type="default"
                   class="mt-4"
