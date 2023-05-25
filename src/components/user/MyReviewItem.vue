@@ -14,7 +14,7 @@
                     class="img-fluid" 
                     style="width: 200px; height: 200px; margin-top: 0; margin-bottom: 10px;" 
                     alt=""/>
-                  <h6 class="text-primary text-uppercase">
+                  <h6 class="text-uppercase" style="color: #850000;">
                     {{ review.title }}
                   </h6>
                   <p class="description mt-3" >
