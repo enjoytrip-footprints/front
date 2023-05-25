@@ -3,7 +3,7 @@
     <div class="position-relative">
       <!-- shape Hero -->
       <section class="section-shaped my-0">
-        <div class="shape shape-style-1 shape-default shape-skew bg-gradient-purple">
+        <div class="shape shape-style-1 shape-default shape-skew bg-gradient-warning">
           <span></span>
           <span></span>
           <span></span>
@@ -23,7 +23,8 @@
             </div>
           </div>
           <p />
-          시, 도 / 군, 구 에 맞춰 관광지를 찾아보세요.
+
+          <b-alert style="font-size: fit-content" show> 시, 도 / 군, 구 에 맞춰 관광지를 찾아보세요. </b-alert>
         </div>
       </section>
       <!-- 1st Hero Variation -->

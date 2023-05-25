@@ -9,7 +9,7 @@ const planStore = {
     plans: [],
     planSelected: null,
     deslist: [],
-    planInfo:[],
+    planInfo: [],
   },
   getters: {},
   mutations: {
@@ -77,7 +77,7 @@ const planStore = {
           console.log(error);
         });
     },
-    
+
     async getBoardid({ commit }, memberId) {
       await http
         .get(`/plan/getLast/${memberId}`)
@@ -116,7 +116,6 @@ const planStore = {
           console.log(error);
         });
     },
-
 
     async getPlanList({ commit }, memberId) {
       await http
@@ -162,6 +161,18 @@ const planStore = {
         .then(({ data }) => {
           console.log("getDesList 데이터는 : " + data);
           commit("SET_DES_LIST", data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+
+    async deletePlan(context, planId) {
+      await http
+        .delete(`/plan/delPlan/${planId}`)
+        .then(({ data }) => {
+          console.log("deletePlan 데이터는 : " + data);
+          console.log("삭제완료");
         })
         .catch((error) => {
           console.log(error);

@@ -59,7 +59,7 @@
                 </section>
               </div>
             </div>
-            <div class="col-auto text-center" style="">
+            <div class="row text-center" style="">
               <button
                 type="button"
                 id="btn-share"
@@ -79,6 +79,16 @@
               >
                 목록으로
               </button>
+
+              <button
+                type="button"
+                id="btn-share"
+                class="btn btn-default mb-3 mr-3"
+                style="background: crimson; border: none"
+                @click="removePlan"
+              >
+                계획삭제
+              </button>
             </div>
           </div>
         </card>
@@ -95,6 +105,11 @@ export default {
   // props: {
   //   plan: Object,
   // },
+  data() {
+    return {
+      show: false,
+    };
+  },
   components: {
     PlanListDetailItem,
   },
@@ -105,7 +120,7 @@ export default {
   },
   methods: {
     ...mapMutations("planStore", ["CLEAR_PLAN_LIST"]),
-    ...mapActions("planStore", ["getPlan", "getPlanList"]),
+    ...mapActions("planStore", ["getPlan", "getPlanList", "deletePlan"]),
 
     created() {
       // this.planId = this.$route.params.planId;
@@ -173,6 +188,28 @@ export default {
       }
 
       alert("반영되었습니다.");
+      this.toast("b-toaster-top-center", true);
+    },
+
+    toast(toaster, append = false) {
+      this.$bvToast.toast(`붉은색 테두리는 추천하지 않는 여행지입니다.`, {
+        title: `초록색 테두리는 추천하는 여행지입니다.`,
+        toaster: toaster,
+        solid: true,
+        variant: "primary",
+
+        appendToast: append,
+      });
+    },
+
+    async removePlan() {
+      if (confirm("정말 삭제하시겠습니까? \n삭제한 데이터는 복구할 수 없습니다.")) {
+        await this.deletePlan(this.planSelected.id);
+      } else {
+        return;
+      }
+      alert("계획 삭제 완료");
+      this.$router.push({ name: "TourPlan" });
     },
   },
 };
