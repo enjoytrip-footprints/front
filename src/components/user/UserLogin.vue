@@ -44,8 +44,8 @@
                                 </base-checkbox>
                                 <div class="text-center">
                                     <base-button 
-                                      style="background-color: Tomato;
-                                      border-color: Tomato;"
+                                      style="background-color: gray;
+                                      border-color: gray;"
                                       type="primary"
                                       class="my-4"
                                       @click="confirm">

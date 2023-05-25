@@ -2,8 +2,8 @@
   <div v-if="userInfo" class="regist">
     <small>댓글</small>
     <div v-if="!checkComment" class="regist_form" style="margin-bottom: 50px;">
-      <textarea id="comment" name="comment" v-model="comment" cols="35" rows="2"></textarea>
-      <button @click="registComment">등록</button>
+      <textarea id="comment" name="comment" v-model="comment" cols="35" rows="2" placeholder="댓글을 입력해주세요."></textarea>
+      <base-button @click="registComment" style="height: 30px; font-size: small; padding: 0px 15px 0px 15px;">등록</base-button>
     </div>
   
     <div v-else class="regist_form" style="margin-bottom: 50px;">
@@ -27,8 +27,7 @@ export default {
   },
   data() {
     return {
-      userId: "",
-      content: "",
+      comment: "",
     };
   },
   computed: {
@@ -44,9 +43,8 @@ export default {
         content: this.comment,
         reviewId: this.reviewId,
         userId: this.userInfo.id,
-      },
-      );
-      this.comment = "";
+      });
+    this.comment = '';
       await this.getComments(this.reviewId);
     },
     async updateComment() {

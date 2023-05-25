@@ -15,8 +15,8 @@
           <span></span>
         </div>
 
-        <div class="container shape-container d-flex">
-          <div class="col px-0">
+        <div class="container shape-container d-flex" style="padding-bottom: 150px;">
+          <div class="col" >
             <div class="row">
               <div class="col-lg-6">
                 <h1 class="display-3 text-white">
@@ -24,10 +24,10 @@
                   <span>어디로 갈지 생각해 볼까요~?</span>
                 </h1>
 
-                <base-button v-if="userInfo" class="mb-3 mb-sm-0 mt-5" type="info" icon="fa fa-code" @click="moveWrite">
+                <base-button v-if="userInfo" class="mb-3 mb-sm-0 mt-5" icon="fa fa-code" @click="moveWrite">
                   계획 세우기
                 </base-button>
-                <base-button v-else class="mb-3 mb-sm-0 mt-5" type="info" icon="fa fa-code" @click="moveLogin">
+                <base-button v-else class="mb-3 mb-sm-0 mt-5" icon="fa fa-code" @click="moveLogin">
                   로그인이 필요한 서비스 입니다.
                 </base-button>
               </div>

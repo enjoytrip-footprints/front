@@ -38,7 +38,7 @@
       />
     </span> -->
 
-    <span class="fw-bold">{{ schedule.title }}</span>
+    <span class="fw-bold" style="font-size: 20px;">{{ schedule.title }}</span>
     <!-- <p class="text-muted mb-2 fw-bold">{{ schedule.addr1 }}</p> -->
     <!-- <p class="text-muted mb-2">{{ theme(schedule.content_type_id) }}</p> -->
     <button
@@ -49,7 +49,9 @@
     >
       <b-icon icon="x"></b-icon>
     </button>
-    <img :src="schedule.image" style="width: 200px; height: 200px; margin-top: 0; margin-bottom: 10px" alt="" />
+    <div>
+    <img :src="schedule.image" style="width: 200px; height: 150px; margin-top: 0; margin-bottom: 10px" alt="" />
+  </div>
     <div class="text-end mb-2">
       <!-- <button class="btn btn-circle btn-primary btn-sm mb-1 mr-1" name="up" @click="upSchedule(schedule.spotid)">
         <b-icon icon="chevron-up"></b-icon>

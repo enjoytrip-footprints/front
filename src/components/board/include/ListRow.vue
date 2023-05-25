@@ -1,6 +1,6 @@
 <template>
   <tr>
-    <td>{{ articleNo }}</td>
+    <td>{{ num }}</td>
     <td>
       <router-link 
         :to="{ name: 'BoardDetail', 
@@ -20,6 +20,7 @@
       title: String,
       author: String,
       cnt: Number,
+      num: Number,
     },
   };
 </script>

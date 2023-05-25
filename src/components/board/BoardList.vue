@@ -29,7 +29,10 @@
           </tr>
         </thead>
         <tbody>
-          <list-row v-for="(board, index) in boards" :key="index" v-bind="board" />
+          <list-row v-for="(board, index) in boards"
+            :key="index" 
+            :num="index+1"
+            v-bind="board" />
         </tbody>
       </table>
     </div>
