@@ -74,7 +74,7 @@
 
                 <div class="text-center">
                   <base-button
-                    style="background-color: grey; border-color: whitesmoke;"
+                    style="background-color: grey; border-color: gray;"
                     type="primary"
                     class="my-4"
                     @click="userModify"
@@ -85,7 +85,7 @@
 
                 <div class="text-center">
                   <base-button
-                    style="background-color: gray; border-color: whitesmoke"
+                    style="background-color: gray; border-color: gray"
                     type="primary"
                     class="my-4"
                     @click="logout"
