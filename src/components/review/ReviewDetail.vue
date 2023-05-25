@@ -12,10 +12,10 @@
                   class="img-fluid" 
                   style="width: 500px; height: 500px; margin-top: 0; margin-bottom: 10px;"
                   alt=""/>
-                <h6 class="text-primary text-uppercase">
+                <h4 class="text-uppercase" style="color: #1D566E">
                   {{ review.title }}
-                </h6>
-                <p class="description mt-3" >
+                </h4>
+                <p class="description mt-3" style="color: #1D566E">
                   {{review.desc}}
                 </p>
                 <div class="description mt-3" style="margin-bottom: 10px; " >
@@ -28,27 +28,31 @@
                     </span>
                 </div>
             </div>
-            <div style="margin-top: 50px; ">
+            <div style="margin-top: 50px;">
             <base-button
-                    class="my-4"
+                    class="my-4 float-left"
+                    style="background-color: #1D566E; border-color: #1D566E;"
                     v-if="userInfo && userInfo.id == review.userId"
                     @click="editReview">
                     수정
                 </base-button>
                 <base-button
-                    class="my-4"
+                    class="my-4 float-left"
+                    style="background-color: #1D566E; border-color: #1D566E;"
                     v-if="userInfo && userInfo.id == review.userId"
                     @click="removeReview">
                     삭제
                 </base-button>
                 <base-button
-                    class="my-4"
+                    class="my-4 float-left"
+                    style="background-color: #1D566E; border-color: #1D566E;"
                     v-if="!userInfo || userInfo.id != review.userId"
                     @click="moveUser">
                     {{review.userId}} 님의 발자취 보러가기
                 </base-button>
                 <base-button 
-                    class="my-4" 
+                    style="background-color: #1D566E;  border-color: #1D566E;"
+                    class="my-4 float-right"  
                     @click="moveList"> 
                     목록
                 </base-button>

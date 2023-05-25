@@ -1,7 +1,7 @@
 <template>
   <div class="position-relative">
     <section class="section-shaped my-0">
-      <div class="shape shape-style-1 shape-default shape-skew">
+      <div class="shape shape-style-1 shape-default shape-skew bg-gradient-green">
         <span></span>
         <span></span>
         <span></span>
@@ -20,7 +20,9 @@
             </div>
             <div class="row" style="border-bottom: solid;">
               <base-button 
-                style="position: absolute; 
+                style="position: absolute;
+                background-color: #1D566E; 
+                border-color: #1D566E;
                 right: 18px" 
                 v-if="userInfo" 
                 class="my-4" 

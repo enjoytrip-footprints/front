@@ -14,17 +14,20 @@
           <span></span>
           <span></span>
         </div>
-        <div class="container shape-container d-flex">
+        <div class="container shape-container">
           <div class="col px-0">
             <div class="row">
               <div class="col-lg-6">
                 <h1 class="display-3 text-white">여행지 검색</h1>
               </div>
             </div>
+
           </div>
+          <b-alert style="font-size: fit-content;background-color:#FEE8B0; color: #7C9070; float: left; margin: 20px 0 0 0;" show> 시, 도 / 군, 구 에 맞춰 관광지를 찾아보세요. </b-alert>
+          
           <p />
 
-          <b-alert style="font-size: fit-content" show> 시, 도 / 군, 구 에 맞춰 관광지를 찾아보세요. </b-alert>
+          <!-- <b-alert style="font-size: fit-content;background-color:#FEE8B0; color: #7C9070;" show> 시, 도 / 군, 구 에 맞춰 관광지를 찾아보세요. </b-alert> -->
         </div>
       </section>
       <!-- 1st Hero Variation -->
