@@ -59,37 +59,37 @@
                 </section>
               </div>
             </div>
-            <div class="row text-center" style="">
-              <button
-                type="button"
-                id="btn-share"
-                class="btn btn-default mb-3 mr-3"
-                style="background: purple; border: none"
-                @click="calc"
-              >
-                예산이 부족하다면..?
-              </button>
+          </div>
+          <div class="row" style="margin-right: 20%">
+            <button
+              type="button"
+              id="btn-share"
+              class="btn btn-default mb-3 mr-3"
+              style="background: purple; border: none; margin: 0 auto"
+              @click="calc"
+            >
+              예산이 부족하다면..?
+            </button>
 
-              <button
-                type="button"
-                id="btn-share"
-                class="btn btn-default mb-3 mr-3"
-                style="background: #0ea2bd; border: none"
-                @click="moveList"
-              >
-                목록으로
-              </button>
+            <button
+              type="button"
+              id="btn-share"
+              class="btn btn-default mb-3 mr-3"
+              style="background: #0ea2bd; border: none"
+              @click="moveList"
+            >
+              목록으로
+            </button>
 
-              <button
-                type="button"
-                id="btn-share"
-                class="btn btn-default mb-3 mr-3"
-                style="background: crimson; border: none"
-                @click="removePlan"
-              >
-                계획삭제
-              </button>
-            </div>
+            <button
+              type="button"
+              id="btn-share"
+              class="btn btn-default mb-3 mr-3"
+              style="background: crimson; border: none"
+              @click="removePlan"
+            >
+              계획삭제
+            </button>
           </div>
         </card>
       </div>
