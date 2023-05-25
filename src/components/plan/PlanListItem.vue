@@ -19,20 +19,18 @@
                   alt=""
                 /> -->
                 <h4 class="text-primary text-uppercase">{{ plan.planTitle }}</h4>
-                <div style="margin-bottom: 30px;">
-                <p class="description mt-3">
-                  <span style="float: left">  &#8361; {{ priceSum }},000</span>
-                  <span style="float: right">❤️ {{ happyAvg }} </span>
-                </p>
-              </div>
+                <div style="margin-bottom: 30px">
+                  <p class="description mt-3">
+                    <span style="float: left"> 총 경비 : {{ priceSum }} 만원</span>
+                    <span style="float: right">❤️ {{ happyAvg }} </span>
+                  </p>
+                </div>
                 <base-button
                   @click="readPlan"
-                  style="margin-top: 20px; color: white; margin-right: 7px;"
+                  style="margin-top: 20px; color: white; margin-right: 7px"
                   tag="a"
                   type="dark"
                   class="mt-4"
-                  
-                  
                 >
                   상세보기
                 </base-button>

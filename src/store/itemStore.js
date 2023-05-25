@@ -32,8 +32,7 @@ const itemStore = {
     },
     SET_TOURS(state, tours) {
       if (tours.first_image == "")
-        tours.first_image =
-          "https://cdn-icons-png.flaticon.com/512/1103/1103478.png?w=826&t=st=1684911849~exp=1684912449~hmac=35437c8000338cd0ecd19911007fdcfb5d2fc03bf11fbe57ceee666c3122a4f5";
+        tours.first_image = "https://web.yonsei.ac.kr/_ezaid/board/_skin/albumRecent/1/no_image.gif";
       state.tours.push({
         addr1: tours.addr1,
         content_id: tours.content_id,
