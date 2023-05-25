@@ -23,7 +23,7 @@
                   </p>
                   <base-button 
                     @click="readReview" 
-                    style="margin-top: 20px; background-color: tomato; border-color: tomato; color: white;" 
+                    style="margin-top: 20px; background-color: indianred; border-color: indianred; color: white;" 
                     tag="a" 
                     type="primary"
                     class="mt-4">
