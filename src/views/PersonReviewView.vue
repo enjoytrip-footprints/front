@@ -23,7 +23,7 @@
             <div class="row" style="border-bottom: solid;">
               <base-button 
                 v-if="userInfo" 
-                style="position: absolute; background-color: white; border-color: white; color: black; right: 18px" 
+                style="position: absolute; background-color: darkgray; border-color: darkgray; color: white; right: 18px" 
                 class="my-4" 
                 @click="shareReview"
                 >여행 후기  공유하기
